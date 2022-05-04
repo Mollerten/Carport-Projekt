@@ -24,6 +24,12 @@
             <p>You are not logged in yet. You can do it here: <a
                     href="login.jsp">Login</a></p>
         </c:if>
+        <br> <br>
+
+            <p>or you can create a new user here: <a
+
+            href="WEB-INF/createUser.jsp">create user</a></p>
+
 
     </jsp:body>
 
