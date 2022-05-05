@@ -5,25 +5,32 @@ import java.util.Objects;
 public class User
 {
     private String username;
+    private String email;
     private String password;
-    private String role;
+    private String tlfnr;
+    private String address;
+    private String city;
 
-    public User(String username, String password, String role)
+    public User(String username, String email, String password, String tlfnr, String adress, String city)
     {
         this.username = username;
+        this.email = email;
         this.password = password;
-        this.role = role;
+        this.tlfnr = tlfnr;
+        this.address = address;
+        this.city = city;
     }
-
-
 
     @Override
     public String toString()
     {
         return "User{" +
-                "brugerNavn='" + username + '\'' +
-                ", kodeord='" + password + '\'' +
-                ", rolle='" + role + '\'' +
+                "username='" + username + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", tlfnr='" + tlfnr + '\'' +
+                ", address='" + address + '\'' +
+                ", city='" + city + '\'' +
                 '}';
     }
 
@@ -47,29 +54,19 @@ public class User
         this.password = password;
     }
 
-    public String getRole()
-    {
-        return role;
-    }
-
-    public void setRole(String role)
-    {
-        this.role = role;
-    }
 
     @Override
     public boolean equals(Object o)
     {
         if (this == o) return true;
-        if (!(o instanceof User)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return getUsername().equals(user.getUsername()) && getPassword().equals(user.getPassword()) &&
-                getRole().equals(user.getRole());
+        return username.equals(user.username) && email.equals(user.email) && password.equals(user.password) && tlfnr.equals(user.tlfnr) && address.equals(user.address) && city.equals(user.city);
     }
 
     @Override
     public int hashCode()
     {
-        return Objects.hash(getUsername(), getPassword(), getRole());
+        return Objects.hash(username, email, password, tlfnr, address, city);
     }
 }
