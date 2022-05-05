@@ -1,16 +1,14 @@
-package dat.startcode.control;
+package dat.carport.control;
 
-import dat.startcode.model.config.ApplicationStart;
-import dat.startcode.model.entities.User;
-import dat.startcode.model.exceptions.DatabaseException;
-import dat.startcode.model.services.UserFacade;
-import dat.startcode.model.persistence.ConnectionPool;
+import dat.carport.model.config.ApplicationStart;
+import dat.carport.model.entities.User;
+import dat.carport.model.exceptions.DatabaseException;
+import dat.carport.model.services.UserFacade;
+import dat.carport.model.persistence.ConnectionPool;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class Login extends Command
 {
