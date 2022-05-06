@@ -21,8 +21,16 @@
         </c:if>
 
         <c:if test="${sessionScope.user == null}">
-            <p>You are not logged in yet. You can do it here: <a
-                    href="login.jsp">Login</a></p>
+            <p>You are not logged in yet. You can do it here:
+                <a href="login.jsp">Login</a></p>
+
+        <br> <br>
+
+            <p>or you can create a new user here:
+                <a href="createUser.jsp">create user</a></p>
+
+
+
         </c:if>
 
     </jsp:body>
