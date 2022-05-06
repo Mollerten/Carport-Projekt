@@ -10,18 +10,18 @@ public class User
     private String tlfnr;
     private String address;
     private String city;
-    private String isAdmin;
+    private String role;
 
-    public User(String username, String email, String password, String tlfnr, String isAdmin)
+    public User(String username, String email, String password, String tlfnr, String role)
     {
         this.username = username;
         this.email = email;
         this.password = password;
         this.tlfnr = tlfnr;
-        this.isAdmin = isAdmin;
+        this.role = role;
     }
 
-    public User(String username, String email, String password, String tlfnr, String address, String city, String isAdmin)
+    public User(String username, String email, String password, String tlfnr, String address, String city, String role)
     {
         this.username = username;
         this.email = email;
@@ -29,7 +29,7 @@ public class User
         this.tlfnr = tlfnr;
         this.address = address;
         this.city = city;
-        this.isAdmin = isAdmin;
+        this.role = role;
     }
 
     @Override
@@ -42,7 +42,7 @@ public class User
                 ", tlfnr='" + tlfnr + '\'' +
                 ", address='" + address + '\'' +
                 ", city='" + city + '\'' +
-                ", isAdmin='" + isAdmin + '\'' +
+                ", isAdmin='" + role + '\'' +
                 '}';
     }
 
@@ -106,14 +106,14 @@ public class User
         this.city = city;
     }
 
-    public String getIsAdmin()
+    public String getRole()
     {
-        return isAdmin;
+        return role;
     }
 
-    public void setIsAdmin(String isAdmin)
+    public void setRole(String role)
     {
-        this.isAdmin = isAdmin;
+        this.role = role;
     }
 
     @Override
@@ -122,12 +122,12 @@ public class User
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return username.equals(user.username) && email.equals(user.email) && password.equals(user.password) && tlfnr.equals(user.tlfnr) && address.equals(user.address) && city.equals(user.city) && isAdmin.equals(user.isAdmin);
+        return username.equals(user.username) && email.equals(user.email) && password.equals(user.password) && tlfnr.equals(user.tlfnr) && address.equals(user.address) && city.equals(user.city) && role.equals(user.role);
     }
 
     @Override
     public int hashCode()
     {
-        return Objects.hash(username, email, password, tlfnr, address, city, isAdmin);
+        return Objects.hash(username, email, password, tlfnr, address, city, role);
     }
 }

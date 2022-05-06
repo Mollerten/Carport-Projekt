@@ -38,9 +38,10 @@ public class UserMapper implements IUserMapper
                     String tlfnr = rs.getString("tlfnr");
                     String address = rs.getString("address");
                     String city = rs.getString("city");
-                    String isAdmin = rs.getString("isAdmin");
+                    Boolean isAdmin = rs.getBoolean("isAdmin");
+                    String role = isAdmin ? "admin" : "user";
 
-                    user = new User(username, email, password, tlfnr, address, city, isAdmin);
+                    user = new User(username, email, password, tlfnr, address, city, role);
                 } else
                 {
                     throw new DatabaseException("Wrong username or password");
@@ -54,7 +55,7 @@ public class UserMapper implements IUserMapper
     }
 
     @Override
-    public User createUser(String username, String email, String password, String tlfnr, String address, String city, String isAdmin) throws DatabaseException
+    public User createUser(String username, String email, String password, String tlfnr, String address, String city, String role) throws DatabaseException
     {
         Logger.getLogger("web").log(Level.INFO, "");
         User user;
@@ -73,7 +74,7 @@ public class UserMapper implements IUserMapper
                 int rowsAffected = ps.executeUpdate();
                 if (rowsAffected == 1)
                 {
-                    user = new User(username, email, password, tlfnr, address, city, isAdmin);
+                    user = new User(username, email, password, tlfnr, address, city, role);
                 } else
                 {
                     throw new DatabaseException("The user with username = " + username + " could not be inserted into the database");
