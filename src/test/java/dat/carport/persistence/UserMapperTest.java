@@ -34,9 +34,18 @@ class UserMapperTest
             try (Statement stmt = testConnection.createStatement() ) {
                 // Remove all rows from all tables
                 stmt.execute("delete from user");
+                stmt.execute("delete from city");
                 // Indsæt et par brugere
-                stmt.execute("insert into user (username, password, role) " +
-                        "values ('user','1234','user'),('admin','1234','admin'), ('ben','1234','user')");
+                stmt.execute("insert into city (city, postal_code) " +
+                        "values ('Nyker','3700')," +
+                        "('Valby','2500'), " +
+                        "('Østermarie','3751')");
+                stmt.execute("insert into user (username, email, password, tlfnr, address, city, isAdmin) " +
+                        "values ('user','u@u.dk','1234','12345678','Kirkemarksvej 48','Nyker',0)," +
+                        "('adam','a@a.dk','1234','12345678','Bodil Ipsens vej 4','Valby',0), " +
+                        "('ben','b@b.dk','1234','12345678','Lundsvej 12','Østermarie',0)");
+                stmt.execute("insert into user (username, email, password, tlfnr, isAdmin)" +
+                        "value ('admin','admin@fog.dk','1234','12345678',1)");
             }
         } catch (SQLException throwables) {
             System.out.println(throwables.getMessage());

@@ -1,10 +1,10 @@
-CREATE DATABASE  IF NOT EXISTS `carport` /*!40100 DEFAULT CHARACTER SET utf8mb4 */ /*!80016 DEFAULT ENCRYPTION='N' */;
+CREATE DATABASE  IF NOT EXISTS `carport` /*!40100 DEFAULT CHARACTER SET utf8 */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `carport`;
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!50503 SET NAMES utf8mb4 */;
+/*!50503 SET NAMES utf8 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -18,14 +18,14 @@ USE `carport`;
 
 DROP TABLE IF EXISTS `admin`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4mb4 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `admin` (
   `admin_id` int NOT NULL AUTO_INCREMENT,
   `username` varchar(16) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(32) NOT NULL,
   PRIMARY KEY (`admin_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -34,14 +34,14 @@ CREATE TABLE `admin` (
 
 DROP TABLE IF EXISTS `bekledning`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4mb4 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `bekledning` (
   `bekledning_mat` varchar(255) NOT NULL,
   `stock_id` int NOT NULL,
   PRIMARY KEY (`bekledning_mat`),
   KEY `fk_bekledning_stock1_idx` (`stock_id`),
   CONSTRAINT `fk_bekledning_stock1` FOREIGN KEY (`stock_id`) REFERENCES `stock` (`stock_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4mb3;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -50,12 +50,12 @@ CREATE TABLE `bekledning` (
 
 DROP TABLE IF EXISTS `city`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4mb4 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `city` (
   `city` varchar(45) NOT NULL,
   `postal_code` varchar(45) NOT NULL,
   PRIMARY KEY (`city`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4mb3;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -64,7 +64,7 @@ CREATE TABLE `city` (
 
 DROP TABLE IF EXISTS `customer`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4mb4 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `customer` (
   `customer_id` int NOT NULL AUTO_INCREMENT,
   `username` varchar(16) NOT NULL,
@@ -76,7 +76,7 @@ CREATE TABLE `customer` (
   PRIMARY KEY (`customer_id`),
   KEY `fk_customer_city_idx` (`city`),
   CONSTRAINT `fk_customer_city` FOREIGN KEY (`city`) REFERENCES `city` (`city`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -85,7 +85,7 @@ CREATE TABLE `customer` (
 
 DROP TABLE IF EXISTS `design`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4mb4 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `design` (
   `design_id` int NOT NULL AUTO_INCREMENT,
   `length_cp` int NOT NULL,
@@ -99,7 +99,7 @@ CREATE TABLE `design` (
   KEY `fk_design_bekledning1_idx` (`bekledning_mat`),
   CONSTRAINT `fk_design_bekledning1` FOREIGN KEY (`bekledning_mat`) REFERENCES `bekledning` (`bekledning_mat`),
   CONSTRAINT `fk_design_roof1` FOREIGN KEY (`roof_mat`) REFERENCES `roof` (`roof_mat`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4mb3;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -108,7 +108,7 @@ CREATE TABLE `design` (
 
 DROP TABLE IF EXISTS `request`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4mb4 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `request` (
   `request_id` int NOT NULL AUTO_INCREMENT,
   `customer_id` int NOT NULL,
@@ -121,7 +121,7 @@ CREATE TABLE `request` (
   CONSTRAINT `fk_request_admin1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`),
   CONSTRAINT `fk_request_customer1` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`),
   CONSTRAINT `fk_request_design1` FOREIGN KEY (`design_id`) REFERENCES `design` (`design_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4mb3;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -130,14 +130,14 @@ CREATE TABLE `request` (
 
 DROP TABLE IF EXISTS `roof`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4mb4 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `roof` (
   `roof_mat` varchar(255) NOT NULL,
   `stock_id` int NOT NULL,
   PRIMARY KEY (`roof_mat`),
   KEY `fk_roof_stock1_idx` (`stock_id`),
   CONSTRAINT `fk_roof_stock1` FOREIGN KEY (`stock_id`) REFERENCES `stock` (`stock_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4mb3;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -146,7 +146,7 @@ CREATE TABLE `roof` (
 
 DROP TABLE IF EXISTS `stock`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4mb4 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `stock` (
   `stock_id` int NOT NULL,
   `description` varchar(255) NOT NULL,
@@ -154,9 +154,8 @@ CREATE TABLE `stock` (
   `unit` varchar(45) NOT NULL,
   `price_per_unit` int NOT NULL,
   PRIMARY KEY (`stock_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4mb3;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -167,10 +166,7 @@ CREATE TABLE `stock` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
-
-/* Create test database from startcode structure */
-
-CREATE DATABASE IF NOT EXISTS `carport_test` /*!40100 DEFAULT CHARACTER SET utf8mb4mb4 COLLATE utf8mb4mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+CREATE DATABASE  IF NOT EXISTS `carport_test` /*!40100 DEFAULT CHARACTER SET utf8 */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `carport_test`;
 CREATE TABLE carport_test.admin LIKE carport.admin;
 CREATE TABLE carport_test.bekledning LIKE carport.bekledning;
@@ -180,3 +176,5 @@ CREATE TABLE carport_test.design LIKE carport.design;
 CREATE TABLE carport_test.request LIKE carport.request;
 CREATE TABLE carport_test.roof LIKE carport.roof;
 CREATE TABLE carport_test.stock LIKE carport.stock;
+
+-- Dump completed on 2022-05-05  9:53:52
