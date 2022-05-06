@@ -62,7 +62,7 @@ CREATE TABLE `city` (
 -- Table structure for table `customer`
 --
 
-DROP TABLE IF EXISTS `customer`;
+DROP TABLE IF EXISTS user;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4mb4 */;
 CREATE TABLE `customer` (
@@ -119,7 +119,7 @@ CREATE TABLE `request` (
   KEY `fk_request_admin1_idx` (`admin_id`),
   KEY `fk_request_customer1_idx` (`customer_id`),
   CONSTRAINT `fk_request_admin1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`),
-  CONSTRAINT `fk_request_customer1` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`),
+  CONSTRAINT `fk_request_customer1` FOREIGN KEY (`customer_id`) REFERENCES user (user_id),
   CONSTRAINT `fk_request_design1` FOREIGN KEY (`design_id`) REFERENCES `design` (`design_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -175,7 +175,7 @@ USE `carport_test`;
 CREATE TABLE carport_test.admin LIKE carport.admin;
 CREATE TABLE carport_test.bekledning LIKE carport.bekledning;
 CREATE TABLE carport_test.city LIKE carport.city;
-CREATE TABLE carport_test.customer LIKE carport.customer;
+CREATE TABLE carport_test.customer LIKE carport.user;
 CREATE TABLE carport_test.design LIKE carport.design;
 CREATE TABLE carport_test.request LIKE carport.request;
 CREATE TABLE carport_test.roof LIKE carport.roof;

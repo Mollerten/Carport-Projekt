@@ -10,8 +10,18 @@ public class User
     private String tlfnr;
     private String address;
     private String city;
+    private String isAdmin;
 
-    public User(String username, String email, String password, String tlfnr, String adress, String city)
+    public User(String username, String email, String password, String tlfnr, String isAdmin)
+    {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.tlfnr = tlfnr;
+        this.isAdmin = isAdmin;
+    }
+
+    public User(String username, String email, String password, String tlfnr, String address, String city, String isAdmin)
     {
         this.username = username;
         this.email = email;
@@ -19,6 +29,7 @@ public class User
         this.tlfnr = tlfnr;
         this.address = address;
         this.city = city;
+        this.isAdmin = isAdmin;
     }
 
     @Override
@@ -31,6 +42,7 @@ public class User
                 ", tlfnr='" + tlfnr + '\'' +
                 ", address='" + address + '\'' +
                 ", city='" + city + '\'' +
+                ", isAdmin='" + isAdmin + '\'' +
                 '}';
     }
 
@@ -44,6 +56,16 @@ public class User
         this.username = username;
     }
 
+    public String getEmail()
+    {
+        return email;
+    }
+
+    public void setEmail(String email)
+    {
+        this.email = email;
+    }
+
     public String getPassword()
     {
         return password;
@@ -54,6 +76,45 @@ public class User
         this.password = password;
     }
 
+    public String getTlfnr()
+    {
+        return tlfnr;
+    }
+
+    public void setTlfnr(String tlfnr)
+    {
+        this.tlfnr = tlfnr;
+    }
+
+    public String getAddress()
+    {
+        return address;
+    }
+
+    public void setAddress(String address)
+    {
+        this.address = address;
+    }
+
+    public String getCity()
+    {
+        return city;
+    }
+
+    public void setCity(String city)
+    {
+        this.city = city;
+    }
+
+    public String getIsAdmin()
+    {
+        return isAdmin;
+    }
+
+    public void setIsAdmin(String isAdmin)
+    {
+        this.isAdmin = isAdmin;
+    }
 
     @Override
     public boolean equals(Object o)
@@ -61,12 +122,12 @@ public class User
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return username.equals(user.username) && email.equals(user.email) && password.equals(user.password) && tlfnr.equals(user.tlfnr) && address.equals(user.address) && city.equals(user.city);
+        return username.equals(user.username) && email.equals(user.email) && password.equals(user.password) && tlfnr.equals(user.tlfnr) && address.equals(user.address) && city.equals(user.city) && isAdmin.equals(user.isAdmin);
     }
 
     @Override
     public int hashCode()
     {
-        return Objects.hash(username, email, password, tlfnr, address, city);
+        return Objects.hash(username, email, password, tlfnr, address, city, isAdmin);
     }
 }

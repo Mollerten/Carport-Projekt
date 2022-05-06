@@ -38,8 +38,9 @@ public class UserMapper implements IUserMapper
                     String tlfnr = rs.getString("tlfnr");
                     String address = rs.getString("address");
                     String city = rs.getString("city");
+                    String isAdmin = rs.getString("isAdmin");
 
-                    user = new User(username, email, password, tlfnr, address, city);
+                    user = new User(username, email, password, tlfnr, address, city, isAdmin);
                 } else
                 {
                     throw new DatabaseException("Wrong username or password");
@@ -53,11 +54,11 @@ public class UserMapper implements IUserMapper
     }
 
     @Override
-    public User createUser(String username, String email, String password, String tlfnr, String address, String city) throws DatabaseException
+    public User createUser(String username, String email, String password, String tlfnr, String address, String city, String isAdmin) throws DatabaseException
     {
         Logger.getLogger("web").log(Level.INFO, "");
         User user;
-        String sql = "insert into user (username, email, password, tlfnr, address, city) values (?,?,?,?,?,?)";
+        String sql = "insert into user (username, email, password, tlfnr, address, city, isAdmin) values (?,?,?,?,?,?,?)";
         try (Connection connection = connectionPool.getConnection())
         {
             try (PreparedStatement ps = connection.prepareStatement(sql))
@@ -68,10 +69,11 @@ public class UserMapper implements IUserMapper
                 ps.setString(4, tlfnr);
                 ps.setString(5, address);
                 ps.setString(6, city);
+                ps.setBoolean(7, false);
                 int rowsAffected = ps.executeUpdate();
                 if (rowsAffected == 1)
                 {
-                    user = new User(username, email, password, tlfnr, address, city);
+                    user = new User(username, email, password, tlfnr, address, city, isAdmin);
                 } else
                 {
                     throw new DatabaseException("The user with username = " + username + " could not be inserted into the database");

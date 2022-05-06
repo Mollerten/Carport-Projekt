@@ -27,7 +27,10 @@
         <br> <br>
 
             <p>or you can create a new user here:
-                <a href="${pageContext.request.contextPath}/fc/createUser?command=createUser">create user</a></p>
+                <a href="createUser.jsp">create user</a></p>
+
+
+
         </c:if>
 
     </jsp:body>
