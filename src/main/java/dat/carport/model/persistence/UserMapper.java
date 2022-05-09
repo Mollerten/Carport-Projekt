@@ -88,5 +88,43 @@ public class UserMapper implements IUserMapper
         return user;
     }
 
+    @Override
+    public User updateUser(String newUsername, String newPassword, String newEmail, String newTlfnr, String newAddress, String newCity, String email, boolean isAdmin) throws DatabaseException
+    {
+        Logger.getLogger("web").log(Level.INFO, "");
+        User user;
 
+        String sql = "UPDATE `user` SET `username` = ?, `password` = ?, `email` = ?, `tlfnr` = ? , `address` = ? , `city` = ?, 'isAdmin' = ? WHERE (`email` = ?);";
+
+        try (Connection connection = connectionPool.getConnection())
+        {
+            try (PreparedStatement ps = connection.prepareStatement(sql))
+            {
+                ps.setString(1, newUsername);
+                ps.setString(2, newPassword);
+                ps.setString(3, newEmail);
+                ps.setString(4, newTlfnr);
+                ps.setString(5, newAddress);
+                ps.setString(6, newCity);
+                ps.setBoolean(7, isAdmin);
+                ps.setString(8, email);
+
+                int rowsAffected = ps.executeUpdate();
+                if (rowsAffected == 1)
+                {
+                    String role = isAdmin ? "admin" : "user";
+                    user = new User(newUsername, newPassword, newEmail, newTlfnr, newAddress, newCity, role);
+                } else
+                {
+                    throw new DatabaseException("The user with email = " + email + " could not be inserted into the database");
+                }
+            }
+        }
+        catch (SQLException ex)
+        {
+            throw new DatabaseException(ex, "Could not insert username into database");
+        }
+        return user;
+
+    }
 }
