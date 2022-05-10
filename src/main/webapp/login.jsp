@@ -44,12 +44,15 @@
 
 
                             <form action="fc/login" method="post">
+                                <input type="hidden" name="command" value="login"/>
 
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Brugernavn" required>
+
+                                    <input type="text" class="form-control"
+                                           placeholder="Brugernavn" id="username" name="username" required>
                                 </div>
                                 <div class="form-group">
-                                    <input id="password-field" type="password" class="form-control" placeholder="Kodeord" required>
+                                    <input id="password" name="password" type="password" class="form-control" placeholder="Kodeord" required>
                                 </div>
                                 <div class="form-group">
                                     <button type="submit" style="background-color: #000C66" class="form-control btn btn-primary submit px-3">Log ind</button>
