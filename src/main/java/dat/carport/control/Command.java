@@ -17,6 +17,7 @@ abstract class Command
         commands.put("logout", new Logout());
         commands.put("about", new About());
         commands.put("createUser", new CreateUser());
+        commands.put("svgtest", new SVGTest());
     }
 
     static Command from( HttpServletRequest request ) {

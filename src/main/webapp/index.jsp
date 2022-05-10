@@ -24,12 +24,17 @@
             <p>You are not logged in yet. You can do it here:
                 <a href="login.jsp">Login</a></p>
 
-        <br> <br>
+            <br /><br />
 
             <p>or you can create a new user here:
                 <a href="createUser.jsp">create user</a></p>
 
+            <br /><br />
 
+            <form action="fc/svgtest" method="post">
+                <input type="hidden" name="command" value="svgtest" />
+                <input type="submit" value="SVG test" />
+            </form>
 
         </c:if>
 
