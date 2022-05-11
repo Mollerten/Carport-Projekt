@@ -24,6 +24,12 @@
         <c:if test="${sessionScope.user != null && sessionScope.user.role eq \"admin\"}">
             <p>Velkommen tilbage admin!</p>
             <p>Du er logget ind med rollen:  "${sessionScope.user.role}".</p>
+
+
+            <div class="form-group">
+                <button type="submit" style="background-color: #000C66" class="form-control btn btn-primary submit px-3">Log ind</button>
+            </div>
+
         </c:if>
 
 
