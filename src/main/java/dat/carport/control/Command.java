@@ -18,6 +18,8 @@ abstract class Command
         commands.put("about", new About());
         commands.put("createUser", new CreateUser());
         commands.put("brugerside", new Brugerside());
+        commands.put("stockside", new StockSide());
+        commands.put("requestside", new RequestSide());
     }
 
     static Command from( HttpServletRequest request ) {

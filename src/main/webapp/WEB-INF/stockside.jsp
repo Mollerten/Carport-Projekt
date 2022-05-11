@@ -5,31 +5,30 @@
 
 <t:pagetemplate>
     <jsp:attribute name="header">
-         Welcome to the frontpage
+        Stockside
     </jsp:attribute>
 
     <jsp:attribute name="footer">
-        Welcome to the frontpage
+        Stockside
     </jsp:attribute>
 
     <jsp:body>
 
-        <p>Startcode for 2nd semester </p>
+        <%--        Hvis kontoen er user--%>
+        <c:if test="${sessionScope.user != null && sessionScope.user.role eq \"user\"}">
+            <h1>Du er ikke admin!</h1>
+        </c:if>
 
-        <c:if test="${sessionScope.user != null}">
-            <p>You are logged in with the role of "${sessionScope.user.role}".</p>
+        <%--        Hvis kontoen er admin--%>
+        <c:if test="${sessionScope.user != null && sessionScope.user.role eq \"admin\"}">
+            <h1>Stockliste:</h1>
         </c:if>
 
 
+        <%--        Hvis brugeren/admin ikke er logget ind--%>
         <c:if test="${sessionScope.user == null}">
-            <p>You are not logged in yet. You can do it here:
+            <p>Du er ikke logget ind endnu - log ind her:
                 <a href="login.jsp">Login</a></p>
-
-        <br> <br>
-
-            <p>or you can create a new user here:
-                <a href="createUser.jsp">create user</a></p>
-
         </c:if>
 
     </jsp:body>
