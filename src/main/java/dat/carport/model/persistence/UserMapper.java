@@ -87,6 +87,4 @@ public class UserMapper implements IUserMapper
         }
         return user;
     }
-
-
 }
