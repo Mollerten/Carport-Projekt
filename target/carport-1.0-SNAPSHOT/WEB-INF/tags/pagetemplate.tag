@@ -30,7 +30,7 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
                     <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/about?command=about">About</a>
-                    <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc">Page 2</a>
+                    <a class="nav-item nav-link" href="${pageContext.request.contextPath}/profile.jsp">Profile</a>
                     <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc">Page 3</a>
                     <c:if test="${sessionScope.user == null }">
                         <a class="nav-item nav-link" href="${pageContext.request.contextPath}/login.jsp">Login</a>

@@ -6,47 +6,56 @@
 
 <t:pagetemplate>
     <jsp:attribute name="header">
-             Create user
+             Profile page
     </jsp:attribute>
 
   <jsp:attribute name="footer">
-            Create user
+            Profile page
     </jsp:attribute>
 
   <jsp:body>
 
     <h1>${requestScope.errormsg}</h1>
 
-    <h3>You can change your profile information here</h3>
+    <h3>You can change your profile information here.</h3>
+    <h3>Fill in only the information you want to change</h3>
 
     <form action="fc/updateUser" method="post">
       <input type="hidden" name="command" value="updateUser"/>
       <br><br>
 
-      <label for="username">Username: </label>
-      <input type="text" id="username" name="username"/>
+      <label for="newUsername">Enter new username: </label>
+      <input type="text" id="newUsername" name="newUsername"/>
       <br><br>
 
-      <label for="email">Email: </label>
-      <input type="text" id="email" name="email"/>
+      <label for="newEmail">Enter new email twice to confirm: </label>
+      <label for="confirmNewEmail">: </label>
+      <input type="text" id="newEmail" name="newEmail"/>
+      <input type="text" id="confirmNewEmail" name="confirmNewEmail"/>
       <br><br>
 
-      <label for="password">Password: </label>
-      <input type="password" id="password" name="password"/>
+      <label for="newPassword">Enter new password twice to confirm: </label>
+      <label for="confirmNewPassword">: </label>
+      <input type="password" id="newPassword" name="newPassword"/>
+      <input type="password" id="confirmNewPassword" name="confirmNewPassword"/>
       <br><br>
 
-      <label for="tlfnr">Phone number:</label>
-      <input type="text" id="tlfnr" name="tlfnr">
+      <label for="newTlfnr">Enter new phone number:</label>
+      <input type="text" id="newTlfnr" name="newTlfnr">
       <br><br>
 
-      <label for="address">Street name and number: </label>
-      <input type="text" id="address" name="address"/>
+      <label for="newAddress">Enter new street name and number: </label>
+      <input type="text" id="newAddress" name="newAddress"/>
       <br><br>
 
-      <label for="city">City and postal code: </label>
-      <label for="postalCode"></label>
-      <input type="text" id="city" name="city"/>
-      <input type="text" id="postalCode" name="postalCode">
+      <label for="newCity">Enter new city and postal code: </label>
+      <label for="newPostalCode"></label>
+      <input type="text" id="newCity" name="newCity"/>
+      <input type="text" id="newPostalCode" name="newPostalCode">
+      <br><br><br>
+
+      <label for="oldPassword">Enter your current password to save changes:</label>
+      <input type="password" id="oldPassword" name="oldPassword">
       <br><br>
 
       <input type="submit"  value="Update user"/>
