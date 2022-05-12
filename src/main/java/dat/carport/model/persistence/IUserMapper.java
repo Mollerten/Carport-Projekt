@@ -6,5 +6,5 @@ import dat.carport.model.exceptions.DatabaseException;
 public interface IUserMapper
 {
     public User login(String email, String password) throws DatabaseException;
-    public User createUser(String username, String email, String password, String tlfnr, String address, String city, String isAdmin) throws DatabaseException;
+    public User createUser(String username, String email, String password, String tlfnr, String address, String city) throws DatabaseException;
 }
