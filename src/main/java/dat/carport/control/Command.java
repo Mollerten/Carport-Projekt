@@ -20,7 +20,7 @@ abstract class Command
         commands.put("brugerside", new Brugerside());
         commands.put("stockside", new StockSide());
         commands.put("requestside", new RequestSide());
-        commands.put("stockfjern", new FjernStock());
+        commands.put("fjernstock", new FjernStock());
     }
 
     static Command from( HttpServletRequest request ) {

@@ -24,7 +24,9 @@ public class FjernStock extends Command
     String execute(HttpServletRequest request, HttpServletResponse response) throws DatabaseException {
 
         String idString = request.getParameter("fjernstock");
+
         int stockId = Integer.parseInt(idString);
+
         AdminMapper adminMapper = new AdminMapper(connectionPool);
 
         try
@@ -35,7 +37,6 @@ public class FjernStock extends Command
         {
             Logger.getLogger("web").log(Level.SEVERE, e.getMessage());
         }
-
-        return "stockside";
+        return "brugerside";
     }
 }

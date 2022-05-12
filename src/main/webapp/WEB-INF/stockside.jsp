@@ -47,9 +47,10 @@
                             <td>
 
                                 <c:if test="${sessionScope.user != null && sessionScope.user.role eq \"admin\"}">
-                                    <button  class="btn btn-primary submit px-3" style="background-color: #721c24">
-                                            <input type="hidden" name="fjernstock"
-                                                   value="${stock.stockid}" >fjern</button>
+
+                                    <button class="btn btn-primary submit px-3" style="background-color: #c82333"
+                                            name="fjernstock" value="${stock.stockid}"
+                                            formaction="fc/fjernstock?command=fjernstock">fjern</button>
 
                                     <button class="btn btn-primary submit px-3" style="background-color: #000C66"
                                             name="rediger" value="${stock.stockid}" formaction="redigerbog">rediger</button>
