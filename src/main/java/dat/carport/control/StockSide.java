@@ -21,8 +21,6 @@ public class StockSide extends Command
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws DatabaseException {
 
-        HttpSession session = request.getSession();
-
         AdminMapper adminMapper = new AdminMapper(connectionPool);
         List<StockListeDTO> stockListeDTOS = null;
         try
@@ -32,7 +30,6 @@ public class StockSide extends Command
             e.printStackTrace();
         }
         request.setAttribute("stockliste",stockListeDTOS);
-        session.setAttribute("stockliste",stockListeDTOS);
 
         return "stockside";
     }

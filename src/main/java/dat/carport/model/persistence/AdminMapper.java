@@ -1,5 +1,4 @@
 package dat.carport.model.persistence;
-
 import dat.carport.model.entities.Stock;
 import dat.carport.model.exceptions.DatabaseException;
 import dtos.StockListeDTO;
@@ -29,7 +28,7 @@ public class AdminMapper implements IAdminMapper {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ResultSet rs = ps.executeQuery();
                 while (rs.next()) {
-                    int stockid = Integer.parseInt(rs.getString("stock_id"));
+                    int stockid = rs.getInt("stock_id");
                     String description = rs.getString("description");
                     int amount = rs.getInt("amount");
                     String unit = rs.getString("unit");
@@ -46,7 +45,7 @@ public class AdminMapper implements IAdminMapper {
     }
 
     @Override
-    public boolean fjernstock(int stockid) throws DatabaseException
+    public boolean fjernstock(int stock_id) throws DatabaseException
     {
         Logger.getLogger("web").log(Level.INFO, "");
         boolean result = false;
@@ -55,20 +54,20 @@ public class AdminMapper implements IAdminMapper {
         {
             try (PreparedStatement ps = connection.prepareStatement(sql))
             {
-                ps.setInt(1, stockid);
+                ps.setInt(1, stock_id);
                 int rowsAffected = ps.executeUpdate();
                 if (rowsAffected == 1)
                 {
                     result = true;
                 } else
                 {
-                    throw new DatabaseException("Stock med stockid = " + stockid + " kunne ikke fjernes");
+                    throw new DatabaseException("Stock med stockid = " + stock_id + " kunne ikke fjernes");
                 }
             }
         }
         catch (SQLException ex)
         {
-            throw new DatabaseException("Bog med stockid = " + stockid + " kunne ikke fjernes");
+            throw new DatabaseException("Bog med stockid = " + stock_id + " kunne ikke fjernes");
         }
         return result;
     }
