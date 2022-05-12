@@ -1,6 +1,6 @@
 package dat.carport.model.persistence;
-import dat.carport.model.entities.Stock;
 import dat.carport.model.exceptions.DatabaseException;
+import dtos.RequestListeDTO;
 import dtos.StockListeDTO;
 
 import java.sql.*;
@@ -70,6 +70,40 @@ public class AdminMapper implements IAdminMapper {
             throw new DatabaseException("Bog med stockid = " + stock_id + " kunne ikke fjernes");
         }
         return result;
+    }
+
+
+    @Override
+    public List<RequestListeDTO> hentRequest() throws DatabaseException {
+        Logger.getLogger("web").log(Level.INFO, "");
+
+        List<RequestListeDTO> requestList = new ArrayList<>();
+
+        String sql = "SELECT * FROM carport.request";
+
+
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ResultSet rs = ps.executeQuery();
+                while (rs.next()) {
+                    int request_id = rs.getInt("request_id");
+                    int length_cp = rs.getInt("length_cp");
+                    int width_cp = rs.getInt("width_cp");
+                    int length_rr = rs.getInt("length_rr");
+                    int width_rr = rs.getInt("width_rr");
+                    String roof_mat = rs.getString("roof_mat");
+                    String wood_cladding_mat = rs.getString("wood_cladding_mat");
+                    int customer_id = rs.getInt("customer_id");
+                    int admin_id = rs.getInt("admin_id");
+
+                    RequestListeDTO newstock = new RequestListeDTO(request_id, length_cp, width_cp, length_rr, width_rr,roof_mat,wood_cladding_mat,customer_id,admin_id);
+                    requestList.add(newstock);
+                }
+            }
+        } catch (SQLException ex) {
+            throw new DatabaseException(ex, "Fejl under indlæsning af lånere fra databasen");
+        }
+        return requestList;
     }
 }
 

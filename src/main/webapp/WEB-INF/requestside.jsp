@@ -5,11 +5,11 @@
 
 <t:pagetemplate>
     <jsp:attribute name="header">
-        Requestliste
+
     </jsp:attribute>
 
     <jsp:attribute name="footer">
-        Requestliste
+
     </jsp:attribute>
 
     <jsp:body>
@@ -21,9 +21,61 @@
 
         <%--        Hvis kontoen er admin--%>
         <c:if test="${sessionScope.user != null && sessionScope.user.role eq \"admin\"}">
-            <h1>Requestliste:</h1>
-        </c:if>
+            <h1>requestliste:</h1>
+            ${requestScope.bogliste}
 
+            <form method="post">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Request ID</th>
+                        <th>Carport Længde</th>
+                        <th>Carport Bredde</th>
+                        <th>Tag Længde</th>
+                        <th>Tag Bredde</th>
+                        <th>Tag Materiale</th>
+                        <th>Træ Beklædning Materiale</th>
+                        <th>Kunde ID</th>
+                        <th>Admin ID</th>
+
+
+                    </tr>
+
+                    </thead>
+                    <tbody>
+                    <c:forEach var="request" items="${requestScope.requestliste}">
+                        <tr>
+                            <td>${request.request_id}</td>
+                            <td>${request.length_cp}</td>
+                            <td>${request.width_cp}</td>
+                            <td>${request.length_rr}</td>
+                            <td>${request.width_rr}</td>
+                            <td>${request.roof_mat}</td>
+                            <td>${request.wood_cladding_mat}</td>
+                            <td>${request.customer_id}</td>
+                            <td>${request.admin_id}</td>
+
+                            <td>
+
+                                <c:if test="${sessionScope.user != null && sessionScope.user.role eq \"admin\"}">
+
+                                    <button class="btn btn-primary submit px-3" style="background-color: #c82333"
+                                            name="fjernstock" value="${request.request_id}"
+                                            formaction="fc/fjernstock?command=fjernstock">fjern</button>
+
+                                    <button class="btn btn-primary submit px-3" style="background-color: #000C66"
+                                            name="rediger" value="${request.request_id}" formaction="redigerbog">rediger</button>
+                                </c:if>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                    </tbody>
+                </table>
+                <button class="btn btn-primary submit px-3" style="background-color: #000C66"
+                        name="opret" formaction="opretbogform">Opret</button>
+            </form>
+
+        </c:if>
 
         <%--        Hvis brugeren/admin ikke er logget ind--%>
         <c:if test="${sessionScope.user == null}">
