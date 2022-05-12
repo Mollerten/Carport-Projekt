@@ -105,6 +105,34 @@ public class AdminMapper implements IAdminMapper {
         }
         return requestList;
     }
+
+    @Override
+    public boolean fjernRequest(int request_id) throws DatabaseException
+    {
+        Logger.getLogger("web").log(Level.INFO, "");
+        boolean result = false;
+        String sql = "delete from request where request_id = ?";
+        try (Connection connection = connectionPool.getConnection())
+        {
+            try (PreparedStatement ps = connection.prepareStatement(sql))
+            {
+                ps.setInt(1, request_id);
+                int rowsAffected = ps.executeUpdate();
+                if (rowsAffected == 1)
+                {
+                    result = true;
+                } else
+                {
+                    throw new DatabaseException("Request med requestId = " + request_id + " kunne ikke fjernes");
+                }
+            }
+        }
+        catch (SQLException ex)
+        {
+            throw new DatabaseException("Luder med requestId = " + request_id + " kunne ikke fjernes");
+        }
+        return result;
+    }
 }
 
 

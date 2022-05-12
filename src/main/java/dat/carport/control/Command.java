@@ -21,6 +21,7 @@ abstract class Command
         commands.put("stockside", new StockSide());
         commands.put("requestside", new RequestSide());
         commands.put("fjernstock", new FjernStock());
+        commands.put("fjernrequest", new FjernRequest());
     }
 
     static Command from( HttpServletRequest request ) {

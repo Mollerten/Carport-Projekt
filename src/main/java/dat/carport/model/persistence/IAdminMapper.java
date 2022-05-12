@@ -14,4 +14,6 @@ public interface IAdminMapper {
     boolean fjernstock(int stockid) throws DatabaseException;
 
     List<RequestListeDTO> hentRequest() throws DatabaseException;
+
+    boolean fjernRequest(int requestId) throws DatabaseException;
 }

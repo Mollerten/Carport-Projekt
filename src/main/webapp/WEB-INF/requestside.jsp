@@ -60,8 +60,8 @@
                                 <c:if test="${sessionScope.user != null && sessionScope.user.role eq \"admin\"}">
 
                                     <button class="btn btn-primary submit px-3" style="background-color: #c82333"
-                                            name="fjernstock" value="${request.request_id}"
-                                            formaction="fc/fjernstock?command=fjernstock">fjern</button>
+                                            name="fjernrequest" value="${request.request_id}"
+                                            formaction="fc/fjernrequest?command=fjernrequest">fjern</button>
 
                                     <button class="btn btn-primary submit px-3" style="background-color: #000C66"
                                             name="rediger" value="${request.request_id}" formaction="redigerbog">rediger</button>
