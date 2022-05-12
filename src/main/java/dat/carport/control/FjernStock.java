@@ -11,28 +11,30 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-public class StockSide extends Command
+public class FjernStock extends Command
 {
     private ConnectionPool connectionPool;
 
-    public StockSide(){this.connectionPool = ApplicationStart.getConnectionPool();}
+    public FjernStock(){this.connectionPool = ApplicationStart.getConnectionPool();}
 
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws DatabaseException {
 
-        HttpSession session = request.getSession();
-
+        String idString = request.getParameter("fjernstock");
+        int stockId = Integer.parseInt(idString);
         AdminMapper adminMapper = new AdminMapper(connectionPool);
-        List<StockListeDTO> stockListeDTOS = null;
+
         try
         {
-            stockListeDTOS = adminMapper.hentStock();
-        } catch (DatabaseException e) {
-            e.printStackTrace();
+            adminMapper.fjernstock(stockId);
         }
-        request.setAttribute("stockliste",stockListeDTOS);
-        session.setAttribute("stockliste",stockListeDTOS);
+        catch (DatabaseException e)
+        {
+            Logger.getLogger("web").log(Level.SEVERE, e.getMessage());
+        }
 
         return "stockside";
     }
