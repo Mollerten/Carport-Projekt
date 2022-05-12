@@ -12,4 +12,8 @@ public class CalcFacade {
         return Calculator.calcBeams(length, width);
     }
 
+    public static int calcRafters(int length, int width) {
+        return Calculator.calcRafters(length, width);
+    }
+
 }

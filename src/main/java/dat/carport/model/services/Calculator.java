@@ -52,6 +52,18 @@ class Calculator {
      */
     // rafters = spær
     protected static int calcRafters(int length, int width) {
-        return 15;
+        int rafters;
+        int rafterSpacing;
+        int spaceAmount;
+
+//        rafters = (spaceAmount = (int) Math.round((length - 10) / 55.0)) + 1;
+//        The lines above and below this comment do the same thing, and
+//        they are both correct :) ¯\_(ツ)_/¯
+        spaceAmount = (int) Math.round((length - 10) / 55.0);
+        rafters = spaceAmount + 1;
+
+        rafterSpacing = (int) Math.round(length / ((double) spaceAmount));
+
+        return rafters;
     }
 }
