@@ -62,6 +62,6 @@ public class CreateUser extends Command
         User user = UserFacade.createUser(username, email, password, tlfnr, address, city, role, connectionPool);
         session = request.getSession();
         session.setAttribute("user", user); // adding user object to session scope
-        return "index";
+        return "brugerside";
     }
 }

@@ -17,6 +17,9 @@ abstract class Command
         commands.put("logout", new Logout());
         commands.put("about", new About());
         commands.put("createUser", new CreateUser());
+        commands.put("brugerside", new Brugerside());
+        commands.put("stockside", new StockSide());
+        commands.put("requestside", new RequestSide());
         commands.put("updateUser", new UpdateUser());
     }
 

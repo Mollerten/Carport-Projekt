@@ -23,13 +23,16 @@ public class Login extends Command
     String execute(HttpServletRequest request, HttpServletResponse response) throws DatabaseException
     {
         HttpSession session = request.getSession();
-        session.setAttribute("user", null); // adding empty user object to session scope
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
+        if (session.getAttribute("user") == null) {
 
-        User user = UserFacade.login(username, password, connectionPool);
-        session = request.getSession();
-        session.setAttribute("user", user); // adding user object to session scope
-        return "index";
+            session.setAttribute("user", null); // adding empty user object to session scope
+            String username = request.getParameter("username");
+            String password = request.getParameter("password");
+
+            User user = UserFacade.login(username, password, connectionPool);
+            session = request.getSession();
+            session.setAttribute("user", user); // adding user object to session scope
+        }
+        return "brugerside";
     }
 }
