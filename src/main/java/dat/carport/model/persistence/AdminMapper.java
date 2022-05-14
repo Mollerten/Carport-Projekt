@@ -133,6 +133,47 @@ public class AdminMapper implements IAdminMapper {
         }
         return result;
     }
+
+    @Override
+    public Stock opretNyStock(Stock stock) throws DatabaseException
+    {
+        Logger.getLogger("web").log(Level.INFO, "");
+        boolean result = false;
+        int newId = 0;
+        String sql = "insert into stock (description, amount, unit, price_per_unit) values (?,?,?,?)";
+        try (Connection connection = connectionPool.getConnection())
+        {
+            try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS))
+            {
+                ps.setString(1, stock.getDescription());
+                ps.setInt(2, stock.getAmount());
+                ps.setString(3, stock.getUnit());
+                ps.setInt(4, stock.getPrice_per_unit());
+                int rowsAffected = ps.executeUpdate();
+                if (rowsAffected == 1)
+                {
+                    result = true;
+                } else
+                {
+                    throw new DatabaseException("bog med beskrivelse = " + stock.getDescription() + " kunne ikke oprettes i databasen");
+                }
+                ResultSet idResultset = ps.getGeneratedKeys();
+                if (idResultset.next())
+                {
+                    newId = idResultset.getInt(1);
+                    stock.setStockid(newId);
+                } else
+                {
+                    stock = null;
+                }
+            }
+        }
+        catch (SQLException ex)
+        {
+            throw new DatabaseException(ex, "Kunne ikke indsætte bog i databasen");
+        }
+        return stock;
+    }
 }
 
 

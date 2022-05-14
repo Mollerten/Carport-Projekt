@@ -13,4 +13,6 @@ public interface IAdminMapper {
     boolean fjernstock(int stockid) throws DatabaseException;
 
     Stock hentStockUdFraId(int stockID) throws DatabaseException;
+
+    Stock opretNyStock(Stock bog) throws DatabaseException;
 }

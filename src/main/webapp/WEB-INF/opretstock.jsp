@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: patricknielsen
-  Date: 12/05/2022
-  Time: 12.45
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -28,28 +21,26 @@
 
         <%--        Hvis kontoen er admin--%>
         <c:if test="${sessionScope.user != null && sessionScope.user.role eq \"admin\"}">
-            <h1>Stockliste:</h1>
+            <h1>Opret Stock:</h1>
 
-            <form action="fc/opdaterstock" method="post">
-                <input type="hidden" name="command" value="opdaterstock"/>
-
-                <label for="stockid">Stock Id:</label>
-                <input type="text" id="stockid" readonly name="stockid" value="${requestScope.stock.stockid}"/><br/>
+            <form action="fc/opretstock" method="post">
+                <input type="hidden" name="command" value="opretstock"/>
 
                 <label for="description">Beskrivelse:</label>
-                <input type="text" id="description" name="description" value="${requestScope.stock.description}"/><br/>
+                <input type="text" id="description" name="description"/><br/>
 
                 <label for="amount">Antal: </label>
-                <input type="text" id="amount" name="amount" value="${requestScope.stock.amount}"/><br/>
+                <input type="text" id="amount" name="amount"/><br/>
 
                 <label for="stockunit">stock unit: </label>
-                <input type="text" id="stockunit" name="stockunit" value="${requestScope.stock.unit}"/><br/>
+                <input type="text" id="stockunit" name="stockunit"/><br/>
 
                 <label for="priceperunit">stock pris per unit: </label>
-                <input type="text" id="priceperunit" name="priceperunit" value="${requestScope.stock.price_per_unit}"/><br/>
+                <input type="text" id="priceperunit" name="priceperunit"/><br/>
 
-                <input type="submit" value="Opet Stock"/>
+                <input type="submit" value="Opdater Stock"/>
             </form>
+
 
         </c:if>
 

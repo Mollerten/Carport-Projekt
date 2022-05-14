@@ -25,6 +25,8 @@ abstract class Command
         commands.put("fjernstock", new FjernStock());
         commands.put("redigerstock", new RedigerStock());
         commands.put("opdaterstock", new OpdaterStock());
+        commands.put("opretstock", new OpretStock());
+        commands.put("opretstockside", new OpretStockSide());
 
     }
 
