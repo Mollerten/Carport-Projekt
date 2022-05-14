@@ -11,4 +11,6 @@ public interface IAdminMapper {
     List<StockListeDTO> hentStock() throws DatabaseException;
 
     boolean fjernstock(int stockid) throws DatabaseException;
+
+    Stock hentStockUdFraId(int stockID) throws DatabaseException;
 }

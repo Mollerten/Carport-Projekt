@@ -16,6 +16,7 @@ public class AdminMapper implements IAdminMapper {
         this.connectionPool = connectionPool;
     }
 
+
     @Override
     public List<StockListeDTO> hentStock() throws DatabaseException {
         Logger.getLogger("web").log(Level.INFO, "");
@@ -71,7 +72,69 @@ public class AdminMapper implements IAdminMapper {
         }
         return result;
     }
+    @Override
+    public Stock hentStockUdFraId(int stockID) throws DatabaseException
+    {
+        Logger.getLogger("web").log(Level.INFO, "bogId=" + stockID);
+        Stock stock = null;
+        String sql = "select * from stock where stock_id = ?";
+        try (Connection connection = connectionPool.getConnection())
+        {
+            try (PreparedStatement ps = connection.prepareStatement(sql))
+            {
+                ps.setInt(1, stockID);
+                ResultSet rs = ps.executeQuery();
+                if (rs.next())
+                {
+                    int stockid = rs.getInt("stock_id");
+                    String description = rs.getString("description");
+                    int amount = rs.getInt("amount");
+                    String unit = rs.getString("unit");
+                    int price_per_unit = rs.getInt("price_per_unit");
+
+                    stock = new Stock(stockid, description, amount, unit,price_per_unit);
+                } else
+                {
+                    throw new DatabaseException("Stock med stock_id = " + stockID + " findes ikke");
+                }
+            }
+        } catch (SQLException ex)
+        {
+            throw new DatabaseException("Stock med stock_id = " + stockID + " findes ikke");
+        }
+        return stock;
+    }
+
+    public boolean opdaterStock(Stock stock) throws DatabaseException
+    {
+        Logger.getLogger("web").log(Level.INFO, "");
+        boolean result = false;
+        String sql = "UPDATE stock SET description = ?, amount = ?, unit = ?, price_per_unit = ? " +
+                "WHERE stock_id = ?";
+
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+
+                ps.setString(1, stock.getDescription());
+                ps.setInt(2, stock.getAmount());
+                ps.setString(3, stock.getUnit());
+                ps.setInt(4, stock.getPrice_per_unit());
+                ps.setInt(5, stock.getStockid());
+
+                int rowsAffected = ps.executeUpdate();
+                if (rowsAffected == 1){
+                    result = true;
+                } else {
+                    throw new DatabaseException("Kunne ikke opdatere stock med getStock_id = " + stock.getStockid());
+                }
+            }
+        } catch (SQLException ex) {
+            throw new DatabaseException("Kunne ikke opdatere stock med getStock_id = " + stock.getStockid());
+        }
+        return result;
+    }
 }
+
 
 
 
