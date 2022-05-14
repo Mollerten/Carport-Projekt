@@ -22,7 +22,6 @@
         <%--        Hvis kontoen er admin--%>
         <c:if test="${sessionScope.user != null && sessionScope.user.role eq \"admin\"}">
             <h1>Stockliste:</h1>
-            ${requestScope.bogliste}
 
             <form method="post">
                 <table class="table table-striped">
@@ -53,7 +52,7 @@
                                             formaction="fc/fjernstock?command=fjernstock">fjern</button>
 
                                     <button class="btn btn-primary submit px-3" style="background-color: #000C66"
-                                            name="rediger" value="${stock.stockid}" formaction="redigerbog">rediger</button>
+                                            name="redigerstock" value="${stock.stockid}" formaction="fc/redigerstock?command=redigerstock">rediger</button>
                                 </c:if>
                             </td>
                         </tr>
@@ -61,7 +60,7 @@
                     </tbody>
                 </table>
                 <button class="btn btn-primary submit px-3" style="background-color: #000C66"
-                        name="opret" formaction="opretbogform">Opret</button>
+                        name="opret" formaction="fc/opretstockside?command=opretstockside">Opret</button>
             </form>
 
         </c:if>

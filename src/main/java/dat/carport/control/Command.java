@@ -1,7 +1,9 @@
 package dat.carport.control;
 
+import dat.carport.model.entities.Stock;
 import dat.carport.model.exceptions.DatabaseException;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
@@ -22,6 +24,10 @@ abstract class Command
         commands.put("requestside", new RequestSide());
         commands.put("fjernstock", new FjernStock());
         commands.put("fjernrequest", new FjernRequest());
+        commands.put("redigerstock", new RedigerStock());
+        commands.put("opdaterstock", new OpdaterStock());
+        commands.put("opretstock", new OpretStock());
+        commands.put("opretstockside", new OpretStockSide());
     }
 
     static Command from( HttpServletRequest request ) {
@@ -32,7 +38,7 @@ abstract class Command
         return commands.getOrDefault(commandName, new UnknownCommand() );   // unknowncommand er default.
     }
 
-    abstract String execute( HttpServletRequest request, HttpServletResponse response ) 
+    abstract String execute(HttpServletRequest request, HttpServletResponse response )
             throws DatabaseException;
 
 }
