@@ -20,10 +20,14 @@ abstract class Command
         commands.put("about", new About());
         commands.put("createUser", new CreateUser());
         commands.put("brugerside", new Brugerside());
-        commands.put("stockside", new StockSide());
+
         commands.put("requestside", new RequestSide());
-        commands.put("fjernstock", new FjernStock());
         commands.put("fjernrequest", new FjernRequest());
+        commands.put("redigerrequest", new RedigerRequest());
+
+
+        commands.put("stockside", new StockSide());
+        commands.put("fjernstock", new FjernStock());
         commands.put("redigerstock", new RedigerStock());
         commands.put("opdaterstock", new OpdaterStock());
         commands.put("opretstock", new OpretStock());

@@ -48,7 +48,7 @@
                 <label for="priceperunit">stock pris per unit: </label>
                 <input type="text" id="priceperunit" name="priceperunit" value="${requestScope.stock.price_per_unit}"/><br/>
 
-                <input type="submit" value="Opet Stock"/>
+                <input type="submit" value="Opdater Stock"/>
             </form>
 
         </c:if>

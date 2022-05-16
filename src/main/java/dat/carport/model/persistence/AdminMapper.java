@@ -1,4 +1,5 @@
 package dat.carport.model.persistence;
+import dat.carport.model.entities.Request;
 import dat.carport.model.entities.Stock;
 import dat.carport.model.exceptions.DatabaseException;
 import dtos.RequestListeDTO;
@@ -225,6 +226,41 @@ public class AdminMapper implements IAdminMapper {
             throw new DatabaseException(ex, "Kunne ikke indsætte stock i databasen");
         }
         return stock;
+    }
+
+
+    @Override
+    public Request hentRequestUdFraId(int requestID) throws DatabaseException {
+        {
+            Logger.getLogger("web").log(Level.INFO, "bogId=" + requestID);
+            Request request = null;
+            String sql = "select * from request where request_id = ?";
+            try (Connection connection = connectionPool.getConnection()) {
+                try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                    ps.setInt(1, requestID);
+                    ResultSet rs = ps.executeQuery();
+                    if (rs.next()) {
+
+                        int requestid = rs.getInt("request_id");
+                        int lengthcp = rs.getInt("length_cp");
+                        int withcp = rs.getInt("width_cp");
+                        int lengthrr = rs.getInt("length_rr");
+                        int widthrr = rs.getInt("width_rr");
+                        String roofmat = rs.getString("roof_mat");
+                        String woodcladdingmat = rs.getString("wood_cladding_mat");
+                        int customerid = rs.getInt("customer_id");
+                        int adminid = rs.getInt("admin_id");
+
+                        request = new Request(requestid, lengthcp, withcp, lengthrr, widthrr, roofmat, woodcladdingmat, customerid, adminid);
+                    } else {
+                        throw new DatabaseException("Request med request_id = " + requestID + " findes ikke");
+                    }
+                }
+            } catch (SQLException ex) {
+                throw new DatabaseException("Request med request_id = " + requestID + " findes ikke");
+            }
+            return request;
+        }
     }
 }
 

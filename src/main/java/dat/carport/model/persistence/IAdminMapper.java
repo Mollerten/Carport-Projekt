@@ -1,5 +1,6 @@
 package dat.carport.model.persistence;
 
+import dat.carport.model.entities.Request;
 import dat.carport.model.entities.Stock;
 import dat.carport.model.exceptions.DatabaseException;
 import dtos.RequestListeDTO;
@@ -22,4 +23,5 @@ public interface IAdminMapper {
 
     Stock opretNyStock(Stock bog) throws DatabaseException;
 
+    Request hentRequestUdFraId(int requestID) throws DatabaseException;
 }

@@ -64,7 +64,7 @@
                                             formaction="fc/fjernrequest?command=fjernrequest">fjern</button>
 
                                     <button class="btn btn-primary submit px-3" style="background-color: #000C66"
-                                            name="rediger" value="${request.request_id}" formaction="redigerbog">rediger</button>
+                                            name="redigerrequest" value="${request.request_id}" formaction="fc/redigerrequest?command=redigerrequest">rediger</button>
                                 </c:if>
                             </td>
                         </tr>
