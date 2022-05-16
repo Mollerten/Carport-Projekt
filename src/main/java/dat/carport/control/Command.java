@@ -24,6 +24,8 @@ abstract class Command
         commands.put("requestside", new RequestSide());
         commands.put("fjernrequest", new FjernRequest());
         commands.put("redigerrequest", new RedigerRequest());
+        commands.put("opdaterrequest", new OpdaterRequest());
+
 
 
         commands.put("stockside", new StockSide());

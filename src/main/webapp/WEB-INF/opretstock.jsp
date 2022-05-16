@@ -26,7 +26,7 @@
             <form action="fc/opretstock" method="post">
                 <input type="hidden" name="command" value="opretstock"/>
 
-                <label for="stockid">Stock id:</label>
+                <label for="stockid">Stock ID:</label>
                 <input type="text" id="stockid" name="stockid"/><br/>
 
                 <label for="description">Beskrivelse:</label>

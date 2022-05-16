@@ -24,4 +24,7 @@ public interface IAdminMapper {
     Stock opretNyStock(Stock bog) throws DatabaseException;
 
     Request hentRequestUdFraId(int requestID) throws DatabaseException;
+
+    boolean opdaterRequest(Request request) throws DatabaseException;
+
 }

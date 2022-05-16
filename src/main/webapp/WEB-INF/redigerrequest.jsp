@@ -30,8 +30,8 @@
         <c:if test="${sessionScope.user != null && sessionScope.user.role eq \"admin\"}">
             <h1>Requestliste:</h1>
 
-            <form action="fc/opdaterstock" method="post">
-                <input type="hidden" name="command" value="opdaterstock"/>
+            <form action="fc/opdaterrequest" method="post">
+                <input type="hidden" name="command" value="opdaterrequest"/>
 
                 <label for="request_id">Request ID:</label>
                 <input type="text" id="request_id" readonly name="request_id" value="${requestScope.request.requestid}"/><br/>
@@ -48,11 +48,11 @@
                 <label for="width_rr">rr bredde: </label>
                 <input type="text" id="width_rr" name="width_rr" value="${requestScope.request.widthrr}"/><br/>
 
-                <label for="roof_mat">roof mat: </label>
-                <input type="text" id="roof_mat" name="roof_mat" value="${requestScope.request.roofmat}"/><br/>
+                <label for="roofmat">roof mat: </label>
+                <input type="text" id="roofmat" name="roofmat" value="${requestScope.request.roofmat}"/><br/>
 
-                <label for="wood_cladding_mat">wood cladding mat: </label>
-                <input type="text" id="wood_cladding_mat" name="wood_cladding_mat" value="${requestScope.request.woodcladding}"/><br/>
+                <label for="woodcladdingmat">wood cladding mat: </label>
+                <input type="text" id="woodcladdingmat" name="woodcladdingmat" value="${requestScope.request.woodcladding}"/><br/>
 
                 <label for="customer_id">kunde id: </label>
                 <input type="text" id="customer_id" name="customer_id" value="${requestScope.request.customerid}"/><br/>

@@ -48,28 +48,21 @@ public class AdminMapper implements IAdminMapper {
     }
 
     @Override
-    public boolean fjernstock(int stock_id) throws DatabaseException
-    {
+    public boolean fjernstock(int stock_id) throws DatabaseException {
         Logger.getLogger("web").log(Level.INFO, "");
         boolean result = false;
         String sql = "delete from stock where stock_id = ?";
-        try (Connection connection = connectionPool.getConnection())
-        {
-            try (PreparedStatement ps = connection.prepareStatement(sql))
-            {
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ps.setInt(1, stock_id);
                 int rowsAffected = ps.executeUpdate();
-                if (rowsAffected == 1)
-                {
+                if (rowsAffected == 1) {
                     result = true;
-                } else
-                {
+                } else {
                     throw new DatabaseException("Stock med stockid = " + stock_id + " kunne ikke fjernes");
                 }
             }
-        }
-        catch (SQLException ex)
-        {
+        } catch (SQLException ex) {
             throw new DatabaseException("Bog med stockid = " + stock_id + " kunne ikke fjernes");
         }
         return result;
@@ -98,7 +91,7 @@ public class AdminMapper implements IAdminMapper {
                     int customer_id = rs.getInt("customer_id");
                     int admin_id = rs.getInt("admin_id");
 
-                    RequestListeDTO newstock = new RequestListeDTO(request_id, length_cp, width_cp, length_rr, width_rr,roof_mat,wood_cladding_mat,customer_id,admin_id);
+                    RequestListeDTO newstock = new RequestListeDTO(request_id, length_cp, width_cp, length_rr, width_rr, roof_mat, wood_cladding_mat, customer_id, admin_id);
                     requestList.add(newstock);
                 }
             }
@@ -109,28 +102,21 @@ public class AdminMapper implements IAdminMapper {
     }
 
     @Override
-    public boolean fjernRequest(int request_id) throws DatabaseException
-    {
+    public boolean fjernRequest(int request_id) throws DatabaseException {
         Logger.getLogger("web").log(Level.INFO, "");
         boolean result = false;
         String sql = "delete from request where request_id = ?";
-        try (Connection connection = connectionPool.getConnection())
-        {
-            try (PreparedStatement ps = connection.prepareStatement(sql))
-            {
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ps.setInt(1, request_id);
                 int rowsAffected = ps.executeUpdate();
-                if (rowsAffected == 1)
-                {
+                if (rowsAffected == 1) {
                     result = true;
-                } else
-                {
+                } else {
                     throw new DatabaseException("Request med requestID = " + request_id + " kunne ikke fjernes");
                 }
             }
-        }
-        catch (SQLException ex)
-        {
+        } catch (SQLException ex) {
             throw new DatabaseException("Request med requestId = " + request_id + " kunne ikke fjernes");
         }
         return result;
@@ -165,8 +151,7 @@ public class AdminMapper implements IAdminMapper {
         }
     }
 
-    public boolean opdaterStock(Stock stock) throws DatabaseException
-    {
+    public boolean opdaterStock(Stock stock) throws DatabaseException {
         Logger.getLogger("web").log(Level.INFO, "");
         boolean result = false;
         String sql = "UPDATE stock SET description = ?, amount = ?, unit = ?, price_per_unit = ? " +
@@ -182,7 +167,7 @@ public class AdminMapper implements IAdminMapper {
                 ps.setInt(5, stock.getStockid());
 
                 int rowsAffected = ps.executeUpdate();
-                if (rowsAffected == 1){
+                if (rowsAffected == 1) {
                     result = true;
                 } else {
                     throw new DatabaseException("Kunne ikke opdatere stock med getStock_id = " + stock.getStockid());
@@ -195,34 +180,27 @@ public class AdminMapper implements IAdminMapper {
     }
 
     @Override
-    public Stock opretNyStock(Stock stock) throws DatabaseException
-    {
+    public Stock opretNyStock(Stock stock) throws DatabaseException {
         Logger.getLogger("web").log(Level.INFO, "");
         boolean result = false;
         int newId = 0;
         String sql = "insert into stock (stock_id, description, amount, unit, price_per_unit) values (?,?,?,?,?)";
-        try (Connection connection = connectionPool.getConnection())
-        {
-            try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS))
-            {
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
-                ps.setInt(1,stock.getStockid());
+                ps.setInt(1, stock.getStockid());
                 ps.setString(2, stock.getDescription());
                 ps.setInt(3, stock.getAmount());
                 ps.setString(4, stock.getUnit());
                 ps.setInt(5, stock.getPrice_per_unit());
                 int rowsAffected = ps.executeUpdate();
-                if (rowsAffected == 1)
-                {
+                if (rowsAffected == 1) {
                     result = true;
-                } else
-                {
+                } else {
                     throw new DatabaseException("stock med beskrivelse = " + stock.getDescription() + " kunne ikke oprettes i databasen");
                 }
             }
-        }
-        catch (SQLException ex)
-        {
+        } catch (SQLException ex) {
             throw new DatabaseException(ex, "Kunne ikke indsætte stock i databasen");
         }
         return stock;
@@ -262,7 +240,42 @@ public class AdminMapper implements IAdminMapper {
             return request;
         }
     }
+
+
+    @Override
+    public boolean opdaterRequest(Request request) throws DatabaseException {
+        Logger.getLogger("web").log(Level.INFO, "");
+        boolean result = false;
+        String sql = "UPDATE request SET length_cp = ?, width_cp = ?, length_rr = ?, width_rr = ?, roof_mat = ?, wood_cladding_mat = ?, customer_id = ?, admin_id = ? " +
+                "WHERE request_id = ?";
+
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+
+                ps.setInt(1, request.getLengthcp());
+                ps.setInt(2, request.getWidthcp());
+                ps.setInt(3, request.getLengthrr());
+                ps.setInt(4, request.getWidthrr());
+                ps.setString(5, request.getRoofmat());
+                ps.setString(6, request.getWoodcladding());
+                ps.setInt(7, request.getCustomerid());
+                ps.setInt(8, request.getAdminid());
+                ps.setInt(9, request.getRequestid());
+
+                int rowsAffected = ps.executeUpdate();
+                if (rowsAffected == 1) {
+                    result = true;
+                } else {
+                    throw new DatabaseException("Kunne ikke opdatere request med request_id = " + request.getRequestid());
+                }
+            }
+        } catch (SQLException ex) {
+            throw new DatabaseException("Kunne ikke opdatere request med request_id = " + request.getRequestid());
+        }
+        return result;
+    }
 }
+
 
 
 

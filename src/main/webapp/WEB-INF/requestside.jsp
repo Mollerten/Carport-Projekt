@@ -71,8 +71,6 @@
                     </c:forEach>
                     </tbody>
                 </table>
-                <button class="btn btn-primary submit px-3" style="background-color: #000C66"
-                        name="opret" formaction="opretbogform">Opret</button>
             </form>
 
         </c:if>

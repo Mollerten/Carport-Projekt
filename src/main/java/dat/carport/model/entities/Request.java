@@ -70,6 +70,42 @@ public class Request {
         return adminid;
     }
 
+    public void setRequestid(int requestid) {
+        this.requestid = requestid;
+    }
+
+    public void setLengthcp(int lengthcp) {
+        this.lengthcp = lengthcp;
+    }
+
+    public void setWidthcp(int widthcp) {
+        this.widthcp = widthcp;
+    }
+
+    public void setLengthrr(int lengthrr) {
+        this.lengthrr = lengthrr;
+    }
+
+    public void setWidthrr(int widthrr) {
+        this.widthrr = widthrr;
+    }
+
+    public void setRoofmat(String roofmat) {
+        this.roofmat = roofmat;
+    }
+
+    public void setWoodcladding(String woodcladding) {
+        this.woodcladding = woodcladding;
+    }
+
+    public void setCustomerid(int customerid) {
+        this.customerid = customerid;
+    }
+
+    public void setAdminid(int adminid) {
+        this.adminid = adminid;
+    }
+
     @Override
     public String toString() {
         return "Request{" +
