@@ -20,7 +20,10 @@ public class OpretStock extends Command {
     String execute(HttpServletRequest request, HttpServletResponse response) throws DatabaseException {
         response.setContentType("text/html");
 
-        int stockId;
+
+        String stockIdString = request.getParameter("stockid");
+        int stockID = Integer.parseInt(stockIdString);
+
         String description = request.getParameter("description");
 
         String amountString = request.getParameter("amount");
@@ -31,9 +34,7 @@ public class OpretStock extends Command {
         String pricePerUnitstring = request.getParameter("priceperunit");
         int price_per_unit = Integer.parseInt(pricePerUnitstring);
 
-
-
-        Stock stock = new Stock(description, amount, unit, price_per_unit);
+        Stock stock = new Stock(stockID, description, amount, unit, price_per_unit);
         AdminMapper adminMapper = new AdminMapper(connectionPool);
         try
         {

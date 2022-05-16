@@ -199,37 +199,30 @@ public class AdminMapper implements IAdminMapper {
         Logger.getLogger("web").log(Level.INFO, "");
         boolean result = false;
         int newId = 0;
-        String sql = "insert into stock (description, amount, unit, price_per_unit) values (?,?,?,?)";
+        String sql = "insert into stock (stock_id, description, amount, unit, price_per_unit) values (?,?,?,?,?)";
         try (Connection connection = connectionPool.getConnection())
         {
             try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS))
             {
-                ps.setString(1, stock.getDescription());
-                ps.setInt(2, stock.getAmount());
-                ps.setString(3, stock.getUnit());
-                ps.setInt(4, stock.getPrice_per_unit());
+
+                ps.setInt(1,stock.getStockid());
+                ps.setString(2, stock.getDescription());
+                ps.setInt(3, stock.getAmount());
+                ps.setString(4, stock.getUnit());
+                ps.setInt(5, stock.getPrice_per_unit());
                 int rowsAffected = ps.executeUpdate();
                 if (rowsAffected == 1)
                 {
                     result = true;
                 } else
                 {
-                    throw new DatabaseException("bog med beskrivelse = " + stock.getDescription() + " kunne ikke oprettes i databasen");
-                }
-                ResultSet idResultset = ps.getGeneratedKeys();
-                if (idResultset.next())
-                {
-                    newId = idResultset.getInt(1);
-                    stock.setStockid(newId);
-                } else
-                {
-                    stock = null;
+                    throw new DatabaseException("stock med beskrivelse = " + stock.getDescription() + " kunne ikke oprettes i databasen");
                 }
             }
         }
         catch (SQLException ex)
         {
-            throw new DatabaseException(ex, "Kunne ikke indsætte bog i databasen");
+            throw new DatabaseException(ex, "Kunne ikke indsætte stock i databasen");
         }
         return stock;
     }

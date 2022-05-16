@@ -26,6 +26,9 @@
             <form action="fc/opretstock" method="post">
                 <input type="hidden" name="command" value="opretstock"/>
 
+                <label for="stockid">Stock id:</label>
+                <input type="text" id="stockid" name="stockid"/><br/>
+
                 <label for="description">Beskrivelse:</label>
                 <input type="text" id="description" name="description"/><br/>
 
@@ -38,7 +41,7 @@
                 <label for="priceperunit">stock pris per unit: </label>
                 <input type="text" id="priceperunit" name="priceperunit"/><br/>
 
-                <input type="submit" value="Opdater Stock"/>
+                <input type="submit" value="Opret Stock"/>
             </form>
 
 
