@@ -13,18 +13,7 @@
     </jsp:attribute>
 
     <jsp:body>
-        <svg width="127" height="105" viewBox="0 0 255 210">
-            <rect x="0" y="0" height="255" width="255"
-                  stroke="#000" fill="#ff0"></rect>
-            <rect x="0" y="0" height="90" width="90"
-                  stroke="#000" fill="#23f"></rect>
-            <rect x="120" y="0" height="90" width="135"
-                  stroke="#000" fill="#23f"></rect>
-            <rect x="0" y="120" height="90" width="90"
-                  stroke="#000" fill="#23f"></rect>
-            <rect x="120" y="120" height="90" width="135"
-                  stroke="#000" fill="#23f"></rect>
-        </svg>
+        ${requestScope.svgDrawing}
     </jsp:body>
 
 </t:pagetemplate>
