@@ -37,7 +37,7 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
                     <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/about?command=about"><strong>Om os</strong></a>
-                    <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc"><strong>Side 2</strong></a>
+                    <a class="nav-item nav-link" href="${pageContext.request.contextPath}/profile.jsp">Profile</a>
                     <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc"><strong>Side 3</strong></a>
 
                     <c:if test="${sessionScope.user != null && sessionScope.user.role eq \"user\"}">
