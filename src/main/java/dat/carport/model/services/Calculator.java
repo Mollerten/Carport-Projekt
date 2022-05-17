@@ -63,7 +63,7 @@ class Calculator {
         rafters = spaceAmount + 1;
 
         // This will (probably) be used for the SVG drawing
-        rafterSpacing = (int) Math.round(length / ((double) spaceAmount));
+        rafterSpacing = (int) Math.floor(length / ((double) spaceAmount));
 
         return rafters;
     }
