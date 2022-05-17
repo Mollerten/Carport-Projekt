@@ -1,6 +1,7 @@
 package dat.carport.control;
 
 import dat.carport.model.config.ApplicationStart;
+import dat.carport.model.entities.City;
 import dat.carport.model.entities.User;
 import dat.carport.model.exceptions.DatabaseException;
 import dat.carport.model.persistence.ConnectionPool;
@@ -38,7 +39,7 @@ public class CreateUser extends Command
         String postalCode = request.getParameter("postalCode");
 
         // Den nedenstående kode skal refactoreres så vi ikke tilføjer til databasen her.
-        String sql = "insert into city (city, postal_code) values (?,?)";
+    /*    String sql = "insert into city (city, postal_code) values (?,?)";
         try (Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ps.setString(1, city);
@@ -54,12 +55,13 @@ public class CreateUser extends Command
         catch (SQLException ex)
         {
             throw new DatabaseException(ex, "Could not insert city into database");
-        }
+        }*/
         // seriøst, det skal virkelig ikke stå her.
 
-
+        City city1 = UserFacade.addCity(city, postalCode, connectionPool);
         User user = UserFacade.createUser(username, email, password, tlfnr, address, city, connectionPool);
         session = request.getSession();
+        session.setAttribute("city", city1);
         session.setAttribute("user", user); // adding user object to session scope
         return "brugerside";
     }

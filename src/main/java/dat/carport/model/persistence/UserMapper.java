@@ -1,5 +1,6 @@
 package dat.carport.model.persistence;
 
+import dat.carport.model.entities.City;
 import dat.carport.model.entities.User;
 import dat.carport.model.exceptions.DatabaseException;
 
@@ -94,7 +95,7 @@ public class UserMapper implements IUserMapper
         Logger.getLogger("web").log(Level.INFO, "");
         User user;
 
-        String sql = "UPDATE `user` SET `username` = ?, `password` = ?, `email` = ?, `tlfnr` = ? , `address` = ? , `city` = ?, 'isAdmin' = ? WHERE (`email` = ?);";
+        String sql = "UPDATE `user` SET `username` = ?, `password` = ?, `email` = ?, `tlfnr` = ? , `address` = ? , `city` = ?, `isAdmin` = ? WHERE (`email` = ?);";
 
         try (Connection connection = connectionPool.getConnection())
         {
@@ -113,7 +114,7 @@ public class UserMapper implements IUserMapper
                 if (rowsAffected == 1)
                 {
                     String role = isAdmin ? "admin" : "user";
-                    user = new User(newUsername, newPassword, newEmail, newTlfnr, newAddress, newCity, role);
+                    user = new User(newUsername, newEmail, newPassword, newTlfnr, newAddress, newCity, role);
                 } else
                 {
                     throw new DatabaseException("The user with email = " + email + " could not be inserted into the database");
@@ -126,5 +127,52 @@ public class UserMapper implements IUserMapper
         }
         return user;
 
+    }
+
+
+    @Override
+    public City addCity(String city, String postalCode) throws DatabaseException
+    {
+        Logger.getLogger("web").log(Level.INFO, "");
+        City city1;
+
+
+        String sql = "SELECT * FROM city WHERE (city = ? AND postal_code = ?);";
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql))
+            {
+                ps.setString(1, city);
+                ps.setString(2, postalCode);
+                ResultSet rs = ps.executeQuery();
+                if (rs.next())
+                {
+                    String cityname = rs.getString("city");
+                    String postalCodeName = rs.getString("postal_code");
+                    city1 = new City(cityname, postalCodeName);
+                } else
+                {
+                    String sql2 = "insert into city (city, postal_code) values (?,?)";
+                    try (Connection connection2 = connectionPool.getConnection()) {
+                        try (PreparedStatement ps2 = connection2.prepareStatement(sql2)) {
+                            ps2.setString(1, city);
+                            ps2.setString(2, postalCode);
+                            int rowsAffected = ps2.executeUpdate();
+                            if (rowsAffected == 1) {
+                                city1 = new City(city, postalCode);
+                            } else {
+                                throw new DatabaseException("The city with name: = " + city + " could not be inserted into the database");
+                            }
+                        }
+                    } catch (SQLException ex) {
+                        throw new DatabaseException(ex, "Could not insert city into database");
+                    }
+
+                }
+            }
+        } catch (SQLException ex) {
+            throw new DatabaseException(ex, "An error occured when trying to find your city in the database");
+        }
+
+        return city1;
     }
 }

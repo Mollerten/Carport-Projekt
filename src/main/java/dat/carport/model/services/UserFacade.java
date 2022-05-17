@@ -1,5 +1,6 @@
 package dat.carport.model.services;
 
+import dat.carport.model.entities.City;
 import dat.carport.model.entities.User;
 import dat.carport.model.exceptions.DatabaseException;
 import dat.carport.model.persistence.ConnectionPool;
@@ -23,6 +24,12 @@ public class UserFacade
     {
         UserMapper userMapper = new UserMapper(connectionPool);
         return userMapper.updateUser(newUsername, newPassword, newEmail, newTlfnr, newAddress, newCity, email, isAdmin);
+    }
+
+    public static City addCity(String city, String postalCode, ConnectionPool connectionPool) throws DatabaseException
+    {
+        UserMapper userMapper = new UserMapper(connectionPool);
+        return userMapper.addCity(city, postalCode);
     }
 
 }

@@ -1,6 +1,7 @@
 package dat.carport.control;
 
 import dat.carport.model.config.ApplicationStart;
+import dat.carport.model.entities.City;
 import dat.carport.model.entities.User;
 import dat.carport.model.exceptions.DatabaseException;
 import dat.carport.model.persistence.ConnectionPool;
@@ -29,6 +30,7 @@ public class UpdateUser extends Command
 
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
+        City city2 = (City) session.getAttribute("city");
 
         String username = user.getUsername();
         String password = user.getPassword();
@@ -49,6 +51,8 @@ public class UpdateUser extends Command
         String newPostalCode = request.getParameter("newPostalCode");
 
         String oldPassword = request.getParameter("oldPassword");
+
+
 
         // Hvis blanketten ikke er udfyldt sættes brugernavn til forrige
         if (newUsername.equals("")) {
@@ -91,16 +95,15 @@ public class UpdateUser extends Command
             newCity = city;
         }
 
+        if (newPostalCode.equals("")) {
+            newPostalCode = city2.getPostalCode();
+        }
 
-
-
-
-        user = UserFacade.updateUser(newUsername, newPassword, newEmail, newTlfnr, newAddress, newCity, email, isAdmin, connectionPool);
-
-
-
-                return "index";
-
+            City city1 = UserFacade.addCity(newCity, newPostalCode, connectionPool);
+            user = UserFacade.updateUser(newUsername, newPassword, newEmail, newTlfnr, newAddress, newCity, email, isAdmin, connectionPool);
+            session.setAttribute("city", city1);
+            session.setAttribute("user", user);
+            return "index";
 
     }
 }
