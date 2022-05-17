@@ -7,13 +7,24 @@
           stroke="black" fill-opacity="0"/>
     <rect x="0" y="0" width="10" height="600"
           stroke="black" fill-opacity="0"/>
-    <rect x="10" y="35" width="760" height="25"
+    <rect x="10" y="35" width="760" height="10"
           stroke="black" fill-opacity="0" />
-    <rect x="10" y="540" width="760" height="25"
+    <rect x="10" y="555" width="760" height="10"
           stroke="black" fill-opacity="0" />
-    <line x1="100" y1="60" x2="500" y2="549" stroke="black"
-          stroke-dasharray="20" />
-    <line x1="500" y1="60" x2="100" y2="549" stroke="black"
-          stroke-dasharray="20" />
-    <circle cx="50%" cy="50%" r="50%" />
+    <line x1="60" y1="35" x2="500" y2="565" stroke="black"
+          stroke-dasharray="21" />
+    <line x1="500" y1="35" x2="60" y2="565" stroke="black"
+          stroke-dasharray="21" />
+    <rect x="100" y="32" width="15" height="15"
+          stroke="black" fill-opacity="0" />
+    <rect x="410" y="32" width="15" height="15"
+          stroke="black" fill-opacity="0" />
+    <rect x="720" y="32" width="15" height="15"
+          stroke="black" fill-opacity="0" />
+    <rect x="100" y="553" width="15" height="15"
+          stroke="black" fill-opacity="0" />
+    <rect x="410" y="553" width="15" height="15"
+          stroke="black" fill-opacity="0" />
+    <rect x="720" y="553" width="15" height="15"
+          stroke="black" fill-opacity="0" />
 </svg>
