@@ -55,7 +55,7 @@ public class UserMapper implements IUserMapper
     }
 
     @Override
-    public User createUser(String username, String email, String password, String tlfnr, String address, String city, String role) throws DatabaseException
+    public User createUser(String username, String email, String password, String tlfnr, String address, String city) throws DatabaseException
     {
         Logger.getLogger("web").log(Level.INFO, "");
         User user;
@@ -74,7 +74,7 @@ public class UserMapper implements IUserMapper
                 int rowsAffected = ps.executeUpdate();
                 if (rowsAffected == 1)
                 {
-                    user = new User(username, email, password, tlfnr, address, city, role);
+                    user = new User(username, email, password, tlfnr, address, city, "user");
                 } else
                 {
                     throw new DatabaseException("The user with username = " + username + " could not be inserted into the database");
@@ -87,6 +87,4 @@ public class UserMapper implements IUserMapper
         }
         return user;
     }
-
-
 }
