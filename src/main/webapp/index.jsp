@@ -5,32 +5,21 @@
 
 <t:pagetemplate>
     <jsp:attribute name="header">
-         Welcome to the frontpage
+
     </jsp:attribute>
 
     <jsp:attribute name="footer">
-        Welcome to the frontpage
+        Velkommen til FOG
     </jsp:attribute>
 
     <jsp:body>
 
-        <p>Startcode for 2nd semester </p>
+            <link rel="stylesheet" href="css/style.css">
 
-        <c:if test="${sessionScope.user != null}">
-            <p>You are logged in with the role of "${sessionScope.user.role}".</p>
-        </c:if>
+            <video id="background-video" autoplay muted loop src="videos/carportvideo.mp4"></video>
 
+            <h2>FOG - Holder I Længden</h2>
 
-        <c:if test="${sessionScope.user == null}">
-            <p>You are not logged in yet. You can do it here:
-                <a href="login.jsp">Login</a></p>
-
-        <br> <br>
-
-            <p>or you can create a new user here:
-                <a href="createUser.jsp">create user</a></p>
-
-        </c:if>
 
     </jsp:body>
 
