@@ -89,6 +89,7 @@ public class UserMapper implements IUserMapper
         return user;
     }
 
+
     @Override
     public User updateUser(String newUsername, String newPassword, String newEmail, String newTlfnr, String newAddress, String newCity, String email, boolean isAdmin) throws DatabaseException
     {
@@ -126,7 +127,6 @@ public class UserMapper implements IUserMapper
             throw new DatabaseException(ex, "Could not insert username into database");
         }
         return user;
-
     }
 
 
@@ -175,4 +175,6 @@ public class UserMapper implements IUserMapper
 
         return city1;
     }
+    
+    
 }

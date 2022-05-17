@@ -25,12 +25,12 @@
             <p>Velkommen tilbage admin!</p>
             <p>Du er logget ind med rollen:  "${sessionScope.user.role}".</p>
 
-            <form action="fc/login" method="post">
-                <input type="hidden" name="command" value="stockside"/>
-                <input type="submit" style="background-color: #000C66" class="btn btn-primary submit px-3"  value="Se Stock"/>
+            <form action="fc/stockside" method="post">
+            <input type="hidden" name="command" value="stockside"/>
+            <input type="submit" style="background-color: #000C66" class="btn btn-primary submit px-3"  value="Se Stock"/>
             </form>
             <br>
-            <form action="fc/login" method="post">
+            <form action="fc/requestside" method="post">
                 <input type="hidden" name="command" value="requestside"/>
                 <input type="submit" style="background-color: #000C66" class="btn btn-primary submit px-3"  value="Se Requests"/>
             </form>

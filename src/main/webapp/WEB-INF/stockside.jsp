@@ -5,11 +5,11 @@
 
 <t:pagetemplate>
     <jsp:attribute name="header">
-        Stockside
+
     </jsp:attribute>
 
     <jsp:attribute name="footer">
-        Stockside
+
     </jsp:attribute>
 
     <jsp:body>
@@ -22,8 +22,48 @@
         <%--        Hvis kontoen er admin--%>
         <c:if test="${sessionScope.user != null && sessionScope.user.role eq \"admin\"}">
             <h1>Stockliste:</h1>
-        </c:if>
 
+            <form method="post">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Stock ID</th>
+                        <th>Beskrivelse</th>
+                        <th>Antal</th>
+                        <th>Unit</th>
+                        <th>Pris per unit</th>
+                    </tr>
+
+                    </thead>
+                    <tbody>
+                    <c:forEach var="stock" items="${requestScope.stockliste}">
+                        <tr>
+                            <td>${stock.stockid}</td>
+                            <td>${stock.description}</td>
+                            <td>${stock.amount}</td>
+                            <td>${stock.unit}</td>
+                            <td>${stock.price_per_unit}</td>
+                            <td>
+
+                                <c:if test="${sessionScope.user != null && sessionScope.user.role eq \"admin\"}">
+
+                                    <button class="btn btn-primary submit px-3" style="background-color: #c82333"
+                                            name="fjernstock" value="${stock.stockid}"
+                                            formaction="fc/fjernstock?command=fjernstock">fjern</button>
+
+                                    <button class="btn btn-primary submit px-3" style="background-color: #000C66"
+                                            name="redigerstock" value="${stock.stockid}" formaction="fc/redigerstock?command=redigerstock">rediger</button>
+                                </c:if>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                    </tbody>
+                </table>
+                <button class="btn btn-primary submit px-3" style="background-color: #000C66"
+                        name="opret" formaction="fc/opretstockside?command=opretstockside">Opret</button>
+            </form>
+
+        </c:if>
 
         <%--        Hvis brugeren/admin ikke er logget ind--%>
         <c:if test="${sessionScope.user == null}">
