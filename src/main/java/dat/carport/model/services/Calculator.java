@@ -67,7 +67,14 @@ class Calculator {
 
         return rafters;
     }
-
+    /**
+     *
+     * @param length The length of the carport
+     * @param width The width of the carport
+     * @return A {@code Map<Key, Value>} where keys are equal to the length of the roofing sheet
+     * and values are equal to the amount of roofing sheets with that length.
+     */
+    // roofingsheets = tagplader
     protected  static Map<Integer, Integer> calcRoofingSheets (int length, int width) {
         Map<Integer, Integer> roofingSheets = new HashMap<>();
         int segment;
