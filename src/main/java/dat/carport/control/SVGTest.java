@@ -9,18 +9,18 @@ import javax.servlet.http.HttpServletResponse;
 public class SVGTest extends Command {
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws DatabaseException {
-        int rafterSpacing = 55;
-        int rafterCount = 15;
-        int rafterLength = 600;
-        int carportWidth = 600;
-        int carportLength = 780;
-        int dashLine_x1 = 0;
-        int dashLine_x2 = 0;
-        int dashLine_y1 = 37;
-        int dashLine_y2 = carportWidth- 38;
-        String viewBox = String.format("0 0 %d %d", carportLength, carportWidth);
-        SVG canvas = new SVG(0, 0, "0 0 800 800", 150, 150, true);
-        SVG carport = new SVG(0, 0, viewBox, 100, 100, false);
+        float rafterSpacing = 58.5f;
+        float rafterCount = 9;
+        float rafterLength = 360;
+        float carportWidth = 360;
+        float carportLength = 480;
+        float dashLine_x1 = 0;
+        float dashLine_x2 = 0;
+        float dashLine_y1 = 37;
+        float dashLine_y2 = carportWidth- 38;
+        String viewBox = String.format("0 0 %f %f", carportLength, carportWidth);
+        SVG canvas = new SVG(0, 0, "0 0 800 800", 100, 100, true);
+        SVG carport = new SVG(80, 50, viewBox, 75, 75, false);
 
         // Make the carport svg
         // Add the poles
@@ -46,7 +46,10 @@ public class SVGTest extends Command {
         carport.addLine(dashLine_x2, dashLine_y1, dashLine_x1, dashLine_y2, true);
 
         // Make the canvas SVG
-        canvas.addArrow(50, 50, 50, 500);
+        canvas.addArrow(50, 50, 50, 510);
+        canvas.addText(30, 270, -90, Math.round(carportWidth) + " cm");
+        canvas.addArrow(80, 540, 678, 540);
+        canvas.addText(360, 570, 0, Math.round(carportLength) + " cm");
         canvas.addSVG(carport);
 
         request.setAttribute("svgDrawing", canvas.toString());
