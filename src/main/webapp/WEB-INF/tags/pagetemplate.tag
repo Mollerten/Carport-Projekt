@@ -27,7 +27,7 @@
 <header>
     <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #000C66">
         <div class="container">
-            <a class="navbar-brand" href="index.jsp">
+            <a class="navbar-brand" href="${pageContext.request.contextPath}/index.jsp">
                 <img src="${pageContext.request.contextPath}/images/foglogo.png" width="125px;" class="img-fluid"/>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
@@ -37,7 +37,7 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
                     <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/about?command=about"><strong>Om os</strong></a>
-                    <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc"><strong>Side 2</strong></a>
+                    <a class="nav-item nav-link" href="${pageContext.request.contextPath}/profile.jsp">Profile</a>
                     <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc"><strong>Side 3</strong></a>
 
                     <c:if test="${sessionScope.user != null && sessionScope.user.role eq \"user\"}">
