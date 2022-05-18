@@ -40,10 +40,10 @@
                 <input type="text" id="description" name="description" value="${requestScope.stock.description}"/><br/>
 
                 <label for="amount">Antal: </label>
-                <input type="text" id="amount" name="amount" value="${requestScope.stock.amount}"/><br/>
+                <input type="text" id="amount" name="amount"  value="${requestScope.stock.amount}"/><br/>
 
                 <label for="stockunit">stock unit: </label>
-                <input type="text" id="stockunit" name="stockunit" value="${requestScope.stock.unit}"/><br/>
+                <input type="text" id="stockunit" name="stockunit"  value="${requestScope.stock.unit}"/><br/>
 
                 <label for="priceperunit">stock pris per unit: </label>
                 <input type="text" id="priceperunit" name="priceperunit" value="${requestScope.stock.price_per_unit}"/><br/>

@@ -5,6 +5,14 @@
 <%@attribute name="header" fragment="true" %>
 <%@attribute name="footer" fragment="true" %>
 
+<html>
+<head>
+    <title>My Page Title</title>
+    <link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/images/favicon.ico">
+
+</head>
+</html>
+
 <!DOCTYPE html>
 <html lang="da">
 <head>
