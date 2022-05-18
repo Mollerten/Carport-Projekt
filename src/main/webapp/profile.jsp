@@ -60,6 +60,5 @@
 
       <input type="submit"  value="Update user"/>
     </form>
-
   </jsp:body>
 </t:pagetemplate>
