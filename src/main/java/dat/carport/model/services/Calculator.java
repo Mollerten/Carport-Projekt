@@ -67,4 +67,82 @@ class Calculator {
 
         return rafters;
     }
+
+    protected  static Map<Integer, Integer> calcRoofingSheets (int length, int width) {
+        Map<Integer, Integer> roofingSheets = new HashMap<>();
+        int segment;
+        int carportLength = length;
+        int carportWidth = width;
+        int roofingSheetSize = 0;
+        int roofingSheetAmountWidth;
+        int roofingSheetAmountLength = 1;
+        int roofingSheetAmountTotal;
+
+        roofingSheetAmountWidth = (int) Math.ceil(carportWidth/(109-20));
+
+        segment = (int) Math.ceil(carportLength/60)+1;
+
+        if (segment<=10){
+            roofingSheetSize = segment-3;
+        }
+        if (segment > 10){
+           roofingSheetSize = (int) Math.ceil((segment/2)-3);
+           roofingSheetAmountLength = 2;
+        }
+
+        roofingSheetAmountTotal = roofingSheetAmountLength * roofingSheetAmountWidth;
+        roofingSheets.put(roofingSheetSize, roofingSheetAmountTotal);
+        return roofingSheets;
+    }
+
+    protected static int calcBolts(int poles){
+        int boltAmount;
+
+        boltAmount = poles * 2;
+
+        return boltAmount;
+    }
+
+    protected static int calcFittings(int rafters){
+        int fittingAmount;
+
+        fittingAmount = rafters * 2;
+
+        return fittingAmount;
+    }
+
+    protected static int calcScrews(int fittings){
+        int screwAmount;
+
+        screwAmount = fittings * 9;
+
+        return screwAmount;
+    }
+
+    protected static int calcRoofScrews(int length) {
+        int screwBoxAmount;
+
+        screwBoxAmount = (int) Math.ceil(length/3);
+
+        return  screwBoxAmount;
+    }
+
+    protected static int calcSquareFittings(int poles)
+    {
+        int squareFittingAmount;
+
+        squareFittingAmount = poles;
+
+        return squareFittingAmount;
+    }
+
+
+
+
+
+
+
+
+
+
 }
