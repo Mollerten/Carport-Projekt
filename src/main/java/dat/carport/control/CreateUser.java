@@ -38,25 +38,6 @@ public class CreateUser extends Command
         String city = request.getParameter("city");
         String postalCode = request.getParameter("postalCode");
 
-        // Den nedenstående kode skal refactoreres så vi ikke tilføjer til databasen her.
-    /*    String sql = "insert into city (city, postal_code) values (?,?)";
-        try (Connection connection = connectionPool.getConnection()) {
-            try (PreparedStatement ps = connection.prepareStatement(sql)) {
-                ps.setString(1, city);
-                ps.setString(2, postalCode);
-                int rowsAffected = ps.executeUpdate();
-                if (rowsAffected == 1) {
-
-                } else {
-                    throw new DatabaseException("The city with name: = " + city + " could not be inserted into the database");
-                }
-            }
-        }
-        catch (SQLException ex)
-        {
-            throw new DatabaseException(ex, "Could not insert city into database");
-        }*/
-        // seriøst, det skal virkelig ikke stå her.
 
         City city1 = UserFacade.addCity(city, postalCode, connectionPool);
         User user = UserFacade.createUser(username, email, password, tlfnr, address, city, connectionPool);
