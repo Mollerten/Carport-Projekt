@@ -2,8 +2,10 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page errorPage="error.jsp" isErrorPage="false" %>
-
 <t:pagetemplate>
+
+
+
     <jsp:attribute name="header">
 
     </jsp:attribute>
@@ -14,6 +16,7 @@
 
     <jsp:body>
 
+
             <link rel="stylesheet" href="css/style.css">
 
             <video id="background-video" autoplay muted loop src="videos/carportvideo.mp4"></video>
@@ -22,5 +25,6 @@
 
 
     </jsp:body>
+
 
 </t:pagetemplate>
