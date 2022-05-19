@@ -4,13 +4,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@page errorPage="error.jsp" isErrorPage="false" %>
 
-<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
-
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
-<link rel="stylesheet" href="css/style.css">
-
-
 
 <t:pagetemplate>
     <jsp:attribute name="header">
@@ -22,12 +15,14 @@
     </jsp:attribute>
 
     <jsp:body>
+        <link rel="stylesheet" href="scss/style.scss">
 
-        <body class="img-fluid align-items-md-stretch" style="background-image: url(images/bg3.jpeg);">
+        <body style="background-image: url(images/bg3.jpeg);">
         <section class="ftco-section">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-md-6 text-center mb-5">
+                        <br>
                         <br>
                         <br>
                         <br>
@@ -40,8 +35,6 @@
                     <div class="col-md-6 col-lg-4">
                         <div class="login-wrap p-0">
                             <h1></h1>
-
-
 
                             <form action="fc/login" method="post">
                                 <input type="hidden" name="command" value="login"/>
@@ -74,33 +67,7 @@
             </div>
         </section>
 
-        <script src="js/jquery.min.js"></script>
-        <script src="js/popper.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/main.js"></script>
-
         </body>
-
-
-
-
-<%--
-    <body>
-
-    </body>
-
-        <h3>You can log in here</h3>
-
-        <form action="fc/login" method="post">
-            <input type="hidden" name="command" value="login"/>
-            <label for="username">Username: </label>
-            <input type="text" id="username" name="username"/>
-
-            <label for="password">Password: </label>
-            <input type="password" id="password" name="password"/>
-            <input type="submit"  value="Log in"/>
-        </form>
---%>
 
     </jsp:body>
 </t:pagetemplate>
