@@ -19,6 +19,7 @@ abstract class Command
         commands.put("logout", new Logout());
         commands.put("about", new About());
         commands.put("createUser", new CreateUser());
+        commands.put("svgtest", new SVGTest());
         commands.put("brugerside", new Brugerside());
         commands.put("requestside", new RequestSide());
         commands.put("updateUser", new UpdateUser());
@@ -31,7 +32,7 @@ abstract class Command
         commands.put("opdaterstock", new OpdaterStock());
         commands.put("opretstock", new OpretStock());
         commands.put("opretstockside", new OpretStockSide());
-
+        commands.put("profil", new Profil());
     }
 
     static Command from( HttpServletRequest request ) {

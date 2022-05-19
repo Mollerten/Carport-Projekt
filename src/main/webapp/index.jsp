@@ -2,8 +2,10 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page errorPage="error.jsp" isErrorPage="false" %>
-
 <t:pagetemplate>
+
+
+
     <jsp:attribute name="header">
 
     </jsp:attribute>
@@ -20,7 +22,7 @@
 
             <h2>FOG - Holder I Længden</h2>
 
-
     </jsp:body>
+
 
 </t:pagetemplate>

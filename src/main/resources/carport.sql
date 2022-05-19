@@ -32,6 +32,16 @@ CREATE TABLE `city` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `city`
+--
+
+LOCK TABLES `city` WRITE;
+/*!40000 ALTER TABLE `city` DISABLE KEYS */;
+INSERT INTO `city` VALUES ('newuserciityy','1900'),('newusercity','1338'),('pulle','12343645'),('pølle','123457'),('usercity','1337');
+/*!40000 ALTER TABLE `city` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `parts_list`
 --
 
@@ -39,18 +49,23 @@ DROP TABLE IF EXISTS `parts_list`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `parts_list` (
-                              `part_list_id` int NOT NULL AUTO_INCREMENT,
-                              `request_id` int NOT NULL,
-                              `stock_id` double NOT NULL,
-                              `line_price` double NOT NULL,
-                              `amount` int NOT NULL,
-                              PRIMARY KEY (`part_list_id`),
-                              KEY `fk_parts_list_request1_idx` (`request_id`),
-                              KEY `fk_parts_list_stock1_idx` (`stock_id`),
-                              CONSTRAINT `fk_parts_list_request1` FOREIGN KEY (`request_id`) REFERENCES `request` (`request_id`),
-                              CONSTRAINT `fk_parts_list_stock1` FOREIGN KEY (`stock_id`) REFERENCES `stock` (`stock_id`)
+  `request_id` int NOT NULL,
+  `parts_list_data` blob NOT NULL,
+  `price_in_dkk` double NOT NULL,
+  PRIMARY KEY (`request_id`),
+  KEY `fk_parts_list_request1_idx` (`request_id`),
+  CONSTRAINT `fk_parts_list_request1` FOREIGN KEY (`request_id`) REFERENCES `request` (`request_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `parts_list`
+--
+
+LOCK TABLES `parts_list` WRITE;
+/*!40000 ALTER TABLE `parts_list` DISABLE KEYS */;
+/*!40000 ALTER TABLE `parts_list` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `request`
@@ -82,6 +97,15 @@ CREATE TABLE `request` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `request`
+--
+
+LOCK TABLES `request` WRITE;
+/*!40000 ALTER TABLE `request` DISABLE KEYS */;
+/*!40000 ALTER TABLE `request` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `roof`
 --
 
@@ -96,6 +120,15 @@ CREATE TABLE `roof` (
                         CONSTRAINT `fk_roof_stock1` FOREIGN KEY (`stock_id`) REFERENCES `stock` (`stock_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `roof`
+--
+
+LOCK TABLES `roof` WRITE;
+/*!40000 ALTER TABLE `roof` DISABLE KEYS */;
+/*!40000 ALTER TABLE `roof` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `stock`
@@ -115,6 +148,15 @@ CREATE TABLE `stock` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `stock`
+--
+
+LOCK TABLES `stock` WRITE;
+/*!40000 ALTER TABLE `stock` DISABLE KEYS */;
+/*!40000 ALTER TABLE `stock` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `user`
 --
 
@@ -122,19 +164,29 @@ DROP TABLE IF EXISTS `user`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `user` (
-                        `user_id` int NOT NULL AUTO_INCREMENT,
-                        `username` varchar(16) NOT NULL,
-                        `email` varchar(255) NOT NULL,
-                        `password` varchar(32) NOT NULL,
-                        `tlfnr` varchar(20) NOT NULL,
-                        `address` varchar(45) DEFAULT NULL,
-                        `city` varchar(45) DEFAULT NULL,
-                        `isAdmin` tinyint NOT NULL,
-                        PRIMARY KEY (`user_id`),
-                        KEY `fk_customer_city_idx` (`city`),
-                        CONSTRAINT `fk_customer_city` FOREIGN KEY (`city`) REFERENCES `city` (`city`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb3;
+  `user_id` int NOT NULL AUTO_INCREMENT,
+  `username` varchar(16) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(32) NOT NULL,
+  `tlfnr` varchar(20) NOT NULL,
+  `address` varchar(45) DEFAULT NULL,
+  `city` varchar(45) DEFAULT NULL,
+  `isAdmin` tinyint NOT NULL,
+  PRIMARY KEY (`user_id`),
+  KEY `fk_customer_city_idx` (`city`),
+  CONSTRAINT `fk_customer_city` FOREIGN KEY (`city`) REFERENCES `city` (`city`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user`
+--
+
+LOCK TABLES `user` WRITE;
+/*!40000 ALTER TABLE `user` DISABLE KEYS */;
+INSERT INTO `user` VALUES (8,'newuser','newusermail','12345','555-12346','newuserstreet 31','pølle',0);
+/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `wood_cladding`
@@ -151,6 +203,15 @@ CREATE TABLE `wood_cladding` (
                                  CONSTRAINT `fk_wood_cladding_stock1` FOREIGN KEY (`stock_id`) REFERENCES `stock` (`stock_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `wood_cladding`
+--
+
+LOCK TABLES `wood_cladding` WRITE;
+/*!40000 ALTER TABLE `wood_cladding` DISABLE KEYS */;
+/*!40000 ALTER TABLE `wood_cladding` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -161,4 +222,4 @@ CREATE TABLE `wood_cladding` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-05-10  8:43:38
+-- Dump completed on 2022-05-19 12:08:52
