@@ -51,6 +51,7 @@ DROP TABLE IF EXISTS `parts_list`;
 CREATE TABLE `parts_list` (
   `request_id` int NOT NULL,
   `parts_list_data` blob NOT NULL,
+  `price_in_dkk` double NOT NULL,
   PRIMARY KEY (`request_id`),
   KEY `fk_parts_list_request1_idx` (`request_id`),
   CONSTRAINT `fk_parts_list_request1` FOREIGN KEY (`request_id`) REFERENCES `request` (`request_id`)
@@ -221,4 +222,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-05-19 11:14:44
+-- Dump completed on 2022-05-19 12:08:52
