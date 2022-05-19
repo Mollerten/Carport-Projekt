@@ -5,6 +5,14 @@
 <%@attribute name="header" fragment="true" %>
 <%@attribute name="footer" fragment="true" %>
 
+<html>
+<head>
+    <title>My Page Title</title>
+    <link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/images/favicon.ico">
+
+</head>
+</html>
+
 <!DOCTYPE html>
 <html lang="da">
 <head>
@@ -37,8 +45,18 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
                     <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/about?command=about"><strong>Om os</strong></a>
-                    <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc"><strong>Side 2</strong></a>
+
                     <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc"><strong>Side 3</strong></a>
+
+                    <c:if test="${sessionScope.user != null && sessionScope.user.role eq \"user\"}">
+                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/brugerside?command=brugerside"><strong>Brugerside</strong></a>
+                    </c:if>
+
+
+                    <c:if test="${sessionScope.user != null && sessionScope.user.role eq \"admin\"}">
+                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/brugerside?command=brugerside"><strong>Adminside</strong></a>
+                    </c:if>
+
 
                     <%--                    Knap til indkøbskurv i navbar--%>
                     <a class="nav-item nav-link ; fas fa-shopping-basket" href="${pageContext.request.contextPath}/fc"
@@ -49,6 +67,7 @@
 
                     </c:if>
                     <c:if test="${sessionScope.user != null }">
+                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/profile?command=profil">Profile</a>
                         <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/logout?command=logout"><strong>Log ud</strong></a>
                     </c:if>
 
