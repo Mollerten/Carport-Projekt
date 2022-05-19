@@ -1,10 +1,21 @@
 package dat.carport.model.services;
 
+import dat.carport.model.entities.PartsList;
+import dtos.Material;
+
 import java.util.HashMap;
 import java.util.Map;
 
 class Calculator {
-    private static int[] beamLengths = {300, 360, 420, 480, 540, 600}; //, 660, 720};
+
+    protected static PartsList calcPartsList(int length, int width, int requestId) {
+        PartsList partsList = new PartsList(requestId);
+        int poleCount = calcPoles(length, width);
+        Material poles = new Material("", poleCount, 300, "stk", "Stolper nedgraves 90 cm i jord");
+        partsList.addMaterial(poles);
+
+        return partsList;
+    }
 
     /**
      *

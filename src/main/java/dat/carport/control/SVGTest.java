@@ -1,12 +1,21 @@
 package dat.carport.control;
 
+import dat.carport.model.config.ApplicationStart;
 import dat.carport.model.exceptions.DatabaseException;
+import dat.carport.model.persistence.ConnectionPool;
 import dat.carport.model.services.SVG;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class SVGTest extends Command {
+
+    private ConnectionPool connectionPool;
+
+    public SVGTest() {
+        this.connectionPool = ApplicationStart.getConnectionPool();
+    }
+
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws DatabaseException {
         float carportWidth = 600; // request.getCarportWidth();
