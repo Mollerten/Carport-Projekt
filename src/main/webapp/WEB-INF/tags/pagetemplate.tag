@@ -52,6 +52,7 @@
                         <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/brugerside?command=brugerside"><strong>Brugerside</strong></a>
                     </c:if>
 
+
                     <c:if test="${sessionScope.user != null && sessionScope.user.role eq \"admin\"}">
                         <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/brugerside?command=brugerside"><strong>Adminside</strong></a>
                     </c:if>
@@ -66,7 +67,7 @@
 
                     </c:if>
                     <c:if test="${sessionScope.user != null }">
-                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/profile.jsp">Profile</a>
+                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/profile?command=profil">Profile</a>
                         <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/logout?command=logout"><strong>Log ud</strong></a>
                     </c:if>
 

@@ -2,7 +2,7 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-<%@page errorPage="error.jsp" isErrorPage="false" %>
+<%@page errorPage="../error.jsp" isErrorPage="false" %>
 
 <t:pagetemplate>
     <jsp:attribute name="header">
@@ -54,6 +54,12 @@
                 <a href="login.jsp">Login</a></p>
 
         </c:if>
+
+
+        <form action="${pageContext.request.contextPath}/fc/profil" method="post">
+            <input type="hidden" name="command" value="profil"/>
+            <input type="submit" style="background-color: #000C66" class="btn btn-primary submit px-3"  value="Opdater Profil"/>
+        </form>
 
     </jsp:body>
 

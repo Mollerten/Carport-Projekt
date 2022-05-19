@@ -31,6 +31,7 @@ abstract class Command
         commands.put("opdaterstock", new OpdaterStock());
         commands.put("opretstock", new OpretStock());
         commands.put("opretstockside", new OpretStockSide());
+        commands.put("profil", new Profil());
 
     }
 

@@ -2,7 +2,7 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-<%@page errorPage="error.jsp" isErrorPage="false" %>
+<%@page errorPage="../error.jsp" isErrorPage="false" %>
 
 <t:pagetemplate>
     <jsp:attribute name="header">
@@ -17,7 +17,7 @@
 
     <h1>${requestScope.errormsg}</h1>
 
-    <h3>Har du lavet en fejl i din profiloprettelse? </h3>
+    <h3>Lavede du en fejl da du oprettede din profil? </h3>
     <h3>Udfyld formularen og få det fixet!</h3>
 
     <form action="fc/updateUser" method="post">
@@ -59,6 +59,7 @@
       <br><br>
 
       <input type="submit"  value="Update user"/>
+
     </form>
   </jsp:body>
 </t:pagetemplate>
