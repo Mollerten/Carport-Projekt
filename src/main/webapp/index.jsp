@@ -16,13 +16,11 @@
 
     <jsp:body>
 
-
             <link rel="stylesheet" href="css/style.css">
 
             <video id="background-video" autoplay muted loop src="videos/carportvideo.mp4"></video>
 
             <h2>FOG - Holder I Længden</h2>
-
 
     </jsp:body>
 
