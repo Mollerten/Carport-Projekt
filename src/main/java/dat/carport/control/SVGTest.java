@@ -9,11 +9,11 @@ import javax.servlet.http.HttpServletResponse;
 public class SVGTest extends Command {
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws DatabaseException {
-        float rafterSpacing = 58.5f;
-        float rafterCount = 9;
-        float rafterLength = 360;
-        float carportWidth = 360;
-        float carportLength = 480;
+        float carportWidth = 600; // request.getCarportWidth();
+        float carportLength = 780; // request.getCarportLength();
+        float rafterSpacing = 55f; // carportLength / ((length - 10) / 55.0);
+        float rafterCount = 15; //stykliste.getRafters();
+        float rafterLength = carportWidth;
         float dashLine_x1 = 0;
         float dashLine_x2 = 0;
         float dashLine_y1 = 37;
@@ -33,7 +33,7 @@ public class SVGTest extends Command {
         carport.addRect(0, carportWidth-35-5, carportLength-10, 5.5f);
         // Add the rafters
         for (int x = 0; x < rafterCount; x++) {
-            carport.addRect(rafterSpacing * x, 0, 4.5f, ((float) rafterLength));
+            carport.addRect(rafterSpacing * x, 0, 4.5f, rafterLength);
             if (x == 1) {
                 dashLine_x1 = rafterSpacing + 2;
             }
@@ -47,7 +47,7 @@ public class SVGTest extends Command {
 
         // Make the canvas SVG
         canvas.addArrow(50, 50, 50, 510);
-        canvas.addText(30, 270, -90, Math.round(carportWidth) + " cm");
+        canvas.addText(30, 270, 90, Math.round(carportWidth) + " cm");
         canvas.addArrow(80, 540, 678, 540);
         canvas.addText(360, 570, 0, Math.round(carportLength) + " cm");
         canvas.addSVG(carport);
