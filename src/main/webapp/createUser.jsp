@@ -6,21 +6,20 @@
 
 <t:pagetemplate>
     <jsp:attribute name="header">
-             Create user
+             Opret bruger
     </jsp:attribute>
 
     <jsp:attribute name="footer">
-            Create user
+            Opret bruger
     </jsp:attribute>
 
     <jsp:body>
 
-        <h3>You can create a new user here</h3>
+        <link rel="stylesheet" href="scss/style.scss">
 
         <form action="fc/createUser" method="post">
             <input type="hidden" name="command" value="createUser"/>
             <br><br>
-
             <label for="username">Username: </label>
             <input type="text" id="username" name="username"/>
             <br><br>

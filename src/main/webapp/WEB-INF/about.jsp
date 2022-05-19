@@ -6,18 +6,29 @@
 
 <t:pagetemplate>
     <jsp:attribute name="header">
-             About
+             Om os
     </jsp:attribute>
 
     <jsp:attribute name="footer">
-            About
+            Om os
     </jsp:attribute>
 
     <jsp:body>
 
+        <head>
+
+            <link rel="stylesheet" href="${pageContext.request.contextPath}/css/opretbrugerstyle.css">
+        </head>
+
+        <body>
+
         <h3>Her kan der stå lidt om dig</h3>
 
         <p><a href="../index.jsp">Til forsiden</a></p>
+
+
+        </body>
+
 
     </jsp:body>
 </t:pagetemplate>

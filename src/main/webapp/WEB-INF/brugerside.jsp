@@ -2,11 +2,16 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-<%@page errorPage="error.jsp" isErrorPage="false" %>
+<%@page errorPage="../error.jsp" isErrorPage="false" %>
 
 <t:pagetemplate>
     <jsp:attribute name="header">
-
+        <c:if test="${sessionScope.user != null && sessionScope.user.role eq \"user\"}">
+                Brugerside
+                </c:if>
+        <c:if test="${sessionScope.user != null && sessionScope.user.role eq \"admin\"}">
+                Adminside
+                </c:if>
     </jsp:attribute>
 
     <jsp:attribute name="footer">
@@ -18,6 +23,8 @@
 
 <%--        Hvis kontoen er user--%>
         <c:if test="${sessionScope.user != null && sessionScope.user.role eq \"user\"}">
+
+
             <p>Velkommen tilbage bruger</p>
             <p>Du er logget ind med rollen:  "${sessionScope.user.role}".</p>
         </c:if>

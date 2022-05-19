@@ -7,7 +7,7 @@
 
 <t:pagetemplate>
     <jsp:attribute name="header">
-
+        Login
     </jsp:attribute>
 
     <jsp:attribute name="footer">
@@ -15,6 +15,7 @@
     </jsp:attribute>
 
     <jsp:body>
+
         <link rel="stylesheet" href="scss/style.scss">
 
         <body style="background-image: url(images/bg3.jpeg);">
@@ -57,7 +58,7 @@
 
                             <form action="createUser.jsp">
                             <div class="form-group">
-                                <button type="submit" style="background-color: darkgreen" class="form-control btn btn-primary submit px-3">Opret ny konto</button>
+                                <button type="submit" style="background-color: #45c007" class="form-control btn btn-primary submit px-3">Opret ny konto</button>
                             </div>
                             </form>
 

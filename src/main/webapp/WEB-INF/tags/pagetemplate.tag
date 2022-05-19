@@ -21,6 +21,9 @@
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 
 
+    <script src="https://kit.fontawesome.com/cb408aef43.js" crossorigin="anonymous"></script>
+
+
 
 </head>
 <body>
@@ -37,21 +40,19 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
                     <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/about?command=about"><strong>Om os</strong></a>
-                    <a class="nav-item nav-link" href="${pageContext.request.contextPath}/profile.jsp">Profile</a>
+                    <a class="nav-item nav-link" href="${pageContext.request.contextPath}/profile.jsp"><strong>Profile</strong></a>
                     <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc"><strong>Side 3</strong></a>
 
                     <c:if test="${sessionScope.user != null && sessionScope.user.role eq \"user\"}">
                         <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/brugerside?command=brugerside"><strong>Brugerside</strong></a>
+                        <i style=" position:relative; top:10px; color:white;" class="fa-solid fa-user"></i>
                     </c:if>
 
                     <c:if test="${sessionScope.user != null && sessionScope.user.role eq \"admin\"}">
                         <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/brugerside?command=brugerside"><strong>Adminside</strong></a>
+                        <i style=" position:relative; top:10px; color:white;" class="fa-solid fa-user-gear"></i>
                     </c:if>
 
-
-                    <%--                    Knap til indkøbskurv i navbar--%>
-                    <a class="nav-item nav-link ; fas fa-shopping-basket" href="${pageContext.request.contextPath}/fc"
-                       style="font-size:20px;"></a>
 
                     <c:if test="${sessionScope.user == null }">
                         <a class="nav-item nav-link" href="${pageContext.request.contextPath}/login.jsp"><strong>Log ind</strong></a>
