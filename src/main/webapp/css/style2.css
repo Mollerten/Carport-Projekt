@@ -1,0 +1,5 @@
+body{
+    background:linear-gradient(skyblue,navy);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}

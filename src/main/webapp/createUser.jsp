@@ -15,7 +15,9 @@
 
     <jsp:body>
 
-        <link rel="stylesheet" href="scss/style.scss">
+        <head>
+            <link rel="stylesheet" href="css/style2.css">
+        </head>
 
         <form action="fc/createUser" method="post">
             <input type="hidden" name="command" value="createUser"/>

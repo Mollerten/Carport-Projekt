@@ -17,10 +17,8 @@
 
         <head>
 
-            <link rel="stylesheet" href="${pageContext.request.contextPath}/css/opretbrugerstyle.css">
+            <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style2.css">
         </head>
-
-        <body>
 
         <h3>Her kan der stå lidt om dig</h3>
 
