@@ -10,9 +10,32 @@ class Calculator {
 
     protected static PartsList calcPartsList(int length, int width, int requestId) {
         PartsList partsList = new PartsList(requestId);
+
         int poleCount = calcPoles(length, width);
-        Material poles = new Material("", poleCount, 300, "stk", "Stolper nedgraves 90 cm i jord");
+        Material poles = new Material("97x97 mm. trykimp. Stolpe", poleCount, 300, "stk", "Stolper nedgraves 90 cm i jord");
         partsList.addMaterial(poles);
+
+        Map<Integer, Integer> beamNumbers = calcBeams(length, width);
+        int beamLength = beamNumbers.entrySet().stream().findFirst().get().getKey();
+        Material beams = new Material("45x195 mm. spærtræ ubh.", beamNumbers.get(beamLength), beamLength, "stk", "Remme i sider, sadles ned i stolper");
+        partsList.addMaterial(beams);
+
+        Map<Integer, Integer> rafterNumbers = calcRafters(length, width);
+        int rafterLength = rafterNumbers.entrySet().stream().findFirst().get().getKey();
+        Material rafters = new Material("", rafterNumbers.get(rafterLength), rafterLength, "stk", "Spær, monteres på rem");
+        partsList.addMaterial(rafters);
+
+        Map<Integer, Integer> roofSheetNumbers = calcRoofingSheets(length, width);
+        int roofSheetSize = roofSheetNumbers.entrySet().stream().findFirst().get().getKey();
+        Material roofSheets = new Material("", roofSheetNumbers.get(roofSheetSize), roofSheetSize, "stk", "tagplader monteres på spær");
+        partsList.addMaterial(roofSheets);
+
+        int boltCount = calcBolts(poleCount);
+        Material bolts = new Material("", boltCount, 0, "stk", "Til montering af rem på stolper");
+        partsList.addMaterial(bolts);
+
+        Map<Integer, Integer> fittingCount
+        Material fittings = new Material("", fittingCount, 0, "stk", "")
 
         return partsList;
     }
@@ -69,7 +92,7 @@ class Calculator {
         int rafterLength;
 
         rafterLength = width;
-        rafterAmount = (int) Math.floor((length-10) / 55 + 1);
+        rafterAmount = (int) Math.floor((length-10) / 55.0 + 1);
 
         rafters.put(rafterLength, rafterAmount);
         return rafters;
@@ -118,10 +141,16 @@ class Calculator {
     }
 
     // Universal 190 mm venstre + højre bliver udregnet her
-    protected static int calcFittings(int rafters){
-        int fittingAmount;
+    protected  static Map<Integer, Integer> calcFittings (int rafters) {
+        Map<Integer, Integer> fittingAmount = new HashMap<>();
 
-        fittingAmount = rafters * 2;
+        int fittingLeftAmount;
+        int fittingRightAmount;
+
+        fittingRightAmount = rafters;
+        fittingLeftAmount = rafters;
+
+        fittingAmount.put(fittingLeftAmount, fittingRightAmount);
 
         return fittingAmount;
     }
