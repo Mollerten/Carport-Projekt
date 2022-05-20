@@ -1,6 +1,8 @@
 package dat.carport.model.persistence;
+import dat.carport.model.entities.City;
 import dat.carport.model.entities.Request;
 import dat.carport.model.entities.Stock;
+import dat.carport.model.entities.User;
 import dat.carport.model.exceptions.DatabaseException;
 import dtos.RequestListeDTO;
 import dtos.StockListeDTO;
@@ -154,7 +156,7 @@ public class AdminMapper implements IAdminMapper {
     public boolean opdaterStock(Stock stock) throws DatabaseException {
         Logger.getLogger("web").log(Level.INFO, "");
         boolean result = false;
-        String sql = "UPDATE stock SET description = ?, amount = ?, unit = ?, price_per_unit = ? " +
+        String sql = "UPDATE stock SET description = ?, length = ?, unit = ?, price_per_unit = ? " +
                 "WHERE stock_id = ?";
 
         try (Connection connection = connectionPool.getConnection()) {
@@ -184,7 +186,7 @@ public class AdminMapper implements IAdminMapper {
         Logger.getLogger("web").log(Level.INFO, "");
         boolean result = false;
         int newId = 0;
-        String sql = "insert into stock (stock_id, description, amount, unit, price_per_unit) values (?,?,?,?,?)";
+        String sql = "insert into stock (stock_id, description, length, unit, price_per_unit) values (?,?,?,?,?)";
         try (Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
@@ -274,6 +276,77 @@ public class AdminMapper implements IAdminMapper {
         }
         return result;
     }
-}
 
+    @Override
+    public double hentStockIdFraDescOgLength(String desc, int length) throws DatabaseException {
+        //insert logger fra de andre
+        double stockId = 0;
+        String sql = "SELECT stock_id FROM stock WHERE description = ? AND length = ?";
+
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setString(1, desc);
+                ps.setInt(2, length);
+                ResultSet rs = ps.executeQuery();
+                if (rs.next()) {
+                    stockId = rs.getDouble(1);
+                }
+            }
+        } catch (SQLException ex) {
+            throw new DatabaseException(ex, "Error: ID på stock med desc = \"" + desc +
+                    "\" og length = \"" + length + "\" kunne ikke findes.");
+        }
+        return stockId;
+    }
+    @Override
+    public User hentUserUdFraID(int customerid) throws DatabaseException
+    {
+        User user = null;
+        String sql = "SELECT * FROM user WHERE user_id = ?";
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setInt(1, customerid);
+                ResultSet rs = ps.executeQuery();
+                if (rs.next()) {
+                    String username = rs.getString("username");
+                    String email = rs.getString("email");
+                    String tlfnr = rs.getString("tlfnr");
+                    String address = rs.getString("address");
+                    String city = rs.getString("city");
+                    String password = rs.getString("password");
+                    Boolean isAdmin = rs.getBoolean("isAdmin");
+                    String role = isAdmin ? "admin" : "user";
+
+                    user = new User (username, email, password, tlfnr, address, city, role);
+                }
+            }
+        } catch (SQLException ex)
+        {
+            throw new DatabaseException(ex, "Could not find a user from this id");
+        }
+        return user;
+    }
+    @Override
+    public City hentPostalCodeUdFraCity(String city) throws DatabaseException
+    {
+        City city1 = null;
+        String sql = "SELECT * FROM city WHERE city = ?";
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setString(1, city);
+                ResultSet rs = ps.executeQuery();
+                if (rs.next()) {
+                    String cityname = rs.getString("city");
+                    String postalCode = rs.getString("postal_code");
+
+                    city1 = new City(cityname, postalCode);
+                }
+            }
+        } catch (SQLException ex)
+        {
+            throw new DatabaseException(ex, "Could not find city");
+        }
+        return city1;
+    }
+}
 

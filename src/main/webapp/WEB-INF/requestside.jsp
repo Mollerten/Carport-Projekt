@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page errorPage="error.jsp" isErrorPage="false" %>
+<%@page errorPage="../error.jsp" isErrorPage="false" %>
 
 <t:pagetemplate>
     <jsp:attribute name="header">
@@ -31,8 +31,8 @@
                         <th>Request ID</th>
                         <th>Carport Længde</th>
                         <th>Carport Bredde</th>
-                        <th>Tag Længde</th>
-                        <th>Tag Bredde</th>
+                        <th>Skur Længde</th>
+                        <th>Skur Bredde</th>
                         <th>Tag Materiale</th>
                         <th>Træ Beklædning Materiale</th>
                         <th>Kunde ID</th>
@@ -57,15 +57,10 @@
 
                             <td>
 
-                                <c:if test="${sessionScope.user != null && sessionScope.user.role eq \"admin\"}">
 
-                                    <button class="btn btn-primary submit px-3" style="background-color: #c82333"
-                                            name="fjernrequest" value="${request.request_id}"
-                                            formaction="fc/fjernrequest?command=fjernrequest">fjern</button>
 
                                     <button class="btn btn-primary submit px-3" style="background-color: #000C66"
-                                            name="redigerrequest" value="${request.request_id}" formaction="fc/redigerrequest?command=redigerrequest">rediger</button>
-                                </c:if>
+                                            name="requestDetaljer" value="${request.request_id}" formaction="${pageContext.request.contextPath}/fc/requestDetaljer?command=requestDetaljer">Se detaljer</button>
                             </td>
                         </tr>
                     </c:forEach>
