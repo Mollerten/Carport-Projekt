@@ -87,7 +87,7 @@ public class Material implements Serializable {
     public double getPrice() {
         return price;
     }
-
+  
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

@@ -20,8 +20,7 @@ public class SVGTest extends Command {
     String execute(HttpServletRequest request, HttpServletResponse response) throws DatabaseException {
         float carportWidth = 600; // request.getCarportWidth();
         float carportLength = 780; // request.getCarportLength();
-        float rafterSpacing = 55f; // carportLength / ((length - 10) / 55.0);
-        float rafterCount = 15; //stykliste.getRafters();
+        float rafterCount = 15; // stykliste.getRafters();
         float rafterLength = carportWidth;
         float dashLine_x1 = 0;
         float dashLine_x2 = 0;
@@ -32,23 +31,33 @@ public class SVGTest extends Command {
         SVG carport = new SVG(80, 50, viewBox, 75, 75, false);
 
         // Make the carport svg
+        // Roof border
+        carport.addRect(0, 0, carportLength-5, carportWidth);
         // Add the poles
-        for (int i = 100; i < carportLength; i += 310) {
-            carport.addRect(i, 30, 15, 15);
-            carport.addRect(i, carportWidth-35-10, 15, 15);
+        carport.addRect(100, 30, 15, 15);
+        carport.addRect(100, carportWidth-35-10, 15, 15);
+        carport.addRect(carportLength-100, 30, 15, 15);
+        carport.addRect(carportLength-100, carportWidth-35-10, 15, 15);
+        if (carportLength-200 > 310) {
+            float middlePoleX = carportLength / 2;
+            carport.addRect(middlePoleX, 30, 15, 15);
+            carport.addRect(middlePoleX, carportWidth-35-10, 15, 15);
         }
         // Add the beams
         carport.addRect(0, 35, carportLength-10, 5.5f);
         carport.addRect(0, carportWidth-35-5, carportLength-10, 5.5f);
         // Add the rafters
+        int rafterSpacing = (int) (carportLength / (rafterCount - 1));
+        int rafterPlacement = 0;
         for (int x = 0; x < rafterCount; x++) {
-            carport.addRect(rafterSpacing * x, 0, 4.5f, rafterLength);
+            carport.addRect(rafterPlacement, 0, 4.5f, rafterLength);
             if (x == 1) {
                 dashLine_x1 = rafterSpacing + 2;
             }
             if (x == ((int) Math.ceil(rafterCount * (2 / 3.0)))) {
                 dashLine_x2 = rafterSpacing * x + 2;
             }
+            rafterPlacement += rafterSpacing;
         }
         // Add the dashed lines
         carport.addLine(dashLine_x1, dashLine_y1, dashLine_x2, dashLine_y2, true);
