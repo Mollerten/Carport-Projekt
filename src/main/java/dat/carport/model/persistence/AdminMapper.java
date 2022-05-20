@@ -1,7 +1,7 @@
 package dat.carport.model.persistence;
-import dat.carport.model.entities.Request;
-import dat.carport.model.entities.Stock;
+import dat.carport.model.entities.*;
 import dat.carport.model.exceptions.DatabaseException;
+import dtos.Material;
 import dtos.RequestListeDTO;
 import dtos.StockListeDTO;
 
@@ -17,7 +17,6 @@ public class AdminMapper implements IAdminMapper {
     public AdminMapper(ConnectionPool connectionPool) {
         this.connectionPool = connectionPool;
     }
-
 
     @Override
     public List<StockListeDTO> hentStock() throws DatabaseException {
@@ -206,7 +205,6 @@ public class AdminMapper implements IAdminMapper {
         return stock;
     }
 
-
     @Override
     public Request hentRequestUdFraId(int requestID) throws DatabaseException {
         {
@@ -240,7 +238,6 @@ public class AdminMapper implements IAdminMapper {
             return request;
         }
     }
-
 
     @Override
     public boolean opdaterRequest(Request request) throws DatabaseException {
@@ -277,7 +274,7 @@ public class AdminMapper implements IAdminMapper {
 
     @Override
     public double hentStockIdFraDescOgLength(String desc, int length) throws DatabaseException {
-        //insert logger fra de andre
+        Logger.getLogger("web").log(Level.INFO, "");
         double stockId = 0;
         String sql = "SELECT stock_id FROM stock WHERE description = ? AND length = ?";
 
@@ -296,6 +293,86 @@ public class AdminMapper implements IAdminMapper {
         }
         return stockId;
     }
+
+    @Override
+    public User hentUserUdFraID(int customerid) throws DatabaseException
+    {
+        User user = null;
+        String sql = "SELECT * FROM user WHERE user_id = ?";
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setInt(1, customerid);
+                ResultSet rs = ps.executeQuery();
+                if (rs.next()) {
+                    String username = rs.getString("username");
+                    String email = rs.getString("email");
+                    String tlfnr = rs.getString("tlfnr");
+                    String address = rs.getString("address");
+                    String city = rs.getString("city");
+                    String password = rs.getString("password");
+                    Boolean isAdmin = rs.getBoolean("isAdmin");
+                    String role = isAdmin ? "admin" : "user";
+
+                    user = new User (username, email, password, tlfnr, address, city, role);
+                }
+            }
+        } catch (SQLException ex)
+        {
+            throw new DatabaseException(ex, "Could not find a user from this id");
+        }
+        return user;
+    }
+    @Override
+    public City hentPostalCodeUdFraCity(String city) throws DatabaseException
+    {
+        City city1 = null;
+        String sql = "SELECT * FROM city WHERE city = ?";
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setString(1, city);
+                ResultSet rs = ps.executeQuery();
+                if (rs.next()) {
+                    String cityname = rs.getString("city");
+                    String postalCode = rs.getString("postal_code");
+
+                    city1 = new City(cityname, postalCode);
+                }
+            }
+        } catch (SQLException ex)
+        {
+            throw new DatabaseException(ex, "Could not find city");
+        }
+        return city1;
+    }
+
+    public PartsList hentPartsListUdFraId(int requestID) throws DatabaseException
+    {
+        return null;
+    } //TODO: lav denne metode
+
+    public double hentPriceUdFraStockID(double stockID) throws DatabaseException {
+        Logger.getLogger("web").log(Level.INFO, "");
+        double price = 0;
+        String sql = "SELECT price_per_unit FROM stock WHERE stock_id = ?";
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setDouble(1, stockID);
+                ResultSet rs = ps.executeQuery();
+                if (rs.next()) {
+                    price = rs.getDouble(1);
+                }
+            }
+        } catch (SQLException e) {
+            throw new DatabaseException(e, "Error: ");
+        }
+        return price;
+    }
 }
 
+
+    public Material hentMaterialerFraId(int requestID)
+    {
+        return null;
+    } //TODO: lav denne metode
+}
 

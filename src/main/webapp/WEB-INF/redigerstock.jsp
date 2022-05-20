@@ -30,7 +30,7 @@
         <c:if test="${sessionScope.user != null && sessionScope.user.role eq \"admin\"}">
             <h1>Stockliste:</h1>
 
-            <form action="fc/opdaterstock" method="post">
+            <form action="${pageContext.request.contextPath}/fc/opdaterstock" method="post">
                 <input type="hidden" name="command" value="opdaterstock"/>
 
                 <label for="stockid">Stock Id:</label>
