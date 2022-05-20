@@ -103,7 +103,36 @@
         </table>
       </form>
 
+      <form method="post">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th>Stykliste</th>
+            <th>Mængde</th>
+            <th>Varebeskrivelse</th>
+            <th>Længde</th>
+            <th>Enhed</th>
+            <th>Hjælpetekst</th>
+            <th>Pris</th>
 
+          </tr>
+
+          </thead>
+          <tbody>
+          <tr>
+            <td></td>
+
+            <td>${requestScope.material.amount}</td>
+            <td>${requestScope.material.description}</td>
+            <td>${requestScope.material.length}</td>
+            <td>${requestScope.material.unit}</td>
+            <td>${requestScope.material.helpText}</td>
+            <td>${requestScope.material.price}</td>
+
+          </tr>
+          </tbody>
+        </table>
+      </form>
 
     </c:if>
 

@@ -1,12 +1,10 @@
 package dat.carport.model.services;
 
-import dat.carport.model.entities.City;
-import dat.carport.model.entities.Request;
-import dat.carport.model.entities.Stock;
-import dat.carport.model.entities.User;
+import dat.carport.model.entities.*;
 import dat.carport.model.exceptions.DatabaseException;
 import dat.carport.model.persistence.AdminMapper;
 import dat.carport.model.persistence.ConnectionPool;
+import dtos.Material;
 import dtos.RequestListeDTO;
 import dtos.StockListeDTO;
 
@@ -74,5 +72,17 @@ public class AdminFacade {
     {
         AdminMapper adminMapper = new AdminMapper(connectionPool);
         return adminMapper.hentPostalCodeUdFraCity(city);
+    }
+
+    public static PartsList hentPartsListUdFraId(int requestID, ConnectionPool connectionPool) throws DatabaseException
+    {
+        AdminMapper adminMapper = new AdminMapper(connectionPool);
+        return adminMapper.hentPartsListUdFraId(requestID);
+    }
+
+    public static Material hentMaterialerFraId(int requestID, ConnectionPool connectionPool) throws DatabaseException
+    {
+        AdminMapper adminMapper = new AdminMapper(connectionPool);
+        return adminMapper.hentMaterialerFraId(requestID);
     }
 }

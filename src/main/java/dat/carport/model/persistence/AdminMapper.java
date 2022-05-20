@@ -1,9 +1,7 @@
 package dat.carport.model.persistence;
-import dat.carport.model.entities.City;
-import dat.carport.model.entities.Request;
-import dat.carport.model.entities.Stock;
-import dat.carport.model.entities.User;
+import dat.carport.model.entities.*;
 import dat.carport.model.exceptions.DatabaseException;
+import dtos.Material;
 import dtos.RequestListeDTO;
 import dtos.StockListeDTO;
 
@@ -348,5 +346,15 @@ public class AdminMapper implements IAdminMapper {
         }
         return city1;
     }
+
+    public PartsList hentPartsListUdFraId(int requestID) throws DatabaseException
+    {
+        return null;
+    } //TODO: lav denne metode
+
+    public Material hentMaterialerFraId(int requestID)
+    {
+        return null;
+    } //TODO: lav denne metode
 }
 
