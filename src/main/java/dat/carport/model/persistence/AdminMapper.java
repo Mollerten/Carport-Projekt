@@ -154,7 +154,7 @@ public class AdminMapper implements IAdminMapper {
     public boolean opdaterStock(Stock stock) throws DatabaseException {
         Logger.getLogger("web").log(Level.INFO, "");
         boolean result = false;
-        String sql = "UPDATE stock SET description = ?, amount = ?, unit = ?, price_per_unit = ? " +
+        String sql = "UPDATE stock SET description = ?, length = ?, unit = ?, price_per_unit = ? " +
                 "WHERE stock_id = ?";
 
         try (Connection connection = connectionPool.getConnection()) {
@@ -184,7 +184,7 @@ public class AdminMapper implements IAdminMapper {
         Logger.getLogger("web").log(Level.INFO, "");
         boolean result = false;
         int newId = 0;
-        String sql = "insert into stock (stock_id, description, amount, unit, price_per_unit) values (?,?,?,?,?)";
+        String sql = "insert into stock (stock_id, description, length, unit, price_per_unit) values (?,?,?,?,?)";
         try (Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
@@ -273,6 +273,28 @@ public class AdminMapper implements IAdminMapper {
             throw new DatabaseException("Kunne ikke opdatere request med request_id = " + request.getRequestid());
         }
         return result;
+    }
+
+    @Override
+    public double hentStockIdFraDescOgLength(String desc, int length) throws DatabaseException {
+        //insert logger fra de andre
+        double stockId = 0;
+        String sql = "SELECT stock_id FROM stock WHERE description = ? AND length = ?";
+
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setString(1, desc);
+                ps.setInt(2, length);
+                ResultSet rs = ps.executeQuery();
+                if (rs.next()) {
+                    stockId = rs.getDouble(1);
+                }
+            }
+        } catch (SQLException ex) {
+            throw new DatabaseException(ex, "Error: ID på stock med desc = \"" + desc +
+                    "\" og length = \"" + length + "\" kunne ikke findes.");
+        }
+        return stockId;
     }
 }
 
