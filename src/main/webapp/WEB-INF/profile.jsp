@@ -20,7 +20,7 @@
     <h3>Lavede du en fejl da du oprettede din profil? </h3>
     <h3>Udfyld formularen og få det fixet!</h3>
 
-    <form action="fc/updateUser" method="post">
+    <form action="${pageContext.request.contextPath}/fc/updateUser" method="post">
       <input type="hidden" name="command" value="updateUser"/>
       <br><br>
 

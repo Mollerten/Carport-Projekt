@@ -33,12 +33,12 @@
 
             <h2> Du er logget ind med rollen: "${sessionScope.user.role}".</h2>
 
-            <form action="fc/stockside" method="post">
+            <form action="${pageContext.request.contextPath}/fc/stockside" method="post">
             <input type="hidden" name="command" value="stockside"/>
             <input type="submit" style="background-color: #000C66" class="btn btn-primary submit px-3"  value="Se Stock"/>
             </form>
             <br>
-            <form action="fc/requestside" method="post">
+            <form action="${pageContext.request.contextPath}/fc/requestside" method="post">
                 <input type="hidden" name="command" value="requestside"/>
                 <input type="submit" style="background-color: #000C66" class="btn btn-primary submit px-3"  value="Se Requests"/>
             </form>

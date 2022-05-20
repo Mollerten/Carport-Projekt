@@ -137,12 +137,11 @@ public class UserMapper implements IUserMapper
         City city1;
 
 
-        String sql = "SELECT * FROM city WHERE (city = ? AND postal_code = ?);";
+        String sql = "SELECT * FROM city WHERE (city = ?);";
         try (Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql))
             {
                 ps.setString(1, city);
-                ps.setString(2, postalCode);
                 ResultSet rs = ps.executeQuery();
                 if (rs.next())
                 {

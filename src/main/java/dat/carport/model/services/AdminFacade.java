@@ -1,10 +1,11 @@
+
 package dat.carport.model.services;
 
-import dat.carport.model.entities.Request;
-import dat.carport.model.entities.Stock;
+import dat.carport.model.entities.*;
 import dat.carport.model.exceptions.DatabaseException;
 import dat.carport.model.persistence.AdminMapper;
 import dat.carport.model.persistence.ConnectionPool;
+import dtos.Material;
 import dtos.RequestListeDTO;
 import dtos.StockListeDTO;
 
@@ -62,8 +63,33 @@ public class AdminFacade {
         return adminMapper.hentStockIdFraDescOgLength(desc, length);
     }
 
+    public static User hentUserUdFraID(int customerid, ConnectionPool connectionPool) throws DatabaseException
+    {
+        AdminMapper adminMapper = new AdminMapper(connectionPool);
+        return adminMapper.hentUserUdFraID(customerid);
+    }
+
+    public static City hentPostalCodeUdFraCity(String city, ConnectionPool connectionPool) throws DatabaseException
+    {
+        AdminMapper adminMapper = new AdminMapper(connectionPool);
+        return adminMapper.hentPostalCodeUdFraCity(city);
+    }
+
+    public static PartsList hentPartsListUdFraId(int requestID, ConnectionPool connectionPool) throws DatabaseException
+    {
+        AdminMapper adminMapper = new AdminMapper(connectionPool);
+        return adminMapper.hentPartsListUdFraId(requestID);
+    }
+
+    public static Material hentMaterialerFraId(int requestID, ConnectionPool connectionPool) throws DatabaseException
+    {
+        AdminMapper adminMapper = new AdminMapper(connectionPool);
+        return adminMapper.hentMaterialerFraId(requestID);
+    }
+
     public static double hentPriceUdFraStockID(double stockID, ConnectionPool connectionPool) throws DatabaseException {
         AdminMapper adminMapper = new AdminMapper(connectionPool);
         return adminMapper.hentPriceUdFraStockID(stockID);
     }
 }
+
