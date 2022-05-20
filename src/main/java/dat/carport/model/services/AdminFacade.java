@@ -1,3 +1,4 @@
+
 package dat.carport.model.services;
 
 import dat.carport.model.entities.*;
@@ -85,4 +86,10 @@ public class AdminFacade {
         AdminMapper adminMapper = new AdminMapper(connectionPool);
         return adminMapper.hentMaterialerFraId(requestID);
     }
+
+    public static double hentPriceUdFraStockID(double stockID, ConnectionPool connectionPool) throws DatabaseException {
+        AdminMapper adminMapper = new AdminMapper(connectionPool);
+        return adminMapper.hentPriceUdFraStockID(stockID);
+    }
 }
+

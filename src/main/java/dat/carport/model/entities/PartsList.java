@@ -18,6 +18,13 @@ public class PartsList implements Serializable {
         materials.add(material);
     }
 
+    public void updatePrice() {
+        priceInDKK = 0;
+        for (Material mat : materials) {
+            priceInDKK += mat.getPrice();
+        }
+    }
+
     public ArrayList<Material> getMaterials() {
         return materials;
     }

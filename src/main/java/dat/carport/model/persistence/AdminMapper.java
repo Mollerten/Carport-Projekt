@@ -18,7 +18,6 @@ public class AdminMapper implements IAdminMapper {
         this.connectionPool = connectionPool;
     }
 
-
     @Override
     public List<StockListeDTO> hentStock() throws DatabaseException {
         Logger.getLogger("web").log(Level.INFO, "");
@@ -206,7 +205,6 @@ public class AdminMapper implements IAdminMapper {
         return stock;
     }
 
-
     @Override
     public Request hentRequestUdFraId(int requestID) throws DatabaseException {
         {
@@ -240,7 +238,6 @@ public class AdminMapper implements IAdminMapper {
             return request;
         }
     }
-
 
     @Override
     public boolean opdaterRequest(Request request) throws DatabaseException {
@@ -277,7 +274,7 @@ public class AdminMapper implements IAdminMapper {
 
     @Override
     public double hentStockIdFraDescOgLength(String desc, int length) throws DatabaseException {
-        //insert logger fra de andre
+        Logger.getLogger("web").log(Level.INFO, "");
         double stockId = 0;
         String sql = "SELECT stock_id FROM stock WHERE description = ? AND length = ?";
 
@@ -296,6 +293,7 @@ public class AdminMapper implements IAdminMapper {
         }
         return stockId;
     }
+
     @Override
     public User hentUserUdFraID(int customerid) throws DatabaseException
     {
@@ -351,6 +349,26 @@ public class AdminMapper implements IAdminMapper {
     {
         return null;
     } //TODO: lav denne metode
+
+    public double hentPriceUdFraStockID(double stockID) throws DatabaseException {
+        Logger.getLogger("web").log(Level.INFO, "");
+        double price = 0;
+        String sql = "SELECT price_per_unit FROM stock WHERE stock_id = ?";
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setDouble(1, stockID);
+                ResultSet rs = ps.executeQuery();
+                if (rs.next()) {
+                    price = rs.getDouble(1);
+                }
+            }
+        } catch (SQLException e) {
+            throw new DatabaseException(e, "Error: ");
+        }
+        return price;
+    }
+}
+
 
     public Material hentMaterialerFraId(int requestID)
     {
