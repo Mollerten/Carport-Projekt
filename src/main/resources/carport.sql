@@ -25,9 +25,9 @@ DROP TABLE IF EXISTS `city`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `city` (
-  `city` varchar(45) NOT NULL,
-  `postal_code` varchar(45) NOT NULL,
-  PRIMARY KEY (`city`)
+                        `city` varchar(45) NOT NULL,
+                        `postal_code` varchar(45) NOT NULL,
+                        PRIMARY KEY (`city`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -51,6 +51,7 @@ DROP TABLE IF EXISTS `parts_list`;
 CREATE TABLE `parts_list` (
   `request_id` int NOT NULL,
   `parts_list_data` blob NOT NULL,
+  `price_in_dkk` double NOT NULL,
   PRIMARY KEY (`request_id`),
   KEY `fk_parts_list_request1_idx` (`request_id`),
   CONSTRAINT `fk_parts_list_request1` FOREIGN KEY (`request_id`) REFERENCES `request` (`request_id`)
@@ -74,24 +75,24 @@ DROP TABLE IF EXISTS `request`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `request` (
-  `request_id` int NOT NULL AUTO_INCREMENT,
-  `length_cp` int NOT NULL,
-  `width_cp` int NOT NULL,
-  `length_rr` int NOT NULL,
-  `width_rr` int NOT NULL,
-  `roof_mat` varchar(255) NOT NULL,
-  `wood_cladding_mat` varchar(255) NOT NULL,
-  `customer_id` int NOT NULL,
-  `admin_id` int DEFAULT NULL,
-  PRIMARY KEY (`request_id`),
-  KEY `fk_design_roof1_idx` (`roof_mat`),
-  KEY `fk_design_bekledning1_idx` (`wood_cladding_mat`),
-  KEY `fk_request_user2_idx` (`admin_id`),
-  KEY `fk_request_user1_idx` (`customer_id`),
-  CONSTRAINT `fk_design_roof1` FOREIGN KEY (`roof_mat`) REFERENCES `roof` (`roof_mat`),
-  CONSTRAINT `fk_design_wood_cladding1` FOREIGN KEY (`wood_cladding_mat`) REFERENCES `wood_cladding` (`wood_cladding_mat`),
-  CONSTRAINT `fk_request_user1` FOREIGN KEY (`customer_id`) REFERENCES `user` (`user_id`),
-  CONSTRAINT `fk_request_user2` FOREIGN KEY (`admin_id`) REFERENCES `user` (`user_id`)
+                           `request_id` int NOT NULL AUTO_INCREMENT,
+                           `length_cp` int NOT NULL,
+                           `width_cp` int NOT NULL,
+                           `length_rr` int NOT NULL,
+                           `width_rr` int NOT NULL,
+                           `roof_mat` varchar(255) NOT NULL,
+                           `wood_cladding_mat` varchar(255) NOT NULL,
+                           `customer_id` int NOT NULL,
+                           `admin_id` int DEFAULT NULL,
+                           PRIMARY KEY (`request_id`),
+                           KEY `fk_design_roof1_idx` (`roof_mat`),
+                           KEY `fk_design_bekledning1_idx` (`wood_cladding_mat`),
+                           KEY `fk_request_user2_idx` (`admin_id`),
+                           KEY `fk_request_user1_idx` (`customer_id`),
+                           CONSTRAINT `fk_design_roof1` FOREIGN KEY (`roof_mat`) REFERENCES `roof` (`roof_mat`),
+                           CONSTRAINT `fk_design_wood_cladding1` FOREIGN KEY (`wood_cladding_mat`) REFERENCES `wood_cladding` (`wood_cladding_mat`),
+                           CONSTRAINT `fk_request_user1` FOREIGN KEY (`customer_id`) REFERENCES `user` (`user_id`),
+                           CONSTRAINT `fk_request_user2` FOREIGN KEY (`admin_id`) REFERENCES `user` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -112,11 +113,11 @@ DROP TABLE IF EXISTS `roof`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `roof` (
-  `roof_mat` varchar(255) NOT NULL,
-  `stock_id` int NOT NULL,
-  PRIMARY KEY (`roof_mat`),
-  KEY `fk_roof_stock1_idx` (`stock_id`),
-  CONSTRAINT `fk_roof_stock1` FOREIGN KEY (`stock_id`) REFERENCES `stock` (`stock_id`)
+                        `roof_mat` varchar(255) NOT NULL,
+                        `stock_id` double NOT NULL,
+                        PRIMARY KEY (`roof_mat`),
+                        KEY `fk_roof_stock1_idx` (`stock_id`),
+                        CONSTRAINT `fk_roof_stock1` FOREIGN KEY (`stock_id`) REFERENCES `stock` (`stock_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -137,12 +138,12 @@ DROP TABLE IF EXISTS `stock`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `stock` (
-  `stock_id` int NOT NULL,
-  `description` varchar(255) NOT NULL,
-  `amount` int NOT NULL,
-  `unit` varchar(45) NOT NULL,
-  `price_per_unit` int NOT NULL,
-  PRIMARY KEY (`stock_id`)
+                         `stock_id` double NOT NULL,
+                         `description` varchar(255) NOT NULL,
+                         `amount` int NOT NULL,
+                         `unit` varchar(45) NOT NULL,
+                         `price_per_unit` double NOT NULL,
+                         PRIMARY KEY (`stock_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -195,11 +196,11 @@ DROP TABLE IF EXISTS `wood_cladding`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `wood_cladding` (
-  `wood_cladding_mat` varchar(255) NOT NULL,
-  `stock_id` int NOT NULL,
-  PRIMARY KEY (`wood_cladding_mat`),
-  KEY `fk_bekledning_stock1_idx` (`stock_id`),
-  CONSTRAINT `fk_wood_cladding_stock1` FOREIGN KEY (`stock_id`) REFERENCES `stock` (`stock_id`)
+                                 `wood_cladding_mat` varchar(255) NOT NULL,
+                                 `stock_id` double NOT NULL,
+                                 PRIMARY KEY (`wood_cladding_mat`),
+                                 KEY `fk_bekledning_stock1_idx` (`stock_id`),
+                                 CONSTRAINT `fk_wood_cladding_stock1` FOREIGN KEY (`stock_id`) REFERENCES `stock` (`stock_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -221,4 +222,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-05-19 11:14:44
+-- Dump completed on 2022-05-19 12:08:52
