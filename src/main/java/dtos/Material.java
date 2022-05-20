@@ -16,6 +16,7 @@ public class Material implements Serializable {
     int length;
     String unit;
     String helpText;
+    double
 
     public Material(String description, int amount, int length, String unit, String helpText) {
         this.description = description;

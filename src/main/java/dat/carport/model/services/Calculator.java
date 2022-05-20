@@ -1,41 +1,175 @@
 package dat.carport.model.services;
 
+import dat.carport.model.config.ApplicationStart;
 import dat.carport.model.entities.PartsList;
+import dat.carport.model.entities.Request;
+import dat.carport.model.exceptions.DatabaseException;
 import dtos.Material;
+import jdk.nashorn.internal.ir.IdentNode;
 
 import java.util.HashMap;
 import java.util.Map;
 
 class Calculator {
 
-    protected static PartsList calcPartsList(int length, int width, int requestId) {
+    protected static PartsList calcPartsList(int requestId) throws DatabaseException {
+        Request request = AdminFacade.hentRequestUdFraId(requestId, ApplicationStart.getConnectionPool());
+        int length = request.getLengthcp();
+        int width = request.getWidthcp();
         PartsList partsList = new PartsList(requestId);
 
         int poleCount = calcPoles(length, width);
-        Material poles = new Material("97x97 mm. trykimp. Stolpe", poleCount, 300, "stk", "Stolper nedgraves 90 cm i jord");
+        Material poles = new Material("97x97 mm. trykimp. Stolpe",
+                poleCount,
+                300,
+                "stk",
+                "Stolper nedgraves 90 cm i jord");
         partsList.addMaterial(poles);
 
         Map<Integer, Integer> beamNumbers = calcBeams(length, width);
         int beamLength = beamNumbers.entrySet().stream().findFirst().get().getKey();
-        Material beams = new Material("45x195 mm. spærtræ ubh.", beamNumbers.get(beamLength), beamLength, "stk", "Remme i sider, sadles ned i stolper");
+        Material beams = new Material("45x195 mm. spærtræ ubh.",
+                beamNumbers.get(beamLength),
+                beamLength,
+                "stk",
+                "Remme i sider, sadles ned i stolper");
         partsList.addMaterial(beams);
 
         Map<Integer, Integer> rafterNumbers = calcRafters(length, width);
         int rafterLength = rafterNumbers.entrySet().stream().findFirst().get().getKey();
-        Material rafters = new Material("", rafterNumbers.get(rafterLength), rafterLength, "stk", "Spær, monteres på rem");
+        Material rafters = new Material("45x195 mm. spærtræ ubh.",
+                rafterNumbers.get(rafterLength),
+                rafterLength,
+                "stk",
+                "Spær, monteres på rem");
         partsList.addMaterial(rafters);
 
         Map<Integer, Integer> roofSheetNumbers = calcRoofingSheets(length, width);
         int roofSheetSize = roofSheetNumbers.entrySet().stream().findFirst().get().getKey();
-        Material roofSheets = new Material("", roofSheetNumbers.get(roofSheetSize), roofSheetSize, "stk", "tagplader monteres på spær");
+        Material roofSheets = new Material("Plastmo Ecolite blåtonet",
+                roofSheetNumbers.get(roofSheetSize),
+                roofSheetSize,
+                "stk",
+                "tagplader monteres på spær");
         partsList.addMaterial(roofSheets);
 
         int boltCount = calcBolts(poleCount);
-        Material bolts = new Material("", boltCount, 0, "stk", "Til montering af rem på stolper");
+        Material bolts = new Material("bræddebolt 10 x 120 mm.",
+                boltCount,
+                0,
+                "stk",
+                "Til montering af rem på stolper");
         partsList.addMaterial(bolts);
 
-        Map<Integer, Integer> fittingCount
-        Material fittings = new Material("", fittingCount, 0, "stk", "")
+        Map<Integer, Integer> fittingCount = calcFittings(rafterNumbers.get(rafterLength));
+        int fittingCountLeft = fittingCount.entrySet().stream().findFirst().get().getKey();
+        int fittingCountRight = fittingCount.get(fittingCountLeft);
+        Material fittingsRight = new Material("universal 190 mm højre",
+                fittingCountRight,
+                0,
+                "stk",
+                "Til montering af spær på rem");
+        Material fittingsLeft = new Material("universal 190 mm venstre",
+                fittingCountLeft,
+                0,
+                "stk",
+                "Til montering af spær på rem");
+        partsList.addMaterial(fittingsRight);
+        partsList.addMaterial(fittingsLeft);
+
+        int screwCount = calcScrews(fittingCountLeft+fittingCountRight);
+        Material screws = new Material("4,0 x 50 mm. beslagskruer 250 stk.",
+                screwCount,
+                0,
+                "pakke",
+                "Til montering af universalbeslag + hulbånd");
+        partsList.addMaterial(screws);
+
+        int roofScrewCount = calcRoofScrews(length);
+        Material roofScrews = new Material("plastmo bundskruer 200 stk.",
+                roofScrewCount,
+                0,
+                "pakke",
+                "Skruer til tagplader");
+        partsList.addMaterial(roofScrews);
+
+        int squareFittingCount = calcSquareFittings(poleCount);
+        Material squareFittings = new Material("firkantskiver 40x40x11mm",
+                squareFittingCount,
+                0,
+                "stk",
+                "Til montering af rem på stolper");
+        partsList.addMaterial(squareFittings);
+
+        Map<Integer, Integer> underSternBoardFrontBack = calcUnderSternBoardFrontAndBack(width);
+        int underSternBoardFrontBackLength = underSternBoardFrontBack.entrySet().stream().findFirst().get().getKey();
+        Material underSternBoardsFrontBack = new Material("25x200 mm. trykimp. Brædt",
+                underSternBoardFrontBack.get(underSternBoardFrontBackLength),
+                underSternBoardFrontBackLength,
+                "stk",
+                "understernbrædder til for & bag ende");
+        partsList.addMaterial(underSternBoardsFrontBack);
+
+        Map<Integer, Integer> overSternBoardFront = calcOverSternBoardFront(width);
+        int overSternBoardFrontLength = overSternBoardFront.entrySet().stream().findFirst().get().getKey();
+        Material overSternBoardsFront = new Material("25x125mm. trykimp. Brædt",
+                overSternBoardFront.get(overSternBoardFrontLength),
+                overSternBoardFrontLength,
+                "stk",
+                "oversternbrædder til forenden");
+        partsList.addMaterial(overSternBoardsFront);
+
+        Map<Integer, Integer> underSternBoardSides = calcUnderSternBoardSides(length);
+        int underSternBoardSidesLength = underSternBoardSides.entrySet().stream().findFirst().get().getKey();
+        Material underSternBoardsSides = new Material("25x200 mm. trykimp. Brædt",
+                underSternBoardSides.get(underSternBoardSidesLength),
+                underSternBoardSidesLength,
+                "stk",
+                "understernbrædder til siderne");
+        partsList.addMaterial(underSternBoardsSides);
+
+        Map<Integer, Integer> overSternBoardSides = calcOverSternBoardSides(length);
+        int overSternBoardSidesLength = overSternBoardSides.entrySet().stream().findFirst().get().getKey();
+        Material overSternBoardsSides = new Material("25x125mm. trykimp. Brædt",
+                overSternBoardSides.get(overSternBoardSidesLength),
+                overSternBoardSidesLength,
+                "stk",
+                "oversternbrædder til siderne");
+        partsList.addMaterial(overSternBoardsSides);
+
+        Map<Integer, Integer> waterBoardFront = calcWaterBoardFront(width);
+        int waterBoardFrontLength = waterBoardFront.entrySet().stream().findFirst().get().getKey();
+        Material waterBoardsFront = new Material("19x100 mm. trykimp. Brædt",
+                waterBoardFront.get(waterBoardFrontLength),
+                waterBoardFrontLength,
+                "stk",
+                "vandbrædt på stern i forende");
+        partsList.addMaterial(waterBoardsFront);
+
+        Map<Integer, Integer> waterBoardSides = calcWaterBoardSides(length);
+        int waterBoardSidesLength = waterBoardSides.entrySet().stream().findFirst().get().getKey();
+        Material waterBoardsSides = new Material("19x100 mm. trykimp. Brædt",
+                waterBoardSides.get(waterBoardSidesLength),
+                waterBoardSidesLength,
+                "stk",
+                "vandbrædt på stern i sider");
+        partsList.addMaterial(waterBoardsSides);
+
+        int perforatedTapeCount = calcPerforatedTape();
+        Material perforatedTape = new Material("hulbånd 1x20 mm. 10 mtr.",
+                perforatedTapeCount,
+                0,
+                "Rulle",
+                "Til vindkryds på spær");
+        partsList.addMaterial(perforatedTape);
+
+        int sternAndWaterBoardScrewCount = calcSternAndWaterBoardScrews();
+        Material sternAndWaterBoardScrews = new Material("4,5 x 60 mm. skruer 200 stk.",
+                sternAndWaterBoardScrewCount,
+                0,
+                "Pakke",
+                "Til montering af stern&vandbrædt");
+        partsList.addMaterial(sternAndWaterBoardScrews);
 
         return partsList;
     }
@@ -170,7 +304,7 @@ class Calculator {
     protected static int calcRoofScrews(int length) {
         int screwBoxAmount;
 
-        screwBoxAmount = (int) Math.ceil(length/3);
+        screwBoxAmount = (int) Math.ceil(length/3f);
 
         return  screwBoxAmount;
     }
@@ -187,17 +321,17 @@ class Calculator {
     {
         Map<Integer, Integer> underSternBoardFrontAndBack = new HashMap<>();
         int underSternBoardFrontAndBackAmount;
-        int underSternBoardFrontAndBackWidth;
+        int underSternBoardFrontAndBackLength;
 
-        underSternBoardFrontAndBackWidth = width + 60;
+        underSternBoardFrontAndBackLength = width + 60;
         underSternBoardFrontAndBackAmount = 2;
 
         if (width >= 600)
         {
-            underSternBoardFrontAndBackWidth = width / 2 + 60;
+            underSternBoardFrontAndBackLength = width / 2 + 60;
             underSternBoardFrontAndBackAmount = 4;
         }
-        underSternBoardFrontAndBack.put(underSternBoardFrontAndBackWidth, underSternBoardFrontAndBackAmount);
+        underSternBoardFrontAndBack.put(underSternBoardFrontAndBackLength, underSternBoardFrontAndBackAmount);
         return underSternBoardFrontAndBack;
     }
 
