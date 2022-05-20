@@ -16,7 +16,7 @@ public class Material implements Serializable {
     int length;
     String unit;
     String helpText;
-    double
+    double price;
 
     public Material(String description, int amount, int length, String unit, String helpText) {
         this.description = description;
@@ -26,6 +26,7 @@ public class Material implements Serializable {
         this.helpText = helpText;
         try {
             setStockID(AdminFacade.hentStockIdFraDescOgLength(description, length, ApplicationStart.getConnectionPool()));
+            setPrice(AdminFacade.hentPriceUdFraStockID(this.stockID, ApplicationStart.getConnectionPool()));
         } catch (DatabaseException e) {
             throw new RuntimeException(e);
         }
@@ -79,6 +80,14 @@ public class Material implements Serializable {
         this.helpText = helpText;
     }
 
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+  
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
