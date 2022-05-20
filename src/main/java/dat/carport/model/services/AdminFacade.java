@@ -61,4 +61,9 @@ public class AdminFacade {
         AdminMapper adminMapper = new AdminMapper(connectionPool);
         return adminMapper.hentStockIdFraDescOgLength(desc, length);
     }
+
+    public static double hentPriceUdFraStockID(double stockID, ConnectionPool connectionPool) throws DatabaseException {
+        AdminMapper adminMapper = new AdminMapper(connectionPool);
+        return adminMapper.hentPriceUdFraStockID(stockID);
+    }
 }

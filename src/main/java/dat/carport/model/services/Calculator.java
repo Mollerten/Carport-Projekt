@@ -170,6 +170,7 @@ class Calculator {
                 "Pakke",
                 "Til montering af stern&vandbrædt");
         partsList.addMaterial(sternAndWaterBoardScrews);
+        partsList.updatePrice();
 
         return partsList;
     }
