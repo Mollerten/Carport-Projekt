@@ -27,4 +27,5 @@ public interface IAdminMapper {
 
     boolean opdaterRequest(Request request) throws DatabaseException;
 
+    Request opretRequest(Request request) throws DatabaseException;
 }

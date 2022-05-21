@@ -274,6 +274,54 @@ public class AdminMapper implements IAdminMapper {
         }
         return result;
     }
+
+    @Override
+    public Request opretRequest(Request request) throws DatabaseException
+    {
+        Logger.getLogger("web").log(Level.INFO, "");
+        boolean result = false;
+        int newId = 0;
+        String sql = "insert into request (lengthcp, widthcp,lengthrr,widthrr,roofmat,woodcladding,customerid,adminid) values (?,?,?,?,?,?,?,?)";
+        try (Connection connection = connectionPool.getConnection())
+        {
+            try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS))
+            {
+                ps.setInt(1, request.getLengthcp());
+                ps.setInt(2, request.getWidthcp());
+                ps.setInt(3, request.getLengthrr());
+                ps.setInt(4, request.getWidthrr());
+                ps.setString(5, request.getRoofmat());
+                ps.setString(6, request.getWoodcladding());
+                ps.setInt(7, request.getCustomerid());
+                ps.setInt(8, request.getAdminid());
+
+                int rowsAffected = ps.executeUpdate();
+                if (rowsAffected == 1)
+                {
+                    result = true;
+                } else
+                {
+                    throw new DatabaseException("request med request id = " + request.getRequestid() + " kunne ikke oprettes i databasen");
+                }
+                ResultSet idResultset = ps.getGeneratedKeys();
+                if (idResultset.next())
+                {
+                    newId = idResultset.getInt(1);
+                    request.setRequestid(newId);
+                } else
+                {
+                    request = null;
+                }
+            }
+        }
+        catch (SQLException ex)
+        {
+            throw new DatabaseException(ex, "Kunne ikke indsætte request i databasen");
+        }
+        return request;
+    }
+
+
 }
 
 
