@@ -16,19 +16,21 @@
 
     <jsp:body>
 
-        <link rel="stylesheet" href="scss/style.scss">
+        <head>
+            <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style2.css">
+        </head>
 
-        <body style="background-image: url(images/bg3.jpeg);">
+        <br>
+        <br>
+        <br>
+
+        <body>
         <section class="ftco-section">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-md-6 text-center mb-5">
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <h2 class="heading-section"><strong>Login</strong></h2>
+
+
 
                     </div>
                 </div>
