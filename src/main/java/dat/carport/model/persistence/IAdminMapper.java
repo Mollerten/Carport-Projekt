@@ -1,7 +1,9 @@
 package dat.carport.model.persistence;
 
+import dat.carport.model.entities.City;
 import dat.carport.model.entities.Request;
 import dat.carport.model.entities.Stock;
+import dat.carport.model.entities.User;
 import dat.carport.model.exceptions.DatabaseException;
 import dtos.RequestListeDTO;
 import dtos.StockListeDTO;
@@ -28,4 +30,10 @@ public interface IAdminMapper {
     boolean opdaterRequest(Request request) throws DatabaseException;
 
     Request opretRequest(Request request) throws DatabaseException;
+
+    double hentStockIdFraDescOgLength(String desc, int length) throws DatabaseException;
+
+    User hentUserUdFraID(int customerid) throws DatabaseException;
+
+    City hentPostalCodeUdFraCity(String city) throws DatabaseException;
 }

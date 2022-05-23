@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page errorPage="error.jsp" isErrorPage="false" %>
+<%@page errorPage="../error.jsp" isErrorPage="false" %>
 
 <t:pagetemplate>
     <jsp:attribute name="header">
@@ -49,10 +49,10 @@
 
                                     <button class="btn btn-primary submit px-3" style="background-color: #c82333"
                                             name="fjernstock" value="${stock.stockid}"
-                                            formaction="fc/fjernstock?command=fjernstock">fjern</button>
+                                            formaction="${pageContext.request.contextPath}/fc/fjernstock?command=fjernstock">fjern</button>
 
                                     <button class="btn btn-primary submit px-3" style="background-color: #000C66"
-                                            name="redigerstock" value="${stock.stockid}" formaction="fc/redigerstock?command=redigerstock">rediger</button>
+                                            name="redigerstock" value="${stock.stockid}" formaction="${pageContext.request.contextPath}/fc/redigerstock?command=redigerstock">rediger</button>
                                 </c:if>
                             </td>
                         </tr>
@@ -60,7 +60,7 @@
                     </tbody>
                 </table>
                 <button class="btn btn-primary submit px-3" style="background-color: #000C66"
-                        name="opret" formaction="fc/opretstockside?command=opretstockside">Opret</button>
+                        name="opret" formaction="${pageContext.request.contextPath}/fc/opretstockside?command=opretstockside">Opret</button>
             </form>
 
         </c:if>
