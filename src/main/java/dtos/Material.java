@@ -9,7 +9,7 @@ import dat.carport.model.services.UserFacade;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class Material implements Serializable {
+public class Material {
     double stockID;
     String description;
     int amount;

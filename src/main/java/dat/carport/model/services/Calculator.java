@@ -172,6 +172,7 @@ class Calculator {
                 "Til montering af stern&vandbrædt");
         partsList.addMaterial(sternAndWaterBoardScrews);
         partsList.updatePrice();
+        partsList.setRafterCount(rafterNumbers.get(rafterLength));
 
         return partsList;
     }
@@ -215,10 +216,11 @@ class Calculator {
     }
 
     /**
-     *
-     * @param length The length of the carport
-     * @param width The width of the carport
-     * @return The amount of rafters needed for the given carport dimensions.
+     * Used by {@link #calcPartsList(int)} to get the length and amount of the rafters.
+     * @param length the length of the carport
+     * @param width the width of the carport
+     * @return a {@code Map<Key, Value>} where the key is equal to the length of the rafters
+     *         and the value is equal to the amount.
      */
     // rafters = spær
     protected static Map<Integer, Integer> calcRafters(int length, int width)
