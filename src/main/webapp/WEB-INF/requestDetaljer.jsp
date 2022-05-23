@@ -137,7 +137,7 @@
                 formtarget="_blank"
                 formaction="${pageContext.request.contextPath}/fc/svgtest?command=svgtest">Se model</button>
 
-        <button class="btn btn-primary submit px-3" style="background-color: #29D740"
+        <button class="btn btn-primary submit px-3" style="background-color: #26C000"
                 name="requestid" value="${requestScope.request.requestid}"
                 formaction="${pageContext.request.contextPath}/fc/tagAnsvar?command=tagAnsvar">Godkend forespørgsel</button>
 
