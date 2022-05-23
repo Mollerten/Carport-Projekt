@@ -22,7 +22,6 @@ public class Opretrequest extends Command
     String execute(HttpServletRequest request, HttpServletResponse response) throws DatabaseException
     {
         response.setContentType("text/html");
-        int request_id;
         int length_cp = Integer.parseInt(request.getParameter("length_cp"));
         int width_cp = Integer.parseInt(request.getParameter("width_cp"));
         int length_rr = Integer.parseInt(request.getParameter("length_rr"));
@@ -30,10 +29,8 @@ public class Opretrequest extends Command
         String roof_mat = request.getParameter("roof_mat");
         String wood_cladding_mat = request.getParameter("wood_cladding_mat");
         int customer_id = Integer.parseInt(request.getParameter("customer_id"));
-        int admin_id = Integer.parseInt(request.getParameter("admin_id"));
 
-
-        Request request1 = new Request(length_cp, width_cp, length_rr, width_rr,roof_mat,wood_cladding_mat,customer_id,admin_id);
+        Request request1 = new Request(length_cp, width_cp, length_rr, width_rr,roof_mat,wood_cladding_mat,customer_id);
         AdminMapper adminMapper = new AdminMapper(connectionPool);
         try
         {
@@ -43,7 +40,7 @@ public class Opretrequest extends Command
         {
             Logger.getLogger("web").log(Level.SEVERE, e.getMessage());
         }
-        return "brugerside";
+        return "OpretRequest";
     }
 
 }
