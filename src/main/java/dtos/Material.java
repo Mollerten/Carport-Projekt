@@ -9,11 +9,11 @@ import dat.carport.model.services.UserFacade;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class Material implements Serializable {
+public class Material {
     double stockID;
     String description;
     int amount;
-    int length;
+    String length;
     String unit;
     String helpText;
     double price;
@@ -21,7 +21,7 @@ public class Material implements Serializable {
     public Material(String description, int amount, int length, String unit, String helpText) {
         this.description = description;
         this.amount = amount;
-        this.length = length;
+        setLength(length);
         this.unit = unit;
         this.helpText = helpText;
         try {
@@ -56,12 +56,16 @@ public class Material implements Serializable {
         this.amount = amount;
     }
 
-    public int getLength() {
+    public String getLength() {
         return length;
     }
 
     public void setLength(int length) {
-        this.length = length;
+        if (length != 0) {
+            this.length = String.format("%d", length);
+        } else {
+            this.length = "";
+        }
     }
 
     public String getUnit() {
@@ -94,7 +98,7 @@ public class Material implements Serializable {
         if (o == null || getClass() != o.getClass()) return false;
         Material material = (Material) o;
         return getStockID() == material.getStockID() && getAmount() == material.getAmount() &&
-                getDescription().equals(material.getDescription()) && getLength() == (material.getLength()) &&
+                getDescription().equals(material.getDescription()) && getLength().equals(material.getLength()) &&
                 getUnit().equals(material.getUnit()) && getHelpText().equals(material.getHelpText());
     }
 

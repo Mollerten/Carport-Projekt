@@ -29,18 +29,18 @@ public class AdminMapper implements IAdminMapper {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ResultSet rs = ps.executeQuery();
                 while (rs.next()) {
-                    int stockid = rs.getInt("stock_id");
+                    long stockid = rs.getLong("stock_id");
                     String description = rs.getString("description");
-                    int amount = rs.getInt("amount");
+                    int amount = rs.getInt("length");
                     String unit = rs.getString("unit");
-                    int price_per_unit = rs.getInt("price_per_unit");
+                    double price_per_unit = rs.getDouble("price_per_unit");
 
                     StockListeDTO newstock = new StockListeDTO(stockid, description, amount, unit, price_per_unit);
                     stockList.add(newstock);
                 }
             }
         } catch (SQLException ex) {
-            throw new DatabaseException(ex, "Fejl under indlæsning af lånere fra databasen");
+            throw new DatabaseException(ex, "Fejl under indlæsning af stock fra databasen");
         }
         return stockList;
     }
@@ -161,8 +161,8 @@ public class AdminMapper implements IAdminMapper {
                 ps.setString(1, stock.getDescription());
                 ps.setInt(2, stock.getAmount());
                 ps.setString(3, stock.getUnit());
-                ps.setInt(4, stock.getPrice_per_unit());
-                ps.setInt(5, stock.getStockid());
+                ps.setDouble(4, stock.getPrice_per_unit());
+                ps.setLong(5, stock.getStockid());
 
                 int rowsAffected = ps.executeUpdate();
                 if (rowsAffected == 1) {
@@ -186,11 +186,11 @@ public class AdminMapper implements IAdminMapper {
         try (Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
-                ps.setInt(1, stock.getStockid());
+                ps.setLong(1, stock.getStockid());
                 ps.setString(2, stock.getDescription());
                 ps.setInt(3, stock.getAmount());
                 ps.setString(4, stock.getUnit());
-                ps.setInt(5, stock.getPrice_per_unit());
+                ps.setDouble(5, stock.getPrice_per_unit());
                 int rowsAffected = ps.executeUpdate();
                 if (rowsAffected == 1) {
                     result = true;
