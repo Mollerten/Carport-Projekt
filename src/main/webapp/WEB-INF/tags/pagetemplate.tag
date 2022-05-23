@@ -46,7 +46,7 @@
                 <div class="navbar-nav">
                     <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/about?command=about"><strong>Om os</strong></a>
 
-                    <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc"><strong>Side 3</strong></a>
+                    <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/designside?command=designside"><strong>Carport Design</strong></a>
 
                     <c:if test="${sessionScope.user != null && sessionScope.user.role eq \"user\"}">
                         <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/brugerside?command=brugerside"><strong>Brugerside</strong></a>

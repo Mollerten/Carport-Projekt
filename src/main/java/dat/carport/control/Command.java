@@ -34,6 +34,8 @@ abstract class Command
         commands.put("opretstockside", new OpretStockSide());
         commands.put("profil", new Profil());
         commands.put("opretrequest", new Opretrequest());
+        commands.put("designside", new CarportDesignSide());
+
         commands.put("requestDetaljer", new RequestDetaljer());
 
     }
