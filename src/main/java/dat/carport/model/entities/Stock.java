@@ -1,13 +1,13 @@
 package dat.carport.model.entities;
 
 public class Stock {
-    int stockid;
+    long stockid;
     String description;
     int amount;
     String unit;
-    int price_per_unit;
+    double price_per_unit;
 
-    public Stock(int stockid, String description, int amount, String unit, int price_per_unit) {
+    public Stock(int stockid, String description, int amount, String unit, double price_per_unit) {
         this.stockid = stockid;
         this.description = description;
         this.amount = amount;
@@ -22,7 +22,7 @@ public class Stock {
         this.price_per_unit = price_per_unit;
     }
 
-    public int getStockid() {
+    public long getStockid() {
         return stockid;
     }
 
@@ -38,7 +38,7 @@ public class Stock {
         return unit;
     }
 
-    public int getPrice_per_unit() {
+    public double getPrice_per_unit() {
         return price_per_unit;
     }
 

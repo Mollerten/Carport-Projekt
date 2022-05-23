@@ -13,7 +13,7 @@ public class Material implements Serializable {
     double stockID;
     String description;
     int amount;
-    int length;
+    String length;
     String unit;
     String helpText;
     double price;
@@ -21,7 +21,11 @@ public class Material implements Serializable {
     public Material(String description, int amount, int length, String unit, String helpText) {
         this.description = description;
         this.amount = amount;
-        this.length = length;
+        if (length != 0) {
+            this.length = String.format("%d", length);
+        } else {
+            this.length = "";
+        }
         this.unit = unit;
         this.helpText = helpText;
         try {
@@ -56,12 +60,16 @@ public class Material implements Serializable {
         this.amount = amount;
     }
 
-    public int getLength() {
+    public String getLength() {
         return length;
     }
 
     public void setLength(int length) {
-        this.length = length;
+        if (length != 0) {
+            this.length = String.format("%d", length);
+        } else {
+            this.length = "";
+        }
     }
 
     public String getUnit() {
