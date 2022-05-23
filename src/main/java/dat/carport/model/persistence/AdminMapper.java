@@ -273,6 +273,50 @@ public class AdminMapper implements IAdminMapper {
     }
 
     @Override
+    public Request opretRequest(Request request) throws DatabaseException
+    {
+        Logger.getLogger("web").log(Level.INFO, "");
+        boolean result = false;
+        int newId = 0;
+        String sql = "insert into request (length_cp, width_cp,length_rr,width_rr,roof_mat,wood_cladding_mat,customer_id) values (?,?,?,?,?,?,?)";
+        try (Connection connection = connectionPool.getConnection())
+        {
+            try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS))
+            {
+                ps.setInt(1, request.getLengthcp());
+                ps.setInt(2, request.getWidthcp());
+                ps.setInt(3, request.getLengthrr());
+                ps.setInt(4, request.getWidthrr());
+                ps.setString(5, request.getRoofmat());
+                ps.setString(6, request.getWoodcladding());
+                ps.setInt(7, request.getCustomerid());
+
+                int rowsAffected = ps.executeUpdate();
+                if (rowsAffected == 1)
+                {
+                    result = true;
+                } else
+                {
+                    throw new DatabaseException("request med request id = " + request.getRequestid() + " kunne ikke oprettes i databasen");
+                }
+                ResultSet idResultset = ps.getGeneratedKeys();
+                if (idResultset.next())
+                {
+                    newId = idResultset.getInt(1);
+                    request.setRequestid(newId);
+                } else
+                {
+                    request = null;
+                }
+            }
+        }
+        catch (SQLException ex)
+        {
+            throw new DatabaseException(ex, "Kunne ikke indsætte request i databasen");
+        }
+        return request;
+    }
+
     public double hentStockIdFraDescOgLength(String desc, int length) throws DatabaseException {
         Logger.getLogger("web").log(Level.INFO, "");
         double stockId = 0;
@@ -367,7 +411,7 @@ public class AdminMapper implements IAdminMapper {
         }
         return price;
     }
-}
+
 
 
     public Material hentMaterialerFraId(int requestID)
