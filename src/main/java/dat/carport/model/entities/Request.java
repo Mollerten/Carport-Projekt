@@ -11,7 +11,7 @@ public class Request {
     int customerid;
     int adminid;
 
-    public Request(int lengthcp, int widthcp, int lengthrr, int widthrr, String roofmat, String woodcladding, int customerid, int adminid) {
+    public Request(int lengthcp, int widthcp, int lengthrr, int widthrr, String roofmat, String woodcladding, int customerid) {
         this.lengthcp = lengthcp;
         this.widthcp = widthcp;
         this.lengthrr = lengthrr;

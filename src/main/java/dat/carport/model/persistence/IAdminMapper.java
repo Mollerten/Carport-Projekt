@@ -29,6 +29,8 @@ public interface IAdminMapper {
 
     boolean opdaterRequest(Request request) throws DatabaseException;
 
+    Request opretRequest(Request request) throws DatabaseException;
+
     double hentStockIdFraDescOgLength(String desc, int length) throws DatabaseException;
 
     User hentUserUdFraID(int customerid) throws DatabaseException;
