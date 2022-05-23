@@ -35,7 +35,7 @@ abstract class Command
         commands.put("profil", new Profil());
         commands.put("opretrequest", new Opretrequest());
         commands.put("requestDetaljer", new RequestDetaljer());
-
+        commands.put("tagAnsvar", new tagAnsvar());
     }
 
     static Command from( HttpServletRequest request ) {

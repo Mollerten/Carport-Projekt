@@ -4,6 +4,7 @@ import dat.carport.model.config.ApplicationStart;
 import dat.carport.model.exceptions.DatabaseException;
 import dat.carport.model.persistence.AdminMapper;
 import dat.carport.model.persistence.ConnectionPool;
+import dat.carport.model.services.AdminFacade;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,16 +20,12 @@ public class FjernRequest extends Command
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws DatabaseException
     {
-
-        String idString = request.getParameter("fjernrequest");
-
-        int requestId = Integer.parseInt(idString);
-
-        AdminMapper adminMapper = new AdminMapper(connectionPool);
+        int requestId = Integer.parseInt(request.getParameter("fjernrequest"));
 
         try
         {
-            adminMapper.fjernRequest(requestId);
+            AdminFacade.fjernRequest(requestId, connectionPool);
+
         }
         catch (DatabaseException e)
         {

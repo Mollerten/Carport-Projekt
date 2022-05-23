@@ -11,15 +11,8 @@ public class User
     private String address;
     private String city;
     private String role;
+    private int id;
 
-    public User(String username, String email, String password, String tlfnr, String role)
-    {
-        this.username = username;
-        this.email = email;
-        this.password = password;
-        this.tlfnr = tlfnr;
-        this.role = role;
-    }
 
     public User(String username, String email, String password, String tlfnr, String address, String city, String role)
     {
@@ -30,6 +23,18 @@ public class User
         this.address = address;
         this.city = city;
         this.role = role;
+    }
+
+    public User(String username, String email, String password, String tlfnr, String address, String city, String role, int id)
+    {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.tlfnr = tlfnr;
+        this.address = address;
+        this.city = city;
+        this.role = role;
+        this.id = id;
     }
 
     @Override
@@ -43,7 +48,13 @@ public class User
                 ", address='" + address + '\'' +
                 ", city='" + city + '\'' +
                 ", isAdmin='" + role + '\'' +
+                ", id='" + id + '\'' +
                 '}';
+    }
+
+    public int getId()
+    {
+        return id;
     }
 
     public String getUsername()
@@ -122,7 +133,7 @@ public class User
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return username.equals(user.username) && email.equals(user.email) && password.equals(user.password) && tlfnr.equals(user.tlfnr) && address.equals(user.address) && city.equals(user.city) && role.equals(user.role);
+        return username.equals(user.username) && email.equals(user.email) && password.equals(user.password) && tlfnr.equals(user.tlfnr) && address.equals(user.address) && city.equals(user.city) && role.equals(user.role) && (getId()==user.id);
     }
 
     @Override

@@ -41,8 +41,9 @@ public class UserMapper implements IUserMapper
                     String city = rs.getString("city");
                     Boolean isAdmin = rs.getBoolean("isAdmin");
                     String role = isAdmin ? "admin" : "user";
+                    int id = rs.getInt("user_id");
 
-                    user = new User(username, email, password, tlfnr, address, city, role);
+                    user = new User(username, email, password, tlfnr, address, city, role, id);
                 } else
                 {
                     throw new DatabaseException("Wrong username or password");
