@@ -34,6 +34,7 @@ abstract class Command
         commands.put("opretstockside", new OpretStockSide());
         commands.put("profil", new Profil());
         commands.put("requestDetaljer", new RequestDetaljer());
+        commands.put("tagAnsvar", new tagAnsvar());
     }
 
     static Command from( HttpServletRequest request ) {

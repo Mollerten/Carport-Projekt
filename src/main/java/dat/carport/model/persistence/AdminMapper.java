@@ -1,7 +1,6 @@
 package dat.carport.model.persistence;
 import dat.carport.model.entities.*;
 import dat.carport.model.exceptions.DatabaseException;
-import dtos.Material;
 import dtos.RequestListeDTO;
 import dtos.StockListeDTO;
 
@@ -312,8 +311,9 @@ public class AdminMapper implements IAdminMapper {
                     String password = rs.getString("password");
                     Boolean isAdmin = rs.getBoolean("isAdmin");
                     String role = isAdmin ? "admin" : "user";
+                    int id = rs.getInt("user_id");
 
-                    user = new User (username, email, password, tlfnr, address, city, role);
+                    user = new User (username, email, password, tlfnr, address, city, role, id);
                 }
             }
         } catch (SQLException ex)
@@ -345,10 +345,6 @@ public class AdminMapper implements IAdminMapper {
         return city1;
     }
 
-    public PartsList hentPartsListUdFraId(int requestID) throws DatabaseException
-    {
-        return null;
-    } //TODO: lav denne metode
 
     public double hentPriceUdFraStockID(double stockID) throws DatabaseException {
         Logger.getLogger("web").log(Level.INFO, "");
@@ -367,12 +363,29 @@ public class AdminMapper implements IAdminMapper {
         }
         return price;
     }
-}
 
 
-    public Material hentMaterialerFraId(int requestID)
+    public void addAdminToRequest(int adminId, int requestId) throws DatabaseException
     {
-        return null;
-    } //TODO: lav denne metode
+
+
+        String sql = "UPDATE `request` SET `admin_id` = ? WHERE (`request_id` = ?);";
+
+        try (Connection connection = connectionPool.getConnection())
+        {
+            try (PreparedStatement ps = connection.prepareStatement(sql))
+            {
+                ps.setInt(1, adminId);
+                ps.setInt(2, requestId);
+
+                ps.executeUpdate();
+
+            }
+
+        } catch (SQLException ex) {
+            throw new DatabaseException(ex, "Could not insert admin-id into database");
+        }
+
+    }
 }
 

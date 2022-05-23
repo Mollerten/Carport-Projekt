@@ -1,12 +1,19 @@
 package dat.carport.control;
 
 import dat.carport.model.config.ApplicationStart;
+import dat.carport.model.entities.PartsList;
+import dat.carport.model.entities.Request;
 import dat.carport.model.exceptions.DatabaseException;
 import dat.carport.model.persistence.ConnectionPool;
+import dat.carport.model.services.AdminFacade;
+import dat.carport.model.services.CalcFacade;
 import dat.carport.model.services.SVG;
+import dtos.Material;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class SVGTest extends Command {
 
@@ -18,9 +25,22 @@ public class SVGTest extends Command {
 
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws DatabaseException {
-        float carportWidth = 600; // request.getCarportWidth();
-        float carportLength = 780; // request.getCarportLength();
-        float rafterCount = 15; // stykliste.getRafters();
+        int requestID = Integer.parseInt(request.getParameter("svgtest"));
+        Request request1 = null;
+        PartsList partsList1 = null;
+        Material material1 = null;
+        try
+        {
+            request1 = AdminFacade.hentRequestUdFraId(requestID, connectionPool);
+            partsList1 = CalcFacade.calcPartsList(requestID);
+        } catch (DatabaseException e)
+        {
+            Logger.getLogger("web").log(Level.SEVERE, e.getMessage());
+            request.setAttribute("fejlbesked", e.getMessage());
+        }
+        float carportWidth = request1.getWidthcp();
+        float carportLength = request1.getLengthcp();
+        float rafterCount = partsList1.getRafterCount();
         float rafterLength = carportWidth;
         float dashLine_x1 = 0;
         float dashLine_x2 = 0;
