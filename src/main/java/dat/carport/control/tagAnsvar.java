@@ -9,40 +9,49 @@ import dat.carport.model.exceptions.DatabaseException;
 import dat.carport.model.persistence.ConnectionPool;
 import dat.carport.model.services.AdminFacade;
 import dat.carport.model.services.CalcFacade;
-import dtos.Material;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class RequestDetaljer extends Command
+public class tagAnsvar extends Command
 {
-    private ConnectionPool connectionPool;
 
-    public RequestDetaljer(){this.connectionPool = ApplicationStart.getConnectionPool();}
+        private ConnectionPool connectionPool;
+
+        public tagAnsvar(){this.connectionPool = ApplicationStart.getConnectionPool();}
 
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws DatabaseException
     {
-        int requestID = Integer.parseInt(request.getParameter("requestDetaljer"));
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("user");
+        int adminId = user.getId();
+        int requestId = Integer.parseInt(request.getParameter("requestid"));
         Request request1 = null;
         User user1 = null;
         City city1 = null;
         PartsList partsList1 = null;
 
+
+
         try
         {
-            request1 = AdminFacade.hentRequestUdFraId(requestID, connectionPool);
+            AdminFacade.addAdminToRequest(adminId, requestId, connectionPool);
+            request1 = AdminFacade.hentRequestUdFraId(requestId, connectionPool);
             user1 = AdminFacade.hentUserUdFraID(request1.getCustomerid(), connectionPool);
             city1 = AdminFacade.hentPostalCodeUdFraCity(user1.getCity(), connectionPool);
-            partsList1 = CalcFacade.calcPartsList(requestID);
+            partsList1 = CalcFacade.calcPartsList(requestId);
+
         }
         catch (DatabaseException e)
         {
             Logger.getLogger("web").log(Level.SEVERE, e.getMessage());
             request.setAttribute("fejlbesked", e.getMessage());
         }
+
         request.setAttribute("city", city1);
         request.setAttribute("user", user1);
         request.setAttribute("request", request1);

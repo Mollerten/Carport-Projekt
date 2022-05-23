@@ -60,12 +60,10 @@
 
               <td>
 
-                  <button class="btn btn-primary submit px-3" style="background-color: #c82333"
-                          name="fjernrequest" value="${request.requestid}"
-                          formaction="fc/fjernrequest?command=fjernrequest">fjern</button>
+
 
                   <button class="btn btn-primary submit px-3" style="background-color: #000C66"
-                          name="redigerrequest" value="${request.requestid}" formaction="fc/redigerrequest?command=redigerrequest">rediger</button>
+                          name="redigerrequest" value="${requestScope.request.requestid}" formaction="fc/redigerrequest?command=redigerrequest">rediger</button>
 
               </td>
             </tr>
@@ -114,32 +112,49 @@
             <th>Enhed</th>
             <th>Hjælpetekst</th>
             <th>Pris</th>
-
           </tr>
-
           </thead>
+
           <tbody>
-          <tr>
-            <td></td>
+          <c:forEach var="material" items="${requestScope.partsList.materials}">
+            <tr>
+              <td></td>
+              <td>${material.amount}</td>
+              <td>${material.description}</td>
+              <td>${material.length}</td>
+              <td>${material.unit}</td>
+              <td>${material.helpText}</td>
+              <td>${material.price}</td>
 
-            <td>${requestScope.material.amount}</td>
-            <td>${requestScope.material.description}</td>
-            <td>${requestScope.material.length}</td>
-            <td>${requestScope.material.unit}</td>
-            <td>${requestScope.material.helpText}</td>
-            <td>${requestScope.material.price}</td>
-
-          </tr>
+            </tr>
+          </c:forEach>
           </tbody>
         </table>
+
+        <button class="btn btn-primary submit px-3" style="background-color: #000C66"
+                name="svgtest"
+                value="${requestScope.request.requestid}"
+                formtarget="_blank"
+                formaction="${pageContext.request.contextPath}/fc/svgtest?command=svgtest">Se model</button>
+
+        <button class="btn btn-primary submit px-3" style="background-color: #29D740"
+                name="requestid" value="${requestScope.request.requestid}"
+                formaction="${pageContext.request.contextPath}/fc/tagAnsvar?command=tagAnsvar">Godkend forespørgsel</button>
+
+        <button class="btn btn-primary submit px-3" style="background-color: #c82333"
+                name="fjernrequest" value="${requestScope.request.requestid}"
+        formaction="${pageContext.request.contextPath}/fc/fjernrequest?command=fjernrequest">Slet forespørgsel</button>
+
+
       </form>
+
 
     </c:if>
 
     <%--        Hvis brugeren/admin ikke er logget ind--%>
     <c:if test="${sessionScope.user == null}">
       <p>Du er ikke logget ind endnu - log ind her:
-        <a href="login.jsp">Login</a></p>
+        <a href="../login.jsp">Login</a></p>
     </c:if>
 
   </jsp:body>

@@ -75,21 +75,15 @@ public class AdminFacade {
         return adminMapper.hentPostalCodeUdFraCity(city);
     }
 
-    public static PartsList hentPartsListUdFraId(int requestID, ConnectionPool connectionPool) throws DatabaseException
-    {
-        AdminMapper adminMapper = new AdminMapper(connectionPool);
-        return adminMapper.hentPartsListUdFraId(requestID);
-    }
-
-    public static Material hentMaterialerFraId(int requestID, ConnectionPool connectionPool) throws DatabaseException
-    {
-        AdminMapper adminMapper = new AdminMapper(connectionPool);
-        return adminMapper.hentMaterialerFraId(requestID);
-    }
-
     public static double hentPriceUdFraStockID(double stockID, ConnectionPool connectionPool) throws DatabaseException {
         AdminMapper adminMapper = new AdminMapper(connectionPool);
         return adminMapper.hentPriceUdFraStockID(stockID);
+    }
+
+    public static void addAdminToRequest(int adminId, int requestId, ConnectionPool connectionPool) throws DatabaseException
+    {
+        AdminMapper adminMapper = new AdminMapper(connectionPool);
+        adminMapper.addAdminToRequest(adminId, requestId);
     }
 }
 
