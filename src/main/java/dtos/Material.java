@@ -21,11 +21,7 @@ public class Material implements Serializable {
     public Material(String description, int amount, int length, String unit, String helpText) {
         this.description = description;
         this.amount = amount;
-        if (length != 0) {
-            this.length = String.format("%d", length);
-        } else {
-            this.length = "";
-        }
+        setLength(length);
         this.unit = unit;
         this.helpText = helpText;
         try {
@@ -102,7 +98,7 @@ public class Material implements Serializable {
         if (o == null || getClass() != o.getClass()) return false;
         Material material = (Material) o;
         return getStockID() == material.getStockID() && getAmount() == material.getAmount() &&
-                getDescription().equals(material.getDescription()) && getLength() == (material.getLength()) &&
+                getDescription().equals(material.getDescription()) && getLength().equals(material.getLength()) &&
                 getUnit().equals(material.getUnit()) && getHelpText().equals(material.getHelpText());
     }
 
