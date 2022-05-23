@@ -7,6 +7,8 @@ import java.util.ArrayList;
 
 public class PartsList implements Serializable {
     ArrayList<Material> materials = new ArrayList<>();
+
+    int rafterCount;
     int request_id;
     double priceInDKK;
 
@@ -21,8 +23,18 @@ public class PartsList implements Serializable {
     public void updatePrice() {
         priceInDKK = 0;
         for (Material mat : materials) {
-            priceInDKK += mat.getPrice();
+            priceInDKK += mat.getPrice() * mat.getAmount();
         }
+    }
+
+    public int getRafterCount()
+    {
+        return rafterCount;
+    }
+
+    public void setRafterCount(int rafterCount)
+    {
+        this.rafterCount = rafterCount;
     }
 
     public ArrayList<Material> getMaterials() {

@@ -1,5 +1,9 @@
 package dat.carport.model.services;
 
+import dat.carport.model.entities.PartsList;
+import dat.carport.model.exceptions.DatabaseException;
+import dat.carport.model.persistence.ConnectionPool;
+
 import java.util.Map;
 
 public class CalcFacade {
@@ -16,4 +20,8 @@ public class CalcFacade {
         return Calculator.calcRafters(length, width);
     }
 
+    public static PartsList calcPartsList(int requestID) throws DatabaseException
+    {
+        return Calculator.calcPartsList(requestID);
+    }
 }

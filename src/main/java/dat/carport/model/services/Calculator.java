@@ -4,6 +4,8 @@ import dat.carport.model.entities.PartsList;
 import dat.carport.model.entities.Request;
 import dat.carport.model.exceptions.DatabaseException;
 import dtos.Material;
+
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -40,6 +42,7 @@ class Calculator {
                 "stk",
                 "Spær, monteres på rem");
         partsList.addMaterial(rafters);
+        partsList.setRafterCount(rafterNumbers.get(rafterLength));
 
         Map<Integer, Integer> roofSheetNumbers = calcRoofingSheets(length, width);
         int roofSheetSize = roofSheetNumbers.entrySet().stream().findFirst().get().getKey();
@@ -302,7 +305,7 @@ class Calculator {
     protected static int calcRoofScrews(int length) {
         int screwBoxAmount;
 
-        screwBoxAmount = (int) Math.ceil(length/3f);
+        screwBoxAmount = (int) Math.ceil(length/3f/200f);
 
         return  screwBoxAmount;
     }

@@ -37,7 +37,7 @@ abstract class Command
         commands.put("designside", new CarportDesignSide());
 
         commands.put("requestDetaljer", new RequestDetaljer());
-
+        commands.put("tagAnsvar", new tagAnsvar());
     }
 
     static Command from( HttpServletRequest request ) {
