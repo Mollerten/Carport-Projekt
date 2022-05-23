@@ -5,8 +5,8 @@
 <%@page errorPage="error.jsp" isErrorPage="false" %>
 
 <t:pagetemplate>
-    <jsp:attribute name="header">
-
+    <jsp:attribute name="title">
+    Opret bruger
     </jsp:attribute>
 
     <jsp:attribute name="footer">
@@ -18,7 +18,6 @@
         <head>
             <link rel="stylesheet" href="css/style2.css">
         </head>
-
 
 
         <form action="fc/createUser" method="post">
@@ -55,7 +54,7 @@
                     <div class="form_wrap ">
                         <div class="form_item">
                             <label for="tlfnr">Telefonnummer:</label>
-                            <input type="text" id="tlfnr" name="tlfnr" required>
+                            <input type="number" id="tlfnr" name="tlfnr" required>
                         </div>
                     </div>
 
@@ -74,8 +73,8 @@
                         </div>
 
                         <div class="form_item">
-                            <label>Postnummer</label>
-                            <input type="text" id="postalCode" name="postalCode" required>
+                            <label>Postnummer:</label>
+                            <input type="number" id="postalCode" name="postalCode" required>
                         </div>
                     </div>
 

@@ -6,7 +6,7 @@
 
 
 <t:pagetemplate>
-    <jsp:attribute name="header">
+    <jsp:attribute name="title">
         Login
     </jsp:attribute>
 
@@ -25,6 +25,9 @@
         <br>
 
         <body>
+
+        <h1>Login</h1>
+
         <section class="ftco-section">
             <div class="container">
                 <div class="row justify-content-center">

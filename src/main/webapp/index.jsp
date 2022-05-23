@@ -4,7 +4,7 @@
 <%@page errorPage="error.jsp" isErrorPage="false" %>
 
 <t:pagetemplate>
-    <jsp:attribute name="header">
+    <jsp:attribute name="title">
         FOG - Holder I Længden
     </jsp:attribute>
 
@@ -15,10 +15,12 @@
     <jsp:body>
 
 
+
             <link rel="stylesheet" href="css/style.css">
 
             <video id="background-video" autoplay muted loop src="videos/carportvideo.mp4"></video>
 
+        <h2>Fog - Holder i længden</h2>
 
     </jsp:body>
 

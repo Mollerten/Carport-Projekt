@@ -5,15 +5,16 @@
 <%@page errorPage="error.jsp" isErrorPage="false" %>
 
 <t:pagetemplate>
-    <jsp:attribute name="header">
-             Profile page
+    <jsp:attribute name="title">
+              Opdater brugeroplysninger
     </jsp:attribute>
 
   <jsp:attribute name="footer">
-            Profile page
+            profilside
     </jsp:attribute>
 
   <jsp:body>
+
 
     <h1>${requestScope.errormsg}</h1>
 

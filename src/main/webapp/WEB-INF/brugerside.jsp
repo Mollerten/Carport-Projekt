@@ -5,6 +5,17 @@
 <%@page errorPage="../error.jsp" isErrorPage="false" %>
 
 <t:pagetemplate>
+
+    <jsp:attribute name="title">
+        <c:if test="${sessionScope.user != null && sessionScope.user.role eq \"user\"}">
+                Brugerside
+                </c:if>
+        <c:if test="${sessionScope.user != null && sessionScope.user.role eq \"admin\"}">
+                Adminside
+                </c:if>
+
+    </jsp:attribute>
+
     <jsp:attribute name="header">
         <c:if test="${sessionScope.user != null && sessionScope.user.role eq \"user\"}">
                 Brugerside
@@ -14,19 +25,34 @@
                 </c:if>
     </jsp:attribute>
 
+
     <jsp:attribute name="footer">
 
     </jsp:attribute>
 
     <jsp:body>
 
+        <head>
+            <link rel="stylesheet" href="${pageContext.request.contextPath}/css/error.css">
+        </head>
 
 <%--        Hvis kontoen er user--%>
         <c:if test="${sessionScope.user != null && sessionScope.user.role eq \"user\"}">
 
 
-            <p>Velkommen tilbage bruger</p>
-            <p>Du er logget ind med rollen:  "${sessionScope.user.role}".</p>
+            <body>
+            <b>Velkommen tilbage ${sessionScope.user.username}</b>
+            <br>
+            <b>Email:  ${sessionScope.user.email}</b>
+            <br>
+            <b>Du er logget ind med rollen:  "${sessionScope.user.role}".</b>
+            <br>
+            <br>
+            <br>
+            <br>
+
+            <b>Opdater dine oplysninger</b> <a id="knap" href="profile.jsp">Opdater oplysninger</a>
+            </body>
         </c:if>
 
 <%--        Hvis kontoen er admin--%>

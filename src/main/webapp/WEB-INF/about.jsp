@@ -5,8 +5,8 @@
 <%@page errorPage="../error.jsp" isErrorPage="false" %>
 
 <t:pagetemplate>
-    <jsp:attribute name="header">
-             Velkommen i FOG
+    <jsp:attribute name="title">
+             Om os
     </jsp:attribute>
 
     <jsp:attribute name="footer">
@@ -22,6 +22,8 @@
         <br>
         <br>
         <br>
+        <h1>Velkommen i FOG</h1>
+
         <p style="color: #FFFFFF">
             Her får du kvalificeret rådgivning til den bedste løsning. Fog hjælper dig med at få overblik og komme i mål med dit byggeprojekt. Lige fra hvad der er godt at vide til vejledning i valg af materialer.
 

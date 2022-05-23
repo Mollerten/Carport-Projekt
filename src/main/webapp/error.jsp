@@ -5,8 +5,8 @@
 <%@page errorPage="error.jsp" isErrorPage="false" %>
 
 <t:pagetemplate>
-    <jsp:attribute name="header">
-             Error page
+    <jsp:attribute name="title">
+        Denne side er ikke tilgængelig
     </jsp:attribute>
 
     <jsp:attribute name="footer">
@@ -15,16 +15,23 @@
 
     <jsp:body>
 
-        <p>An error has occured. This is the best message we can come up
-            with right now: </p>
+        <head>
+            <link rel="stylesheet" href="css/error.css">
+        </head>
+
+    <body>
+    <div class="container">
+
+        <h1>Denne side er ikke tilgængelig</h1>
 
         <c:if test="${pageContext.errorData.statusCode == 404 }">
-            <p><b>Error code:</b> ${pageContext.errorData.statusCode}</p>
+            <h2>Fejlkode:</h2> <h2>${pageContext.errorData.statusCode}</h2>
+            <p>Fejl! en fejl er sket i serveren</p>
         </c:if>
 
         <c:if test="${pageContext.errorData.statusCode == 500 }">
-            <p><b>Error code:</b> ${pageContext.errorData.statusCode}</p>
-            <p>A serious error happened at the server.</p>
+            <p><b>Fejlkode:</b> ${pageContext.errorData.statusCode}</p>
+            <p>Fejl! en fejl er sket i serveren</p>
         </c:if>
 
 
@@ -33,11 +40,14 @@
         </c:if>
 
         <c:if test="${requestScope.errormessage  == null}">
-            <p>Abandon ship. We have no idea how you ended up here!</p>
+            <p>Fejl! vi ved ikke hvordan du havnede her</p>
         </c:if>
 
-        <p>Jump back to the <a href="index.jsp">Frontpage</a>,
-            or try <a href="login.jsp">logging</a> in again.</p>
+
+        <p>Gå tilbage til <a id="knap" href="index.jsp">forsiden</a>
+            eller prøv at <a id="knap" href="login.jsp">logge ind</a> igen.</p>
+            </div>
+    </body>
 
     </jsp:body>
 </t:pagetemplate>
