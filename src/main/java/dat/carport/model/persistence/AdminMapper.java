@@ -411,7 +411,7 @@ public class AdminMapper implements IAdminMapper {
         }
         return price;
     }
-}
+
 
 
     public Material hentMaterialerFraId(int requestID)

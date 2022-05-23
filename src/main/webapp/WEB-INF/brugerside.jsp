@@ -72,11 +72,11 @@
             <form action="${pageContext.request.contextPath}/fc/OpretRequest?command=opretrequest" method="post">
             <label for="length_cp">Carport Længde:</label>
             <select name="length_cp" id="length_cp">
-                <option value="150">150</option>
-                <option value="180">180</option>
-                <option value="210">210</option>
-                <option value="240">240</option>
-                <option value="270">270</option>
+                <option value="150">150 CM</option>
+                <option value="180">180 CM</option>
+                <option value="210">210 CM</option>
+                <option value="240">240 CM</option>
+                <option value="270">270 CM</option>
             </select>
 
             <br>
@@ -86,29 +86,29 @@
             <select name="width_cp" id="width_cp">
                 <option value="150">150 CM</option>
                 <option value="180">180 CM</option>
-                <option value="210">210</option>
-                <option value="240">240</option>
-                <option value="270">270</option>
+                <option value="210">210 CM</option>
+                <option value="240">240 CM</option>
+                <option value="270">270 CM</option>
             </select>
             <br>
 
             <label for="length_rr">Tag Længde:</label>
             <select name="length_rr" id="length_rr">
-                <option value="150">150</option>
-                <option value="180">180</option>
-                <option value="210">210</option>
-                <option value="240">240</option>
-                <option value="270">270</option>
+                <option value="150">150 CM</option>
+                <option value="180">180 CM</option>
+                <option value="210">210 CM</option>
+                <option value="240">240 CM</option>
+                <option value="270">270 CM</option>
             </select>
             <br>
 
             <label for="width_rr"> Tag Bredde:</label>
             <select name="width_rr" id="width_rr">
-                <option value="150">150</option>
-                <option value="180">180</option>
-                <option value="210">210</option>
-                <option value="240">240</option>
-                <option value="270">270</option>
+                <option value="150">150 CM</option>
+                <option value="180">180 CM</option>
+                <option value="210">210 CM</option>
+                <option value="240">240 CM</option>
+                <option value="270">270 CM</option>
             </select>
 
             <br>
