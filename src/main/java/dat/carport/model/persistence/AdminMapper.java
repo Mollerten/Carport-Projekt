@@ -23,7 +23,7 @@ public class AdminMapper implements IAdminMapper {
 
         List<StockListeDTO> stockList = new ArrayList<>();
 
-        String sql = "SELECT * FROM carport.stock";
+        String sql = "SELECT * FROM stock";
 
         try (Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
@@ -72,7 +72,7 @@ public class AdminMapper implements IAdminMapper {
 
         List<RequestListeDTO> requestList = new ArrayList<>();
 
-        String sql = "SELECT * FROM carport.request";
+        String sql = "SELECT * FROM request";
 
 
         try (Connection connection = connectionPool.getConnection()) {
@@ -206,36 +206,36 @@ public class AdminMapper implements IAdminMapper {
 
     @Override
     public Request hentRequestUdFraId(int requestID) throws DatabaseException {
-        {
-            Logger.getLogger("web").log(Level.INFO, "bogId=" + requestID);
-            Request request = null;
-            String sql = "select * from request where request_id = ?";
-            try (Connection connection = connectionPool.getConnection()) {
-                try (PreparedStatement ps = connection.prepareStatement(sql)) {
-                    ps.setInt(1, requestID);
-                    ResultSet rs = ps.executeQuery();
-                    if (rs.next()) {
+        Logger.getLogger("web").log(Level.INFO, "bogId=" + requestID);
+        Request request = null;
+        String sql = "select * from request where request_id = ?";
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setInt(1, requestID);
+                ResultSet rs = ps.executeQuery();
+                if (rs.next()) {
 
-                        int requestid = rs.getInt("request_id");
-                        int lengthcp = rs.getInt("length_cp");
-                        int withcp = rs.getInt("width_cp");
-                        int lengthrr = rs.getInt("length_rr");
-                        int widthrr = rs.getInt("width_rr");
-                        String roofmat = rs.getString("roof_mat");
-                        String woodcladdingmat = rs.getString("wood_cladding_mat");
-                        int customerid = rs.getInt("customer_id");
-                        int adminid = rs.getInt("admin_id");
+                    int requestid = rs.getInt("request_id");
+                    int lengthcp = rs.getInt("length_cp");
+                    int widthcp = rs.getInt("width_cp");
+                    int lengthrr = rs.getInt("length_rr");
+                    int widthrr = rs.getInt("width_rr");
+                    String roofmat = rs.getString("roof_mat");
+                    String woodcladding = rs.getString("wood_cladding_mat");
+                    double totalPrice = rs.getDouble("total_price");
+                    int customerid = rs.getInt("customer_id");
+                    int adminid = rs.getInt("admin_id");
 
-                        request = new Request(requestid, lengthcp, withcp, lengthrr, widthrr, roofmat, woodcladdingmat, customerid, adminid);
-                    } else {
-                        throw new DatabaseException("Request med request_id = " + requestID + " findes ikke");
-                    }
+                    request = new Request(requestid, lengthcp, widthcp, lengthrr, widthrr,
+                            roofmat, woodcladding, totalPrice, customerid, adminid);
+                } else {
+                    throw new DatabaseException("Request med request_id = " + requestID + " findes ikke");
                 }
-            } catch (SQLException ex) {
-                throw new DatabaseException("Request med request_id = " + requestID + " findes ikke");
             }
-            return request;
+        } catch (SQLException ex) {
+            throw new DatabaseException("Request med request_id = " + requestID + " findes ikke");
         }
+        return request;
     }
 
     @Override
@@ -430,6 +430,21 @@ public class AdminMapper implements IAdminMapper {
             throw new DatabaseException(ex, "Could not insert admin-id into database");
         }
 
+    }
+
+    public void setTotalPriceForRequest(int requestid, double totalPrice) {
+        Logger.getLogger("web").log(Level.INFO, "");
+        String sql = "UPDATE request SET total_price = ? WHERE request_id = ?";
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setDouble(1, totalPrice);
+                ps.setInt(2, requestid);
+
+                ps.executeUpdate();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
 

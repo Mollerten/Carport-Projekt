@@ -1,5 +1,7 @@
 package dat.carport.model.entities;
 
+import java.util.Objects;
+
 public class Request {
     int requestid;
     int lengthcp;
@@ -8,6 +10,7 @@ public class Request {
     int widthrr;
     String roofmat;
     String woodcladding;
+    double totalPrice = 0;
     int customerid;
     int adminid;
 
@@ -19,7 +22,6 @@ public class Request {
         this.roofmat = roofmat;
         this.woodcladding = woodcladding;
         this.customerid = customerid;
-        this.adminid = adminid;
     }
 
     public Request(int requestid, int lengthcp, int widthcp, int lengthrr, int widthrr, String roofmat, String woodcladding, int customerid, int adminid) {
@@ -30,6 +32,19 @@ public class Request {
         this.widthrr = widthrr;
         this.roofmat = roofmat;
         this.woodcladding = woodcladding;
+        this.customerid = customerid;
+        this.adminid = adminid;
+    }
+
+    public Request(int requestid, int lengthcp, int widthcp, int lengthrr, int widthrr, String roofmat, String woodcladding, double totalPrice, int customerid, int adminid) {
+        this.requestid = requestid;
+        this.lengthcp = lengthcp;
+        this.widthcp = widthcp;
+        this.lengthrr = lengthrr;
+        this.widthrr = widthrr;
+        this.roofmat = roofmat;
+        this.woodcladding = woodcladding;
+        this.totalPrice = totalPrice;
         this.customerid = customerid;
         this.adminid = adminid;
     }
@@ -70,6 +85,10 @@ public class Request {
         return adminid;
     }
 
+    public double getTotalPrice() {
+        return totalPrice;
+    }
+
     public void setRequestid(int requestid) {
         this.requestid = requestid;
     }
@@ -106,6 +125,10 @@ public class Request {
         this.adminid = adminid;
     }
 
+    public void setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
     @Override
     public String toString() {
         return "Request{" +
@@ -116,8 +139,33 @@ public class Request {
                 ", widthrr=" + widthrr +
                 ", roofmat='" + roofmat + '\'' +
                 ", woodcladding='" + woodcladding + '\'' +
+                ", totalPrice='" + totalPrice + '\'' +
                 ", customerid=" + customerid +
                 ", adminid=" + adminid +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Request request = (Request) o;
+        return getRequestid() == request.getRequestid() &&
+                getLengthcp() == request.getLengthcp() &&
+                getWidthcp() == request.getWidthcp() &&
+                getLengthrr() == request.getLengthrr() &&
+                getWidthrr() == request.getWidthrr() &&
+                Double.compare(request.getTotalPrice(), getTotalPrice()) == 0 &&
+                getCustomerid() == request.getCustomerid() &&
+                getAdminid() == request.getAdminid() &&
+                Objects.equals(getRoofmat(), request.getRoofmat()) &&
+                Objects.equals(getWoodcladding(), request.getWoodcladding());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getRequestid(), getLengthcp(), getWidthcp(),
+                getLengthrr(), getWidthrr(), getRoofmat(), getWoodcladding(),
+                getTotalPrice(), getCustomerid(), getAdminid());
     }
 }
