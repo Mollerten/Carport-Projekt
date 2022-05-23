@@ -41,6 +41,7 @@
 
 
             <body>
+            <br>
             <b>Velkommen tilbage ${sessionScope.user.username}</b>
             <br>
             <b>Email:  ${sessionScope.user.email}</b>
@@ -51,7 +52,7 @@
             <br>
             <br>
 
-            <b>Opdater dine oplysninger</b> <a id="knap" href="profile.jsp">Opdater oplysninger</a>
+            <b>Opdater dine oplysninger</b> <a id="knap" href="${pageContext.request.contextPath}/profile.jsp">Opdater oplysninger</a>
             </body>
         </c:if>
 
