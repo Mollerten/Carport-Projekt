@@ -65,12 +65,12 @@ class Calculator {
         Map<Integer, Integer> fittingCount = calcFittings(rafterNumbers.get(rafterLength));
         int fittingCountLeft = fittingCount.entrySet().stream().findFirst().get().getKey();
         int fittingCountRight = fittingCount.get(fittingCountLeft);
-        Material fittingsRight = new Material("universal 190 mm højre",
+        Material fittingsRight = new Material("universal 190 mm.",
                 fittingCountRight,
                 0,
                 "stk",
                 "Til montering af spær på rem");
-        Material fittingsLeft = new Material("universal 190 mm venstre",
+        Material fittingsLeft = new Material("universal 190 mm.",
                 fittingCountLeft,
                 0,
                 "stk",
@@ -256,10 +256,10 @@ class Calculator {
         segment = (int) Math.ceil(carportLength/60)+1;
 
         if (segment<=10){
-            roofingSheetSize = segment-3;
+            roofingSheetSize = segment * 60;
         }
         if (segment > 10){
-           roofingSheetSize = (int) Math.ceil((segment/2)-3);
+           roofingSheetSize = (int) Math.ceil((segment/2)) * 60;
            roofingSheetAmountLength = 2;
         }
 
@@ -433,17 +433,6 @@ class Calculator {
     {
         return 1;
     }
-
-    /*
-    //TODO: lav entity: material med attributer: int stockID, String beskrivelse, int antal, String længde, String enhed, String hjælpetekst
-    //TODO: lav calcMaterial der udregner hvilke materialer der er behov for, og hvor meget
-    //TODO: lav calcPrice der tager entiteten material og udregner pris ift prisen i stock
-    //TODO: lav entitet: stykliste med attributer: material, int requestID og int pris (udregnet fra calcPrice)
-
-
-
-
-     */
 
 
 
