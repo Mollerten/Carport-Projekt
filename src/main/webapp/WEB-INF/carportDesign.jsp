@@ -62,7 +62,7 @@
 
                 <br>
 
-                <label for="length_rr">Tag Længde:</label>
+                <label for="length_rr">	Skur Længde:</label>
                 <select name="length_rr" id="length_rr" required>
                     <option value="" disabled selected hidden>Vælg</option>
                     <option value="150">150 CM</option>
@@ -74,7 +74,7 @@
 
                 <br>
 
-                <label for="width_rr"> Tag Bredde:</label>
+                <label for="width_rr"> 	Skur Bredde:</label>
                 <select name="width_rr" id="width_rr" required>
                     <option value="" disabled selected hidden>Vælg</option>
                     <option value="150">150 CM</option>
@@ -95,7 +95,7 @@
 
                 <br>
 
-                <label for="wood_cladding_mat"> Beklædning:</label>
+                <label for="wood_cladding_mat"> Træ Beklædning Materiale:</label>
                 <select name="wood_cladding_mat" id="wood_cladding_mat" required>
                     <option value="" disabled selected hidden>Vælg</option>
                     <option value="Eg">Eg</option>
