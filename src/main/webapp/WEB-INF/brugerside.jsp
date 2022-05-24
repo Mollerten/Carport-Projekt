@@ -5,8 +5,13 @@
 <%@page errorPage="../error.jsp" isErrorPage="false" %>
 
 <t:pagetemplate>
-    <jsp:attribute name="header">
-
+    <jsp:attribute name="title">
+        <c:if test="${sessionScope.user.role eq \"user\"}">
+            Brugerside
+        </c:if>
+        <c:if test="${sessionScope.user.role eq \"admin\"}">
+            Adminside
+        </c:if>
     </jsp:attribute>
 
     <jsp:attribute name="footer">

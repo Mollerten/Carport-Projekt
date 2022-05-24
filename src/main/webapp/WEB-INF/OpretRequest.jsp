@@ -4,8 +4,8 @@
 <%@page errorPage="../error.jsp" isErrorPage="false" %>
 
 <t:pagetemplate>
-    <jsp:attribute name="header">
-
+    <jsp:attribute name="title">
+        Request sendt
     </jsp:attribute>
 
     <jsp:attribute name="footer">

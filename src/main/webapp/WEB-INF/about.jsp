@@ -5,7 +5,7 @@
 <%@page errorPage="../error.jsp" isErrorPage="false" %>
 
 <t:pagetemplate>
-    <jsp:attribute name="header">
+    <jsp:attribute name="title">
              About
     </jsp:attribute>
 

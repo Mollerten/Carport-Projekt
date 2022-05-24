@@ -5,12 +5,16 @@
 <%@page errorPage="error.jsp" isErrorPage="false" %>
 
 <t:pagetemplate>
+    <jsp:attribute name="title">
+        Error ${pageContext.errorData.statusCode}
+    </jsp:attribute>
+
     <jsp:attribute name="header">
-             Error page
+             Error: ${pageContext.errorData.statusCode}
     </jsp:attribute>
 
     <jsp:attribute name="footer">
-            Error page
+            Error: ${pageContext.errorData.statusCode}
     </jsp:attribute>
 
     <jsp:body>

@@ -5,8 +5,8 @@
 <%@page errorPage="../error.jsp" isErrorPage="false" %>
 
 <t:pagetemplate>
-    <jsp:attribute name="header">
-
+    <jsp:attribute name="title">
+        Carport designer
     </jsp:attribute>
 
     <jsp:attribute name="footer">
@@ -18,7 +18,7 @@
         <%--        Hvis brugeren/admin ikke er logget ind--%>
         <c:if test="${sessionScope.user == null}">
             <p>Du er ikke logget ind endnu - log ind her:
-                <a href="login.jsp">Login</a></p>
+                <a href="../login.jsp">Login</a></p>
 
         </c:if>
 
@@ -38,9 +38,9 @@
 
             <form action="${pageContext.request.contextPath}/fc/OpretRequest?command=opretrequest" method="post">
                 <label for="length_cp">Carport Længde:</label>
-                <select name="length_cp" id="length_cp">
+                <select name="length_cp" id="length_cp" required>
 
-                    <option value="Vælg" disabled selected hidden>Vælg</option>
+                    <option value="" disabled selected hidden>Vælg</option>
                     <option value="150">150 CM</option>
                     <option value="180">180 CM</option>
                     <option value="210">210 CM</option>
@@ -51,8 +51,8 @@
                 <br>
 
                 <label for="width_cp">Carport Bredde:</label>
-                <select name="width_cp" id="width_cp">
-                    <option value="Vælg" disabled selected hidden>Vælg</option>
+                <select name="width_cp" id="width_cp" required>
+                    <option value="" disabled selected hidden>Vælg</option>
                     <option value="150">150 CM</option>
                     <option value="180">180 CM</option>
                     <option value="210">210 CM</option>
@@ -63,8 +63,8 @@
                 <br>
 
                 <label for="length_rr">Tag Længde:</label>
-                <select name="length_rr" id="length_rr">
-                    <option value="Vælg" disabled selected hidden>Vælg</option>
+                <select name="length_rr" id="length_rr" required>
+                    <option value="" disabled selected hidden>Vælg</option>
                     <option value="150">150 CM</option>
                     <option value="180">180 CM</option>
                     <option value="210">210 CM</option>
@@ -75,8 +75,8 @@
                 <br>
 
                 <label for="width_rr"> Tag Bredde:</label>
-                <select name="width_rr" id="width_rr">
-                    <option value="Vælg" disabled selected hidden>Vælg</option>
+                <select name="width_rr" id="width_rr" required>
+                    <option value="" disabled selected hidden>Vælg</option>
                     <option value="150">150 CM</option>
                     <option value="180">180 CM</option>
                     <option value="210">210 CM</option>
@@ -87,8 +87,8 @@
                 <br>
 
                 <label for="roof_mat"> Tag Materiale:</label>
-                <select name="roof_mat" id="roof_mat">
-                    <option value="Vælg" disabled selected hidden>Vælg</option>
+                <select name="roof_mat" id="roof_mat" required>
+                    <option value="" disabled selected hidden>Vælg</option>
                     <option value="Eg">Eg</option>
                     <option value="Mahogni">Mahogni</option>
                 </select>
@@ -96,8 +96,8 @@
                 <br>
 
                 <label for="wood_cladding_mat"> Beklædning:</label>
-                <select name="wood_cladding_mat" id="wood_cladding_mat">
-                    <option value="Vælg" disabled selected hidden>Vælg</option>
+                <select name="wood_cladding_mat" id="wood_cladding_mat" required>
+                    <option value="" disabled selected hidden>Vælg</option>
                     <option value="Eg">Eg</option>
                     <option value="Mahogni">Mahogni</option>
                 </select>

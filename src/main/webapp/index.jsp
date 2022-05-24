@@ -4,10 +4,8 @@
 <%@page errorPage="error.jsp" isErrorPage="false" %>
 <t:pagetemplate>
 
-
-
-    <jsp:attribute name="header">
-
+    <jsp:attribute name="title">
+        FOG - Holder I Længden
     </jsp:attribute>
 
     <jsp:attribute name="footer">

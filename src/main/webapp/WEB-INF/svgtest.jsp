@@ -4,12 +4,16 @@
 <%@page errorPage="../error.jsp" isErrorPage="false" %>
 
 <t:pagetemplate>
+    <jsp:attribute name="title">
+        SVG tegning
+    </jsp:attribute>
+
     <jsp:attribute name="header">
-        SVG test
+        SVG tegning
     </jsp:attribute>
 
     <jsp:attribute name="footer">
-        SVG test
+        SVG tegning
     </jsp:attribute>
 
     <jsp:body>

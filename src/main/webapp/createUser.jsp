@@ -5,12 +5,16 @@
 <%@page errorPage="error.jsp" isErrorPage="false" %>
 
 <t:pagetemplate>
+    <jsp:attribute name="title">
+        Opret bruger
+    </jsp:attribute>
+
     <jsp:attribute name="header">
-             Create user
+        Opret bruger
     </jsp:attribute>
 
     <jsp:attribute name="footer">
-            Create user
+        Opret bruger
     </jsp:attribute>
 
     <jsp:body>
