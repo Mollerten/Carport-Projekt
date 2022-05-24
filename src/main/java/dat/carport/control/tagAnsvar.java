@@ -44,7 +44,10 @@ public class tagAnsvar extends Command
             user1 = AdminFacade.hentUserUdFraID(request1.getCustomerid(), connectionPool);
             city1 = AdminFacade.hentPostalCodeUdFraCity(user1.getCity(), connectionPool);
             partsList1 = CalcFacade.calcPartsList(requestId);
-
+            if (request1.getTotalPrice() == 0) { // if price not frozen
+                request1.setTotalPrice(partsList1.getPriceInDKK());
+                AdminFacade.setTotalPris(request1.getRequestid(), request1.getTotalPrice(), connectionPool);
+            }
         }
         catch (DatabaseException e)
         {

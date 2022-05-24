@@ -5,9 +5,8 @@ import dat.carport.model.entities.*;
 import dat.carport.model.exceptions.DatabaseException;
 import dat.carport.model.persistence.AdminMapper;
 import dat.carport.model.persistence.ConnectionPool;
-import dtos.Material;
-import dtos.RequestListeDTO;
-import dtos.StockListeDTO;
+import dat.carport.dtos.RequestListeDTO;
+import dat.carport.dtos.StockListeDTO;
 
 import java.util.List;
 
@@ -84,6 +83,11 @@ public class AdminFacade {
     {
         AdminMapper adminMapper = new AdminMapper(connectionPool);
         adminMapper.addAdminToRequest(adminId, requestId);
+    }
+
+    public static void setTotalPris(int requestid, double totalPrice, ConnectionPool connectionPool) {
+        AdminMapper adminMapper = new AdminMapper(connectionPool);
+        adminMapper.setTotalPriceForRequest(requestid, totalPrice);
     }
 }
 

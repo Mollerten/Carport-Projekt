@@ -1,8 +1,8 @@
 package dat.carport.model.persistence;
 import dat.carport.model.entities.*;
 import dat.carport.model.exceptions.DatabaseException;
-import dtos.RequestListeDTO;
-import dtos.StockListeDTO;
+import dat.carport.dtos.RequestListeDTO;
+import dat.carport.dtos.StockListeDTO;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -23,24 +23,24 @@ public class AdminMapper implements IAdminMapper {
 
         List<StockListeDTO> stockList = new ArrayList<>();
 
-        String sql = "SELECT * FROM carport.stock";
+        String sql = "SELECT * FROM stock";
 
         try (Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ResultSet rs = ps.executeQuery();
                 while (rs.next()) {
-                    int stockid = rs.getInt("stock_id");
+                    long stockid = rs.getLong("stock_id");
                     String description = rs.getString("description");
-                    int amount = rs.getInt("amount");
+                    int amount = rs.getInt("length");
                     String unit = rs.getString("unit");
-                    int price_per_unit = rs.getInt("price_per_unit");
+                    double price_per_unit = rs.getDouble("price_per_unit");
 
                     StockListeDTO newstock = new StockListeDTO(stockid, description, amount, unit, price_per_unit);
                     stockList.add(newstock);
                 }
             }
         } catch (SQLException ex) {
-            throw new DatabaseException(ex, "Fejl under indlæsning af lånere fra databasen");
+            throw new DatabaseException(ex, "Fejl under indlæsning af stock fra databasen");
         }
         return stockList;
     }
@@ -72,7 +72,7 @@ public class AdminMapper implements IAdminMapper {
 
         List<RequestListeDTO> requestList = new ArrayList<>();
 
-        String sql = "SELECT * FROM carport.request";
+        String sql = "SELECT * FROM request";
 
 
         try (Connection connection = connectionPool.getConnection()) {
@@ -161,8 +161,8 @@ public class AdminMapper implements IAdminMapper {
                 ps.setString(1, stock.getDescription());
                 ps.setInt(2, stock.getAmount());
                 ps.setString(3, stock.getUnit());
-                ps.setInt(4, stock.getPrice_per_unit());
-                ps.setInt(5, stock.getStockid());
+                ps.setDouble(4, stock.getPrice_per_unit());
+                ps.setLong(5, stock.getStockid());
 
                 int rowsAffected = ps.executeUpdate();
                 if (rowsAffected == 1) {
@@ -186,11 +186,11 @@ public class AdminMapper implements IAdminMapper {
         try (Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
-                ps.setInt(1, stock.getStockid());
+                ps.setLong(1, stock.getStockid());
                 ps.setString(2, stock.getDescription());
                 ps.setInt(3, stock.getAmount());
                 ps.setString(4, stock.getUnit());
-                ps.setInt(5, stock.getPrice_per_unit());
+                ps.setDouble(5, stock.getPrice_per_unit());
                 int rowsAffected = ps.executeUpdate();
                 if (rowsAffected == 1) {
                     result = true;
@@ -206,36 +206,36 @@ public class AdminMapper implements IAdminMapper {
 
     @Override
     public Request hentRequestUdFraId(int requestID) throws DatabaseException {
-        {
-            Logger.getLogger("web").log(Level.INFO, "bogId=" + requestID);
-            Request request = null;
-            String sql = "select * from request where request_id = ?";
-            try (Connection connection = connectionPool.getConnection()) {
-                try (PreparedStatement ps = connection.prepareStatement(sql)) {
-                    ps.setInt(1, requestID);
-                    ResultSet rs = ps.executeQuery();
-                    if (rs.next()) {
+        Logger.getLogger("web").log(Level.INFO, "bogId=" + requestID);
+        Request request = null;
+        String sql = "select * from request where request_id = ?";
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setInt(1, requestID);
+                ResultSet rs = ps.executeQuery();
+                if (rs.next()) {
 
-                        int requestid = rs.getInt("request_id");
-                        int lengthcp = rs.getInt("length_cp");
-                        int withcp = rs.getInt("width_cp");
-                        int lengthrr = rs.getInt("length_rr");
-                        int widthrr = rs.getInt("width_rr");
-                        String roofmat = rs.getString("roof_mat");
-                        String woodcladdingmat = rs.getString("wood_cladding_mat");
-                        int customerid = rs.getInt("customer_id");
-                        int adminid = rs.getInt("admin_id");
+                    int requestid = rs.getInt("request_id");
+                    int lengthcp = rs.getInt("length_cp");
+                    int widthcp = rs.getInt("width_cp");
+                    int lengthrr = rs.getInt("length_rr");
+                    int widthrr = rs.getInt("width_rr");
+                    String roofmat = rs.getString("roof_mat");
+                    String woodcladding = rs.getString("wood_cladding_mat");
+                    double totalPrice = rs.getDouble("total_price");
+                    int customerid = rs.getInt("customer_id");
+                    int adminid = rs.getInt("admin_id");
 
-                        request = new Request(requestid, lengthcp, withcp, lengthrr, widthrr, roofmat, woodcladdingmat, customerid, adminid);
-                    } else {
-                        throw new DatabaseException("Request med request_id = " + requestID + " findes ikke");
-                    }
+                    request = new Request(requestid, lengthcp, widthcp, lengthrr, widthrr,
+                            roofmat, woodcladding, totalPrice, customerid, adminid);
+                } else {
+                    throw new DatabaseException("Request med request_id = " + requestID + " findes ikke");
                 }
-            } catch (SQLException ex) {
-                throw new DatabaseException("Request med request_id = " + requestID + " findes ikke");
             }
-            return request;
+        } catch (SQLException ex) {
+            throw new DatabaseException("Request med request_id = " + requestID + " findes ikke");
         }
+        return request;
     }
 
     @Override
@@ -430,6 +430,21 @@ public class AdminMapper implements IAdminMapper {
             throw new DatabaseException(ex, "Could not insert admin-id into database");
         }
 
+    }
+
+    public void setTotalPriceForRequest(int requestid, double totalPrice) {
+        Logger.getLogger("web").log(Level.INFO, "");
+        String sql = "UPDATE request SET total_price = ? WHERE request_id = ?";
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setDouble(1, totalPrice);
+                ps.setInt(2, requestid);
+
+                ps.executeUpdate();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
 

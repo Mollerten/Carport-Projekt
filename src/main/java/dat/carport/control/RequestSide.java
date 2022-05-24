@@ -4,10 +4,8 @@ import dat.carport.model.config.ApplicationStart;
 import dat.carport.model.exceptions.DatabaseException;
 import dat.carport.model.persistence.AdminMapper;
 import dat.carport.model.persistence.ConnectionPool;
-import dtos.RequestListeDTO;
-import dtos.StockListeDTO;
+import dat.carport.dtos.RequestListeDTO;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
