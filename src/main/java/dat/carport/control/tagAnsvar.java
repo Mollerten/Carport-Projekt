@@ -19,9 +19,9 @@ import java.util.logging.Logger;
 public class tagAnsvar extends Command
 {
 
-        private ConnectionPool connectionPool;
+    private ConnectionPool connectionPool;
 
-        public tagAnsvar(){this.connectionPool = ApplicationStart.getConnectionPool();}
+    public tagAnsvar(){this.connectionPool = ApplicationStart.getConnectionPool();}
 
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws DatabaseException

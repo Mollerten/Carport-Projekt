@@ -61,7 +61,7 @@ public class AdminMapper implements IAdminMapper {
                 }
             }
         } catch (SQLException ex) {
-            throw new DatabaseException("Bog med stockid = " + stock_id + " kunne ikke fjernes");
+            throw new DatabaseException("Stock med stockid = " + stock_id + " kunne ikke fjernes");
         }
         return result;
     }
@@ -94,7 +94,7 @@ public class AdminMapper implements IAdminMapper {
                 }
             }
         } catch (SQLException ex) {
-            throw new DatabaseException(ex, "Fejl under indlæsning af lånere fra databasen");
+            throw new DatabaseException(ex, "Fejl under indlæsning af requests fra databasen");
         }
         return requestList;
     }
