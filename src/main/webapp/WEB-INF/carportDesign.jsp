@@ -23,10 +23,10 @@
         </c:if>
 
         <c:if test="${sessionScope.user != null && sessionScope.user.role eq \"user\"}">
-            <form action="${pageContext.request.contextPath}/fc/profil" method="post">
-                <input type="hidden" name="command" value="profil"/>
-                <input type="submit" style="background-color: #000C66" class="btn btn-primary submit px-3"  value="Opdater Profil"/>
-            </form>
+
+            <head>
+                <link rel="stylesheet" href="requestCSS.css"/>
+            </head>
 
 
             <h1 style="color: #000C66; text-align: left">Carport Designer:</h1>
