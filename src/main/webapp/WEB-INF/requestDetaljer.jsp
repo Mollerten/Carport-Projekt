@@ -130,7 +130,12 @@
           </c:forEach>
           </tbody>
         </table>
-
+        <c:if test="${requestScope.request.totalPrice eq 0}"> <!-- price frozen -->
+          <p style="font-size: large"><strong>Total pris: </strong>${requestScope.partsList.priceInDKK} DKK</p>
+        </c:if>
+        <c:if test="${requestScope.request.totalPrice ne 0}"> <!-- price not frozen -->
+          <p style="font-size: large"><strong>Total pris: </strong>${requestScope.request.totalPrice} DKK</p>
+        </c:if>
         <button class="btn btn-primary submit px-3" style="background-color: #000C66"
                 name="svgtest"
                 value="${requestScope.request.requestid}"

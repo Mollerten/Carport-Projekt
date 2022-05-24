@@ -29,10 +29,10 @@ public class StockListeDTO {
     private void setPrice_per_unit(double price_per_unit) {
         String priceS = String.format(Locale.ENGLISH, "%f", price_per_unit);
         String[] priceArr = priceS.split("\\.");
-        if (priceArr[1].equals("0")) {
+        if (Integer.parseInt(priceArr[1]) == 0) {
             this.price_per_unit = String.format(Locale.ENGLISH, "%s", priceArr[0]);
         } else {
-            this.price_per_unit = String.format(Locale.ENGLISH, "%s.%s", priceArr[0], priceArr[1]);
+            this.price_per_unit = String.format(Locale.ENGLISH, "%s.%s", priceArr[0], priceArr[1].replaceAll("0", ""));
         }
     }
 
