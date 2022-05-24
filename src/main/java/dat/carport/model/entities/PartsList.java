@@ -2,6 +2,7 @@ package dat.carport.model.entities;
 
 import dat.carport.dtos.Material;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class PartsList {
@@ -24,6 +25,8 @@ public class PartsList {
         for (Material mat : materials) {
             priceInDKK += mat.getPrice() * mat.getAmount();
         }
+        DecimalFormat df = new DecimalFormat("#.##");
+        priceInDKK = Double.parseDouble(df.format(priceInDKK));
     }
 
     public int getRafterCount()
