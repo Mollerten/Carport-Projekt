@@ -35,7 +35,12 @@
             <br>
             <br>
 
-            <form action="${pageContext.request.contextPath}/fc/OpretRequest?command=opretrequest" method="post">
+
+
+
+            <form action="${pageContext.request.contextPath}/fc/opretrequest?command=opretrequest" method="post">
+                <input type="hidden" name="command" value="opretrequest"/>
+
 
                 <div class="options">
                 <label for="length_cp">Carport Længde:</label>
@@ -113,11 +118,13 @@
                 </select>
                 </div>
 
-                <input type="hidden" value="8" name="customer_id"/><br/>
+                <br/>
 
                 <br>
 
-                <input type="button" value="Opret Request"/>
+                <input type="hidden" name="customer_id" value="${sessionScope.user.id}"/>
+
+                <input type="submit" value="Opret Request"/>
 
             </form>
 
