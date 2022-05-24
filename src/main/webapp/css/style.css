@@ -23,3 +23,15 @@ h1 {
 }
 
 h2 { font-size: 3rem; }
+
+#test{
+    display: block;
+    text-align: center;
+    text-decoration: 0;
+    background: #000C66;
+    color: #fff;
+    padding: 12px 24px;
+    display: inline-block;
+    border-radius: 25px;
+    font-size: 14px;}
+
