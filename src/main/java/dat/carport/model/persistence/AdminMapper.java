@@ -1,8 +1,8 @@
 package dat.carport.model.persistence;
 import dat.carport.model.entities.*;
 import dat.carport.model.exceptions.DatabaseException;
-import dtos.RequestListeDTO;
-import dtos.StockListeDTO;
+import dat.carport.dtos.RequestListeDTO;
+import dat.carport.dtos.StockListeDTO;
 
 import java.sql.*;
 import java.util.ArrayList;

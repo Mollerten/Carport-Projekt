@@ -8,7 +8,7 @@ import dat.carport.model.persistence.ConnectionPool;
 import dat.carport.model.services.AdminFacade;
 import dat.carport.model.services.CalcFacade;
 import dat.carport.model.services.SVG;
-import dtos.Material;
+import dat.carport.dtos.Material;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

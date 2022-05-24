@@ -1,12 +1,9 @@
-package dtos;
+package dat.carport.dtos;
 
 import dat.carport.model.config.ApplicationStart;
 import dat.carport.model.exceptions.DatabaseException;
-import dat.carport.model.persistence.AdminMapper;
 import dat.carport.model.services.AdminFacade;
-import dat.carport.model.services.UserFacade;
 
-import java.io.Serializable;
 import java.util.Objects;
 
 public class Material {

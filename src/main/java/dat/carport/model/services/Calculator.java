@@ -3,7 +3,7 @@ import dat.carport.model.config.ApplicationStart;
 import dat.carport.model.entities.PartsList;
 import dat.carport.model.entities.Request;
 import dat.carport.model.exceptions.DatabaseException;
-import dtos.Material;
+import dat.carport.dtos.Material;
 
 
 import java.util.HashMap;

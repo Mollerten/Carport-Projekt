@@ -1,16 +1,12 @@
 package dat.carport.control;
 
 import dat.carport.model.config.ApplicationStart;
-import dat.carport.model.entities.Stock;
 import dat.carport.model.exceptions.DatabaseException;
 import dat.carport.model.persistence.AdminMapper;
 import dat.carport.model.persistence.ConnectionPool;
-import dtos.StockListeDTO;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 

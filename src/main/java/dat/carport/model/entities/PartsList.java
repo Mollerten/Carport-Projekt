@@ -1,8 +1,7 @@
 package dat.carport.model.entities;
 
-import dtos.Material;
+import dat.carport.dtos.Material;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
 public class PartsList {

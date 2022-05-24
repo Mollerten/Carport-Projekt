@@ -9,7 +9,6 @@ import dat.carport.model.exceptions.DatabaseException;
 import dat.carport.model.persistence.ConnectionPool;
 import dat.carport.model.services.AdminFacade;
 import dat.carport.model.services.CalcFacade;
-import dtos.Material;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

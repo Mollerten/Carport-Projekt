@@ -5,8 +5,8 @@ import dat.carport.model.entities.*;
 import dat.carport.model.exceptions.DatabaseException;
 import dat.carport.model.persistence.AdminMapper;
 import dat.carport.model.persistence.ConnectionPool;
-import dtos.RequestListeDTO;
-import dtos.StockListeDTO;
+import dat.carport.dtos.RequestListeDTO;
+import dat.carport.dtos.StockListeDTO;
 
 import java.util.List;
 

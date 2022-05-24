@@ -1,4 +1,4 @@
-package dtos;
+package dat.carport.dtos;
 
 import java.util.Locale;
 import java.util.Objects;
