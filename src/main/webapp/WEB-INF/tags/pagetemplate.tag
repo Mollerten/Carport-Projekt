@@ -46,13 +46,11 @@
 
                     <c:if test="${sessionScope.user != null && sessionScope.user.role eq \"user\"}">
                         <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/brugerside?command=brugerside"><strong>Brugerside</strong></a>
-                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/profile.jsp"><strong>Profile</strong></a>
                         <i style=" position:relative; top:10px; color:white;" class="fa-solid fa-user"></i>
                     </c:if>
 
                     <c:if test="${sessionScope.user != null && sessionScope.user.role eq \"admin\"}">
                         <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/brugerside?command=brugerside"><strong>Adminside</strong></a>
-                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/profile.jsp"><strong>Profile</strong></a>
                         <i style=" position:relative; top:10px; color:white;" class="fa-solid fa-user-gear"></i>
                     </c:if>
 

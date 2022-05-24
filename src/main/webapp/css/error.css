@@ -9,9 +9,19 @@ body{
     font-size: 30px;
     margin: 0;
     font-weight: 900;
-
 }
+
+
 #knap{
+    text-decoration: 0;
+    background: #000C66;
+    color: #fff;
+    padding: 12px 24px;
+    display: inline-block;
+    border-radius: 25px;
+    font-size: 14px;
+}
+#knap2{
     text-decoration: 0;
     background: #000C66;
     color: #fff;

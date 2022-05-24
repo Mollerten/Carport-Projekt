@@ -76,6 +76,7 @@ body{
     margin-bottom: 25px;
 }
 
+/*her sætter vi by og postnummer vedsiden af hinanden*/
 .form_wrap.fullname{
     display: flex;
     width: 50%;
@@ -86,6 +87,7 @@ body{
     display: block;
     margin-bottom: 5px;
 }
+
 
 .form_item input[type="text"],[type="password"],[type="email"],[type="number"],
 

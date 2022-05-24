@@ -22,16 +22,18 @@
     <body>
     <div class="container">
 
-        <h1>Denne side er ikke tilgængelig</h1>
+        <h1 style="color: black">Denne side er ikke tilgængelig</h1>
 
         <c:if test="${pageContext.errorData.statusCode == 404 }">
-            <h2>Fejlkode:</h2> <h2>${pageContext.errorData.statusCode}</h2>
+            <h2 style="color: black">Fejlkode: ${pageContext.errorData.statusCode}</h2>
             <p>Fejl! en fejl er sket i serveren</p>
+
         </c:if>
 
         <c:if test="${pageContext.errorData.statusCode == 500 }">
+
             <p><b>Fejlkode:</b> ${pageContext.errorData.statusCode}</p>
-            <p>Fejl! en fejl er sket i serveren</p>
+            <p>Fejlkode 500</p>
         </c:if>
 
 
@@ -44,8 +46,8 @@
         </c:if>
 
 
-        <p>Gå tilbage til <a id="knap" href="index.jsp">forsiden</a>
-            eller prøv at <a id="knap" href="login.jsp">logge ind</a> igen.</p>
+        <p>Gå tilbage til <a id="knap" href="${pageContext.request.contextPath}/index.jsp">forsiden</a>
+            eller prøv at <a id="knap2" href="${pageContext.request.contextPath}/login.jsp">logge ind</a> igen.</p>
             </div>
     </body>
 

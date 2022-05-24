@@ -46,7 +46,7 @@
             <br>
             <b>Email:  ${sessionScope.user.email}</b>
             <br>
-            <b>Du er logget ind med rollen:  "${sessionScope.user.role}".</b>
+
             <br>
             <br>
             <br>
@@ -61,7 +61,6 @@
 
             <link rel="stylesheet" href="scss/style.scss">
 
-            <body style="background-attachment: fixed; background-size: cover; background-repeat: no-repeat; background-image: url(${pageContext.request.contextPath}/images/adminpaa.jpg)";>
 
             <h1>Velkommen tilbage Admin</h1>
 
@@ -76,6 +75,12 @@
                 <input type="hidden" name="command" value="requestside"/>
                 <input type="submit" style="background-color: #000C66" class="btn btn-primary submit px-3"  value="Se Requests"/>
             </form>
+
+
+            <br>
+            <br>
+            <b>Opdater dine oplysninger</b> <a id="knap" href="${pageContext.request.contextPath}/profile.jsp">Opdater oplysninger</a>
+
             <br>
             </body>
 
