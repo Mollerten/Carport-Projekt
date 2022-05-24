@@ -1,51 +1,11 @@
-*{
-    margin: 0;
-    box-sizing: border-box;
+.options {
+    border: 5px solid #e5e5e5;
+    padding: 10px;
 }
 
-body{
-    font-family: "Roboto Light", sans-serif;
-    background: #000C66;
-}
-
-h2{
-    margin: 17px;
-}
-
-.container{
-    margin-top: 100px;
-    padding: 32px;
-}
-.select-box{
-    display: flex;
-    width: 400px;
-}
-
-.select-box .options-container{
-    background: #000C66;
-    color: #000C66;
-    max-height: 0;
+select {
+    font-size: 14px;
+    border: none;
     width: 100%;
-    opacity: 0;
-    transition: all 0.4s;
-    border-radius: 8px;
-    overflow: hidden;
-}
-
-.select-box.option,
-.selected{
-    padding: 12px 24px;
-    cursor: pointer;
-}
-
-select-box .option:hover{
-    background: #414b57;
-}
-
-.select-box label{
-    cursor: pointer;
-}
-
-.select-box .option .radio{
-    display: none;
+    background: white;
 }
