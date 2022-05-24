@@ -27,8 +27,10 @@ class Calculator {
 
         Map<Integer, Integer> beamNumbers = calcBeams(length, width);
         int beamLength = beamNumbers.entrySet().stream().findFirst().get().getKey();
+        int beamAmount = beamNumbers.get(beamLength);
+        while (beamLength % 60 != 0) beamLength += 15;
         Material beams = new Material("45x195 mm. spærtræ ubh.",
-                beamNumbers.get(beamLength),
+                beamAmount,
                 beamLength,
                 "stk",
                 "Remme i sider, sadles ned i stolper");
@@ -36,13 +38,16 @@ class Calculator {
 
         Map<Integer, Integer> rafterNumbers = calcRafters(length, width);
         int rafterLength = rafterNumbers.entrySet().stream().findFirst().get().getKey();
+        int rafterAmount = rafterNumbers.get(rafterLength);
+        partsList.setRafterCount(rafterNumbers.get(rafterLength));
+        int tempRafterLength = rafterLength;
+        while (tempRafterLength % 60 != 0) tempRafterLength += 15;
         Material rafters = new Material("45x195 mm. spærtræ ubh.",
-                rafterNumbers.get(rafterLength),
-                rafterLength,
+                rafterAmount,
+                tempRafterLength,
                 "stk",
                 "Spær, monteres på rem");
         partsList.addMaterial(rafters);
-        partsList.setRafterCount(rafterNumbers.get(rafterLength));
 
         Map<Integer, Integer> roofSheetNumbers = calcRoofingSheets(length, width);
         int roofSheetSize = roofSheetNumbers.entrySet().stream().findFirst().get().getKey();
@@ -64,12 +69,12 @@ class Calculator {
         Map<Integer, Integer> fittingCount = calcFittings(rafterNumbers.get(rafterLength));
         int fittingCountLeft = fittingCount.entrySet().stream().findFirst().get().getKey();
         int fittingCountRight = fittingCount.get(fittingCountLeft);
-        Material fittingsRight = new Material("universal 190 mm højre",
+        Material fittingsRight = new Material("universal 190 mm.",
                 fittingCountRight,
                 0,
                 "stk",
                 "Til montering af spær på rem");
-        Material fittingsLeft = new Material("universal 190 mm venstre",
+        Material fittingsLeft = new Material("universal 190 mm.",
                 fittingCountLeft,
                 0,
                 "stk",
@@ -103,8 +108,20 @@ class Calculator {
 
         Map<Integer, Integer> underSternBoardFrontBack = calcUnderSternBoardFrontAndBack(width);
         int underSternBoardFrontBackLength = underSternBoardFrontBack.entrySet().stream().findFirst().get().getKey();
+        int underSternBoardFrontBackAmount = underSternBoardFrontBack.get(underSternBoardFrontBackLength);
+
+        while (underSternBoardFrontBackLength % 60 != 0)
+        {
+            if (underSternBoardFrontBackLength > 600)
+            {
+                underSternBoardFrontBackLength /= 2;
+                underSternBoardFrontBackAmount *= 2;
+            }
+            underSternBoardFrontBackLength += 15;
+        }
+
         Material underSternBoardsFrontBack = new Material("25x200 mm. trykimp. Brædt",
-                underSternBoardFrontBack.get(underSternBoardFrontBackLength),
+                underSternBoardFrontBackAmount,
                 underSternBoardFrontBackLength,
                 "stk",
                 "understernbrædder til for & bag ende");
@@ -112,8 +129,19 @@ class Calculator {
 
         Map<Integer, Integer> overSternBoardFront = calcOverSternBoardFront(width);
         int overSternBoardFrontLength = overSternBoardFront.entrySet().stream().findFirst().get().getKey();
+        int overSternBoardFrontAmount = overSternBoardFront.get(overSternBoardFrontLength);
+        while (overSternBoardFrontLength % 60 != 0)
+        {
+            if (overSternBoardFrontLength > 600)
+            {
+                overSternBoardFrontLength /= 2;
+                overSternBoardFrontAmount *= 2;
+            }
+            overSternBoardFrontLength += 15;
+        }
+
         Material overSternBoardsFront = new Material("25x125mm. trykimp. Brædt",
-                overSternBoardFront.get(overSternBoardFrontLength),
+                overSternBoardFrontAmount,
                 overSternBoardFrontLength,
                 "stk",
                 "oversternbrædder til forenden");
@@ -121,8 +149,18 @@ class Calculator {
 
         Map<Integer, Integer> underSternBoardSides = calcUnderSternBoardSides(length);
         int underSternBoardSidesLength = underSternBoardSides.entrySet().stream().findFirst().get().getKey();
+        int underSternBoardSidesAmount = underSternBoardSides.get(underSternBoardSidesLength);
+        while (underSternBoardSidesLength % 60 != 0)
+        {
+            if (underSternBoardSidesLength > 600)
+            {
+                underSternBoardSidesAmount *= 2;
+                underSternBoardSidesLength /= 2;
+            }
+            underSternBoardSidesLength += 15;
+        }
         Material underSternBoardsSides = new Material("25x200 mm. trykimp. Brædt",
-                underSternBoardSides.get(underSternBoardSidesLength),
+                underSternBoardSidesAmount,
                 underSternBoardSidesLength,
                 "stk",
                 "understernbrædder til siderne");
@@ -130,8 +168,18 @@ class Calculator {
 
         Map<Integer, Integer> overSternBoardSides = calcOverSternBoardSides(length);
         int overSternBoardSidesLength = overSternBoardSides.entrySet().stream().findFirst().get().getKey();
+        int overSternBoardSidesAmount = overSternBoardSides.get(overSternBoardSidesLength);
+        while (overSternBoardSidesLength % 60 != 0)
+        {
+            if (overSternBoardSidesLength > 600)
+            {
+                overSternBoardSidesLength /= 2;
+                overSternBoardSidesAmount *= 2;
+            }
+            overSternBoardSidesLength += 15;
+        }
         Material overSternBoardsSides = new Material("25x125mm. trykimp. Brædt",
-                overSternBoardSides.get(overSternBoardSidesLength),
+                overSternBoardSidesAmount,
                 overSternBoardSidesLength,
                 "stk",
                 "oversternbrædder til siderne");
@@ -139,8 +187,23 @@ class Calculator {
 
         Map<Integer, Integer> waterBoardFront = calcWaterBoardFront(width);
         int waterBoardFrontLength = waterBoardFront.entrySet().stream().findFirst().get().getKey();
+        int waterBoardFrontAmount = waterBoardFront.get(waterBoardFrontLength);
+
+        while (waterBoardFrontLength % 60 != 0)
+        {
+            if (waterBoardFrontLength > 420)
+            {
+                waterBoardFrontLength /= 2;
+                waterBoardFrontAmount *= 2;
+            }
+            waterBoardFrontLength += 15;
+        }
+        if (waterBoardFrontLength > 420){
+            waterBoardFrontLength /= 2;
+            waterBoardFrontAmount *= 2;
+        }
         Material waterBoardsFront = new Material("19x100 mm. trykimp. Brædt",
-                waterBoardFront.get(waterBoardFrontLength),
+                waterBoardFrontAmount,
                 waterBoardFrontLength,
                 "stk",
                 "vandbrædt på stern i forende");
@@ -148,8 +211,19 @@ class Calculator {
 
         Map<Integer, Integer> waterBoardSides = calcWaterBoardSides(length);
         int waterBoardSidesLength = waterBoardSides.entrySet().stream().findFirst().get().getKey();
+        int waterBoardSidesAmount = waterBoardSides.get(waterBoardSidesLength);
+        while (waterBoardSidesLength % 60 != 0)
+        {
+            if (waterBoardSidesLength > 420)
+            {
+                waterBoardSidesLength /= 2;
+                waterBoardSidesAmount *= 2;
+            }
+            waterBoardSidesLength += 15;
+        }
+
         Material waterBoardsSides = new Material("19x100 mm. trykimp. Brædt",
-                waterBoardSides.get(waterBoardSidesLength),
+                waterBoardSidesAmount,
                 waterBoardSidesLength,
                 "stk",
                 "vandbrædt på stern i sider");
@@ -158,7 +232,7 @@ class Calculator {
         int perforatedTapeCount = calcPerforatedTape();
         Material perforatedTape = new Material("hulbånd 1x20 mm. 10 mtr.",
                 perforatedTapeCount,
-                0,
+                10,
                 "Rulle",
                 "Til vindkryds på spær");
         partsList.addMaterial(perforatedTape);
@@ -257,10 +331,10 @@ class Calculator {
         segment = (int) Math.ceil(carportLength/60)+1;
 
         if (segment<=10){
-            roofingSheetSize = segment-3;
+            roofingSheetSize = segment * 60;
         }
         if (segment > 10){
-           roofingSheetSize = (int) Math.ceil((segment/2)-3);
+           roofingSheetSize = (int) Math.ceil((segment/2)) * 60;
            roofingSheetAmountLength = 2;
         }
 
@@ -434,17 +508,6 @@ class Calculator {
     {
         return 1;
     }
-
-    /*
-    //TODO: lav entity: material med attributer: int stockID, String beskrivelse, int antal, String længde, String enhed, String hjælpetekst
-    //TODO: lav calcMaterial der udregner hvilke materialer der er behov for, og hvor meget
-    //TODO: lav calcPrice der tager entiteten material og udregner pris ift prisen i stock
-    //TODO: lav entitet: stykliste med attributer: material, int requestID og int pris (udregnet fra calcPrice)
-
-
-
-
-     */
 
 
 
