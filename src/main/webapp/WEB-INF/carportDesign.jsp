@@ -57,26 +57,26 @@
                 <label for="length_cp"><b>Carport Længde:</b></label>
                 <select name="length_cp" id="length_cp" required>
                     <option value="" disabled selected hidden>Vælg</option>
-                    <option value="210">210 CM</option>
-                    <option value="240">240 CM</option>
-                    <option value="270">270 CM</option>
-                    <option value="300">300 CM</option>
-                    <option value="330">330 CM</option>
-                    <option value="360">360 CM</option>
-                    <option value="390">390 CM</option>
-                    <option value="420">420 CM</option>
-                    <option value="450">450 CM</option>
-                    <option value="480">480 CM</option>
-                    <option value="510">510 CM</option>
-                    <option value="540">540 CM</option>
-                    <option value="570">570 CM</option>
-                    <option value="600">600 CM</option>
-                    <option value="630">630 CM</option>
-                    <option value="660">660 CM</option>
-                    <option value="690">690 CM</option>
-                    <option value="720">720 CM</option>
-                    <option value="750">750 CM</option>
-                    <option value="780">780 CM</option>
+                    <option value="210">210 cm</option>
+                    <option value="240">240 cm</option>
+                    <option value="270">270 cm</option>
+                    <option value="300">300 cm</option>
+                    <option value="330">330 cm</option>
+                    <option value="360">360 cm</option>
+                    <option value="390">390 cm</option>
+                    <option value="420">420 cm</option>
+                    <option value="450">450 cm</option>
+                    <option value="480">480 cm</option>
+                    <option value="510">510 cm</option>
+                    <option value="540">540 cm</option>
+                    <option value="570">570 cm</option>
+                    <option value="600">600 cm</option>
+                    <option value="630">630 cm</option>
+                    <option value="660">660 cm</option>
+                    <option value="690">690 cm</option>
+                    <option value="720">720 cm</option>
+                    <option value="750">750 cm</option>
+                    <option value="780">780 cm</option>
                 </select>
                 </div>
 
@@ -86,20 +86,20 @@
                 <label for="width_cp"><b>Carport Bredde:</b></label>
                 <select name="width_cp" id="width_cp" required>
                     <option value="" disabled selected hidden>Vælg</option>
-                    <option value="210">210 CM</option>
-                    <option value="240">240 CM</option>
-                    <option value="270">270 CM</option>
-                    <option value="300">300 CM</option>
-                    <option value="330">330 CM</option>
-                    <option value="360">360 CM</option>
-                    <option value="390">390 CM</option>
-                    <option value="420">420 CM</option>
-                    <option value="450">450 CM</option>
-                    <option value="480">480 CM</option>
-                    <option value="510">510 CM</option>
-                    <option value="540">540 CM</option>
-                    <option value="570">570 CM</option>
-                    <option value="600">600 CM</option>
+                    <option value="210">210 cm</option>
+                    <option value="240">240 cm</option>
+                    <option value="270">270 cm</option>
+                    <option value="300">300 cm</option>
+                    <option value="330">330 cm</option>
+                    <option value="360">360 cm</option>
+                    <option value="390">390 cm</option>
+                    <option value="420">420 cm</option>
+                    <option value="450">450 cm</option>
+                    <option value="480">480 cm</option>
+                    <option value="510">510 cm</option>
+                    <option value="540">540 cm</option>
+                    <option value="570">570 cm</option>
+                    <option value="600">600 cm</option>
                 </select>
                 </div>
 
@@ -109,7 +109,7 @@
                 <label for="length_rr"><b>Skur Længde:</b></label>
                 <select name="length_rr" id="length_rr" required>
                     <option value="" disabled selected hidden>Vælg</option>
-                    <option value="0">0 CM</option>
+                    <option value="0">Ikke implementeret</option>
 
                 </select>
                 </div>
@@ -120,7 +120,7 @@
                 <label for="width_rr"><b>Skur Bredde:</b></label>
                 <select name="width_rr" id="width_rr" required>
                     <option value="" disabled selected hidden>Vælg</option>
-                    <option value="0">0</option>
+                    <option value="0">Ikke implementeret</option>
 
                 </select>
                 </div>
