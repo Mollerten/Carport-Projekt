@@ -3,7 +3,9 @@ package dat.carport.model.entities;
 import dat.carport.dtos.Material;
 
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class PartsList {
     ArrayList<Material> materials = new ArrayList<>();
@@ -25,7 +27,8 @@ public class PartsList {
         for (Material mat : materials) {
             priceInDKK += mat.getPrice();
         }
-        DecimalFormat df = new DecimalFormat("#.##");
+        DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.US);
+        DecimalFormat df = new DecimalFormat("#.##", symbols);
         priceInDKK = Double.parseDouble(df.format(priceInDKK));
     }
 

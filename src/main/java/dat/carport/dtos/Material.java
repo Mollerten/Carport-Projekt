@@ -5,6 +5,8 @@ import dat.carport.model.exceptions.DatabaseException;
 import dat.carport.model.services.AdminFacade;
 
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.Locale;
 import java.util.Objects;
 
 public class Material {
@@ -84,7 +86,8 @@ public class Material {
 
     public void setPrice(double price) {
         this.price = price * this.amount;
-        DecimalFormat df = new DecimalFormat("#.##");
+        DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.US);
+        DecimalFormat df = new DecimalFormat("#.##", symbols);
         this.price = Double.parseDouble(df.format(this.price));
     }
 

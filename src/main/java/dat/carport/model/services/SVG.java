@@ -1,5 +1,7 @@
 package dat.carport.model.services;
 
+import java.util.Locale;
+
 public class SVG {
 
     StringBuilder svg = new StringBuilder();
@@ -45,18 +47,18 @@ public class SVG {
         this.viewBox = viewBox;
         this.width = width;
         this.height = height;
-        svg.append(String.format(HEADER_TEMPLATE, height, width, viewBox, x, y));
+        svg.append(String.format(Locale.ENGLISH, HEADER_TEMPLATE, height, width, viewBox, x, y));
         if (arrows) {
             svg.append(ARROWDEFS);
         }
     }
 
     public void addRect(float x, float y, float width, float height) {
-        svg.append(String.format(RECT_TEMPLATE, x, y, height, width));
+        svg.append(String.format(Locale.ENGLISH, RECT_TEMPLATE, x, y, height, width));
     }
 
     public void addLine(float x1, float y1, float x2, float y2, boolean dashedLines) {
-        svg.append(String.format(LINE_TEMPLATE, x1, y1, x2, y2));
+        svg.append(String.format(Locale.ENGLISH, LINE_TEMPLATE, x1, y1, x2, y2));
         svg.append(dashedLines ? " stroke-dasharray=\"8\" />" : " />");
     }
 
@@ -65,11 +67,11 @@ public class SVG {
     }
 
     public void addArrow(float x1, float y1, float x2, float y2) {
-        svg.append(String.format(ARROW_TEMPLATE, x1, y1, x2, y2));
+        svg.append(String.format(Locale.ENGLISH, ARROW_TEMPLATE, x1, y1, x2, y2));
     }
 
     public void addText(float translateX, float translateY, float rotate, String text) {
-        svg.append(String.format(TEXT_TEMPLATE, translateX, translateY, rotate, text));
+        svg.append(String.format(Locale.ENGLISH, TEXT_TEMPLATE, translateX, translateY, rotate, text));
     }
 
     @Override
