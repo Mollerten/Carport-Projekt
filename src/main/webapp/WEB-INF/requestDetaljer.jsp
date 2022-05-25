@@ -106,9 +106,9 @@
           <thead>
           <tr>
             <th>Stykliste</th>
-            <th>Mængde</th>
             <th>Varebeskrivelse</th>
             <th>Længde</th>
+            <th>Mængde</th>
             <th>Enhed</th>
             <th>Hjælpetekst</th>
             <th>Pris</th>
@@ -119,9 +119,9 @@
           <c:forEach var="material" items="${requestScope.partsList.materials}">
             <tr>
               <td></td>
-              <td>${material.amount}</td>
               <td>${material.description}</td>
               <td>${material.length}</td>
+              <td>${material.amount}</td>
               <td>${material.unit}</td>
               <td>${material.helpText}</td>
               <td>${material.price}</td>
@@ -130,22 +130,24 @@
           </c:forEach>
           </tbody>
         </table>
-        <c:if test="${requestScope.request.totalPrice eq 0}"> <!-- price frozen -->
+
+        <c:if test="${requestScope.request.totalPrice eq 0}"> <%-- price not frozen, show newly calculated price --%>
           <p style="font-size: large"><strong>Total pris: </strong>${requestScope.partsList.priceInDKK} DKK</p>
         </c:if>
-        <c:if test="${requestScope.request.totalPrice ne 0}"> <!-- price not frozen -->
+        <c:if test="${requestScope.request.totalPrice ne 0}"> <%-- price frozen, show price as it were when the request was accepted --%>
           <p style="font-size: large"><strong>Total pris: </strong>${requestScope.request.totalPrice} DKK</p>
         </c:if>
+
         <button class="btn btn-primary submit px-3" style="background-color: #000C66"
                 name="svgtest"
                 value="${requestScope.request.requestid}"
                 formtarget="_blank"
                 formaction="${pageContext.request.contextPath}/fc/svgtest?command=svgtest">Se model</button>
-
-        <button class="btn btn-primary submit px-3" style="background-color: #26C000"
-                name="requestid" value="${requestScope.request.requestid}"
-                formaction="${pageContext.request.contextPath}/fc/tagAnsvar?command=tagAnsvar">Godkend forespørgsel</button>
-
+    <c:if test="${requestScope.request.totalPrice eq 0}">
+      <button class="btn btn-primary submit px-3" style="background-color: #26C000"
+              name="requestid" value="${requestScope.request.requestid}"
+              formaction="${pageContext.request.contextPath}/fc/tagAnsvar?command=tagAnsvar">Godkend forespørgsel</button>
+    </c:if>
         <button class="btn btn-primary submit px-3" style="background-color: #c82333"
                 name="fjernrequest" value="${requestScope.request.requestid}"
         formaction="${pageContext.request.contextPath}/fc/fjernrequest?command=fjernrequest">Slet forespørgsel</button>

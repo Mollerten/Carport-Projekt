@@ -4,6 +4,7 @@ import dat.carport.model.config.ApplicationStart;
 import dat.carport.model.exceptions.DatabaseException;
 import dat.carport.model.services.AdminFacade;
 
+import java.text.DecimalFormat;
 import java.util.Objects;
 
 public class Material {
@@ -82,7 +83,9 @@ public class Material {
     }
 
     public void setPrice(double price) {
-        this.price = price;
+        this.price = price * this.amount;
+        DecimalFormat df = new DecimalFormat("#.##");
+        this.price = Double.parseDouble(df.format(this.price));
     }
 
     public double getPrice() {
