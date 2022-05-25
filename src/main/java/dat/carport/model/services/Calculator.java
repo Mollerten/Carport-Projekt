@@ -77,11 +77,13 @@ class Calculator {
                 0,
                 "stk",
                 "Til montering af spær på rem");
+        fittingsRight.setDescription("universal 190 mm. højre");
         Material fittingsLeft = new Material("universal 190 mm.",
                 fittingCountLeft,
                 0,
                 "stk",
                 "Til montering af spær på rem");
+        fittingsLeft.setDescription("universal 190 mm. venstre");
         partsList.addMaterial(fittingsRight);
         partsList.addMaterial(fittingsLeft);
 
