@@ -40,7 +40,7 @@
 <%--        Hvis brugeren er logget ind skal brugeren ikke sendes til opret bruger--%>
         <c:if test="${sessionScope.user != null && sessionScope.user.role eq \"user\"}">
 
-            <a style="display: block; width: 200px; margin-left: auto; margin-right: auto; text-align: center; text-decoration: 0;background: #000C66;
+            <a style="display: block; width: 200px; margin-left: auto; margin-right: auto; text-align: center; text-decoration: 0;background: navy;
             color: #FFFFFF;padding: 20px 24px;border-radius: 19px;
              font-size: 18px;" href="${pageContext.request.contextPath}/fc/designside?command=designside">Send forespørgsel</a>
         </c:if>

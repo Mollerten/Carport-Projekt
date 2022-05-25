@@ -27,11 +27,22 @@
                 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/requestCSS.css"/>
             </head>
 
+            <style>
+                body{
+                    margin: 0;
+                    padding: 0;
+                    min-height: 100vh;
+                    background-image: linear-gradient(skyblue,navy);
+                    z-index: -1;
+                }
+
+            </style>
+
             <body>
 
-            <h1 style="color: #000C66; text-align: left">Carport Designer:</h1>
+            <h1 style="color: whitesmoke;font-size: 30px; margin: 0; font-weight: 900; text-align: left">Design din carport</h1>
 
-            <br>
+
             <br>
             <br>
 
@@ -43,7 +54,7 @@
 
 
                 <div class="options">
-                <label for="length_cp">Carport Længde:</label>
+                <label for="length_cp"><b>Carport Længde:</b></label>
                 <select name="length_cp" id="length_cp" required>
                     <option value="" disabled selected hidden>Vælg</option>
                     <option value="210">210 CM</option>
@@ -72,7 +83,7 @@
                 <br>
 
                 <div class="options">
-                <label for="width_cp">Carport Bredde:</label>
+                <label for="width_cp"><b>Carport Bredde:</b></label>
                 <select name="width_cp" id="width_cp" required>
                     <option value="" disabled selected hidden>Vælg</option>
                     <option value="210">210 CM</option>
@@ -95,7 +106,7 @@
                 <br>
 
                 <div class="options">
-                <label for="length_rr">	Skur Længde:</label>
+                <label for="length_rr"><b>Skur Længde:</b></label>
                 <select name="length_rr" id="length_rr" required>
                     <option value="" disabled selected hidden>Vælg</option>
                     <option value="0">0 CM</option>
@@ -106,7 +117,7 @@
                 <br>
 
                 <div class="options">
-                <label for="width_rr"> 	Skur Bredde:</label>
+                <label for="width_rr"><b>Skur Bredde:</b></label>
                 <select name="width_rr" id="width_rr" required>
                     <option value="" disabled selected hidden>Vælg</option>
                     <option value="0">0</option>
@@ -117,7 +128,7 @@
                 <br>
 
                 <div class="options">
-                <label for="roof_mat"> Tag Materiale:</label>
+                <label for="roof_mat"><b>Tag Materiale:</b></label>
                 <select name="roof_mat" id="roof_mat" required>
                     <option value="" disabled selected hidden>Vælg</option>
                     <option value="not_yet_implemented">Ikke implementeret</option>
@@ -127,7 +138,7 @@
                 <br>
 
                 <div class="options">
-                <label for="wood_cladding_mat"> Træ Beklædning Materiale:</label>
+                <label for="wood_cladding_mat"><b>Træ Beklædning Materiale:</b></label>
                 <select name="wood_cladding_mat" id="wood_cladding_mat" required>
                     <option value="" disabled selected hidden>Vælg</option>
                     <option value="not_yet_implemented">Ikke implementeret</option>
@@ -140,7 +151,9 @@
 
                 <input type="hidden" name="customer_id" value="${sessionScope.user.id}"/>
 
-                <input type="submit" value="Opret Request"/>
+                <input style="display: block; width: 200px; margin-right: auto; text-align: center;background: green;
+                       color: #FFFFFF;padding: 20px 24px;border-radius: 19px;
+                       font-size: 18px;" type="submit" value="Send forespørgsel"/>
 
             </form>
 
