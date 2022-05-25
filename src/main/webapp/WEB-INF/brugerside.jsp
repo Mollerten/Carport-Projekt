@@ -32,21 +32,21 @@
 
             <body>
             <br>
-            <b style="font-size: 20px">Velkommen tilbage ${sessionScope.user.username}</b>
+            <b style="color: white; font-size: 20px">Velkommen tilbage ${sessionScope.user.username}</b>
             <br>
             <br>
-            <b>Email:  ${sessionScope.user.email}</b>
+            <b style="color: #FFFFFF">Email:  ${sessionScope.user.email}</b>
             <br>
             <br>
-            <b>Telefonnummer:  ${sessionScope.user.tlfnr}</b>
+            <b style="color: #FFFFFF">Telefonnummer:  ${sessionScope.user.tlfnr}</b>
             <br>
             <br>
-            <b>Adresse:  ${sessionScope.user.address} ${sessionScope.user.city}</b>
+            <b style="color: #FFFFFF">Adresse:  ${sessionScope.user.address} ${sessionScope.user.city}</b>
             <br>
             <br>
             <br>
 
-            <p>Opdater dine oplysninger her:</p>
+            <p style="color: #FFFFFF">Opdater dine oplysninger her:</p>
             <form action="${pageContext.request.contextPath}/fc/profil" method="post">
                 <input type="hidden" name="command" value="profil"/>
                 <input type="submit" id="knap2" value="Opdater brugeroplysninger"/>
