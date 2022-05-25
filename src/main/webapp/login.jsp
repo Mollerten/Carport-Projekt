@@ -6,8 +6,8 @@
 
 
 <t:pagetemplate>
-    <jsp:attribute name="header">
-
+    <jsp:attribute name="title">
+        Login
     </jsp:attribute>
 
     <jsp:attribute name="footer">
@@ -15,19 +15,25 @@
     </jsp:attribute>
 
     <jsp:body>
-        <link rel="stylesheet" href="scss/style.scss">
 
-        <body style="background-image: url(images/bg3.jpeg);">
+        <head>
+            <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style2.css">
+        </head>
+
+        <br>
+        <br>
+        <br>
+
+        <body>
+
+        <h1>Login</h1>
+
         <section class="ftco-section">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-md-6 text-center mb-5">
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <h2 class="heading-section"><strong>Login</strong></h2>
+
+
 
                     </div>
                 </div>
@@ -57,7 +63,7 @@
 
                             <form action="createUser.jsp">
                             <div class="form-group">
-                                <button type="submit" style="background-color: darkgreen" class="form-control btn btn-primary submit px-3">Opret ny konto</button>
+                                <button type="submit" style="background-color: #45c007" class="form-control btn btn-primary submit px-3">Opret ny konto</button>
                             </div>
                             </form>
 

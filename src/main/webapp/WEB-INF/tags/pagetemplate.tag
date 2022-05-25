@@ -3,11 +3,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <%@attribute name="header" fragment="true" %>
+<%@attribute name="title" fragment="true" %>
 <%@attribute name="footer" fragment="true" %>
 
 <html>
 <head>
-    <title>My Page Title</title>
     <link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/images/favicon.ico">
 
 </head>
@@ -18,7 +18,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title><jsp:invoke fragment="header"/></title>
+    <title><jsp:invoke fragment="title"/></title>
     <link rel="stylesheet" href="<%=request.getContextPath()%>/css/style.css">
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -27,6 +27,9 @@
     <%--    Til inkøbskurv--%>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+
+
+    <script src="https://kit.fontawesome.com/cb408aef43.js" crossorigin="anonymous"></script>
 
 
 
@@ -46,28 +49,27 @@
                 <div class="navbar-nav">
                     <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/about?command=about"><strong>Om os</strong></a>
 
-                    <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/designside?command=designside"><strong>Carport Design</strong></a>
+
+
 
                     <c:if test="${sessionScope.user != null && sessionScope.user.role eq \"user\"}">
+                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/designside?command=designside"><strong>Carport Design</strong></a>
                         <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/brugerside?command=brugerside"><strong>Brugerside</strong></a>
+                        <i style=" position:relative; top:10px; color:white;" class="fa-solid fa-user"></i>
                     </c:if>
 
 
                     <c:if test="${sessionScope.user != null && sessionScope.user.role eq \"admin\"}">
                         <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/brugerside?command=brugerside"><strong>Adminside</strong></a>
+                        <i style=" position:relative; top:10px; color:white;" class="fa-solid fa-user-gear"></i>
                     </c:if>
 
-
-                    <%--                    Knap til indkøbskurv i navbar--%>
-                    <a class="nav-item nav-link ; fas fa-shopping-basket" href="${pageContext.request.contextPath}/fc"
-                       style="font-size:20px;"></a>
 
                     <c:if test="${sessionScope.user == null }">
                         <a class="nav-item nav-link" href="${pageContext.request.contextPath}/login.jsp"><strong>Log ind</strong></a>
 
                     </c:if>
                     <c:if test="${sessionScope.user != null }">
-                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/profile?command=profil">Profile</a>
                         <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/logout?command=logout"><strong>Log ud</strong></a>
                     </c:if>
 

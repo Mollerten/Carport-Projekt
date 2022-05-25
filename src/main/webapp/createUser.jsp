@@ -5,22 +5,93 @@
 <%@page errorPage="error.jsp" isErrorPage="false" %>
 
 <t:pagetemplate>
-    <jsp:attribute name="header">
-             Create user
+    <jsp:attribute name="title">
+        Opret bruger
     </jsp:attribute>
 
     <jsp:attribute name="footer">
-            Create user
+            Opret bruger
     </jsp:attribute>
 
     <jsp:body>
 
-        <h3>You can create a new user here</h3>
+        <head>
+            <link rel="stylesheet" href="css/style2.css">
+        </head>
+
 
         <form action="fc/createUser" method="post">
             <input type="hidden" name="command" value="createUser"/>
-            <br><br>
 
+            <body>
+            <div class="wrapper">
+
+            <div class="form_container">
+                <form name="form">
+                    <div class="heading">
+                        <h2>Opret Bruger</h2>
+                        <b>Opret venligst en bruger <br> for at sende en forespørgsel</b>
+                    </div>
+                    <div class="form_wrap">
+                        <div class="form_item">
+                            <label for="username">Brugernavn</label>
+                            <input type="text" id="username" name="username" required/>
+                        </div>
+                    </div>
+                    <div class="form_wrap">
+                        <div class="form_item">
+                            <label for="email">Email: </label>
+                            <input type="email" id="email" name="email" required/>
+                        </div>
+                    </div>
+
+                    <div class="form_wrap">
+                        <div class="form_item">
+                            <label for="password">Kodeord: </label>
+                            <input type="password" id="password" name="password" required/>
+                        </div>
+                    </div>
+
+                    <div class="form_wrap ">
+                        <div class="form_item">
+                            <label for="tlfnr">Telefonnummer:</label>
+                            <input type="number" id="tlfnr" name="tlfnr" required>
+                        </div>
+                    </div>
+
+                    <div class="form_wrap">
+                        <div class="form_item">
+                            <label for="address">Adresse: </label>
+                            <input type="text" id="address"  name="address" required/>
+                        </div>
+                    </div>
+
+
+                    <div class="form_wrap fullname">
+                        <div class="form_item">
+                            <label for="city">By: </label>
+                            <input type="text" id="city" name="city" required/>
+                        </div>
+
+                        <div class="form_item">
+                            <label>Postnummer:</label>
+                            <input type="number" id="postalCode" name="postalCode" required>
+                        </div>
+                    </div>
+
+                    <div class="btn">
+                        <input type="submit" value="Opret bruger">
+                    </div>
+                </form>
+            </div>
+        </div>
+        </body>
+
+
+
+<%--        <form action="fc/createUser" method="post">
+            <input type="hidden" name="command" value="createUser"/>
+            <br><br>
             <label for="username">Username: </label>
             <input type="text" id="username" name="username"/>
             <br><br>
@@ -48,7 +119,7 @@
             <br><br>
 
             <input type="submit"  value="Create user"/>
-        </form>
+        </form>--%>
 
     </jsp:body>
 </t:pagetemplate>
