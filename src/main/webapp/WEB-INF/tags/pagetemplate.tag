@@ -6,13 +6,6 @@
 <%@attribute name="title" fragment="true" %>
 <%@attribute name="footer" fragment="true" %>
 
-<html>
-<head>
-    <link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/images/favicon.ico">
-
-</head>
-</html>
-
 <!DOCTYPE html>
 <html lang="da">
 <head>
@@ -31,7 +24,7 @@
 
     <script src="https://kit.fontawesome.com/cb408aef43.js" crossorigin="anonymous"></script>
 
-
+    <link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/images/favicon.ico">
 
 </head>
 <body>
@@ -39,7 +32,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #000C66">
         <div class="container">
             <a class="navbar-brand" href="${pageContext.request.contextPath}/index.jsp">
-                <img src="${pageContext.request.contextPath}/images/foglogo.png" width="125px;" class="img-fluid"/>
+                <img src="${pageContext.request.contextPath}/images/foglogo.png" width="126" class="img-fluid"/>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
                     aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">

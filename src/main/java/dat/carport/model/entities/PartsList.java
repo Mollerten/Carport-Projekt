@@ -23,7 +23,7 @@ public class PartsList {
     public void updatePrice() {
         priceInDKK = 0;
         for (Material mat : materials) {
-            priceInDKK += mat.getPrice() * mat.getAmount();
+            priceInDKK += mat.getPrice();
         }
         DecimalFormat df = new DecimalFormat("#.##");
         priceInDKK = Double.parseDouble(df.format(priceInDKK));
