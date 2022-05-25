@@ -28,7 +28,10 @@ class Calculator {
         Map<Integer, Integer> beamNumbers = calcBeams(length, width);
         int beamLength = beamNumbers.entrySet().stream().findFirst().get().getKey();
         int beamAmount = beamNumbers.get(beamLength);
-        while (beamLength % 60 != 0) beamLength += 15;
+        while (beamLength % 60 != 0)
+        {
+            beamLength += 15;
+        }
         Material beams = new Material("45x195 mm. spærtræ ubh.",
                 beamAmount,
                 beamLength,
