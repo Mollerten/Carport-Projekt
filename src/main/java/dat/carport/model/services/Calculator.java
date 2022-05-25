@@ -77,11 +77,13 @@ class Calculator {
                 0,
                 "stk",
                 "Til montering af spær på rem");
+        fittingsRight.setDescription("universal 190 mm. højre");
         Material fittingsLeft = new Material("universal 190 mm.",
                 fittingCountLeft,
                 0,
                 "stk",
                 "Til montering af spær på rem");
+        fittingsLeft.setDescription("universal 190 mm. venstre");
         partsList.addMaterial(fittingsRight);
         partsList.addMaterial(fittingsLeft);
 
@@ -327,15 +329,15 @@ class Calculator {
         int roofingSheetAmountLength = 1;
         int roofingSheetAmountTotal;
 
-        roofingSheetAmountWidth = (int) Math.ceil(carportWidth/(109-20));
+        roofingSheetAmountWidth = (int) Math.ceil(carportWidth/(109-20f));
 
-        segment = (int) Math.ceil(carportLength/60)+1;
+        segment = (int) Math.ceil(carportLength/60f)+1;
 
         if (segment<=10){
             roofingSheetSize = segment * 60;
         }
         if (segment > 10){
-           roofingSheetSize = (int) Math.ceil((segment/2)) * 60;
+           roofingSheetSize = (int) Math.ceil((segment/2f)) * 60;
            roofingSheetAmountLength = 2;
         }
 
@@ -374,7 +376,7 @@ class Calculator {
 
         screwAmount = fittings * 9;
 
-        screwBoxAmount = (int) Math.ceil(screwAmount/250);
+        screwBoxAmount = (int) Math.ceil(screwAmount/250f);
 
         return screwBoxAmount;
     }

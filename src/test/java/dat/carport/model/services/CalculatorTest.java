@@ -50,6 +50,84 @@ class CalculatorTest {
     @Test
     void calcRoofingSheets() {
         Map<Integer, Integer> test1 = Calculator.calcRoofingSheets(600, 540);
-        Map<Integer, Integer> expe1 = Collections.singletonMap()
+        Map<Integer, Integer> expe1 = Collections.singletonMap(360, 14);
+        assertEquals(expe1, test1);
+
+        Map<Integer, Integer> test2 = Calculator.calcRoofingSheets(420, 360);
+        Map<Integer, Integer> expe2 = Collections.singletonMap(480, 5);
+        assertEquals(expe2, test2);
+    }
+
+    @Test
+    void calcBolts() {
+        int bolts = Calculator.calcBolts(13);
+        assertEquals(26, bolts);
+    }
+
+    @Test
+    void calcFittings() {
+        Map<Integer, Integer> test1 = Calculator.calcFittings(15);
+        Map<Integer, Integer> expe1 = Collections.singletonMap(15, 15);
+        assertEquals(expe1, test1);
+    }
+
+    @Test
+    void calcScrews() {
+        int test1 = Calculator.calcScrews(30);
+        assertEquals(2, test1);
+    }
+
+    @Test
+    void calcRoofScrews() {
+        int test1 = Calculator.calcRoofScrews(600);
+        assertEquals(1, test1);
+    }
+
+    @Test
+    void calcSquareFittings() {
+        int test1 = Calculator.calcSquareFittings(6);
+        assertEquals(6, test1);
+    }
+
+    @Test
+    void calcUnderSternBoardFrontAndBack() {
+        Map<Integer, Integer> test1 = Calculator.calcUnderSternBoardFrontAndBack(600);
+        Map<Integer, Integer> expe1 = Collections.singletonMap(360, 4);
+        assertEquals(expe1, test1);
+    }
+
+    @Test
+    void calcOverSternBoardFront() {
+        Map<Integer, Integer> test1 = Calculator.calcOverSternBoardFront(600);
+        Map<Integer, Integer> expe1 = Collections.singletonMap(360, 2);
+        assertEquals(expe1, test1);
+    }
+
+    @Test
+    void calcUnderSternBoardSides() {
+        Map<Integer, Integer> test1 = Calculator.calcUnderSternBoardSides(780);
+        Map<Integer, Integer> expe1 = Collections.singletonMap(450, 4);
+        assertEquals(expe1, test1);
+    }
+
+    @Test
+    void calcOverSternBoardSides() {
+        Map<Integer, Integer> test1 = Calculator.calcOverSternBoardSides(780);
+        Map<Integer, Integer> expe1 = Collections.singletonMap(450, 4);
+        assertEquals(expe1, test1);
+    }
+
+    @Test
+    void calcWaterBoardFront() {
+        Map<Integer, Integer> test1 = Calculator.calcWaterBoardFront(600);
+        Map<Integer, Integer> expe1 = Collections.singletonMap(360, 2);
+        assertEquals(expe1, test1);
+    }
+
+    @Test
+    void calcWaterBoardSides() {
+        Map<Integer, Integer> test1 = Calculator.calcWaterBoardSides(780);
+        Map<Integer, Integer> expe1 = Collections.singletonMap(450, 4);
+        assertEquals(expe1, test1);
     }
 }
