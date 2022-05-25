@@ -17,7 +17,7 @@ class Calculator {
         int width = request.getWidthcp();
         PartsList partsList = new PartsList(requestId);
 
-        int poleCount = calcPoles(length, width);
+        int poleCount = calcPoles(length);
         Material poles = new Material("97x97 mm. trykimp. Stolpe",
                 poleCount,
                 300,
@@ -25,7 +25,7 @@ class Calculator {
                 "Stolper nedgraves 90 cm i jord");
         partsList.addMaterial(poles);
 
-        Map<Integer, Integer> beamNumbers = calcBeams(length, width);
+        Map<Integer, Integer> beamNumbers = calcBeams(length);
         int beamLength = beamNumbers.entrySet().stream().findFirst().get().getKey();
         int beamAmount = beamNumbers.get(beamLength);
         while (beamLength % 60 != 0)
@@ -256,11 +256,10 @@ class Calculator {
     /**
      *
      * @param length The length of the carport
-     * @param width The width of the carport
      * @return How many poles are needed for the given carport dimensions.
      */
     // poles = stolper
-    protected static int calcPoles(int length, int width) {
+    protected static int calcPoles(int length) {
         int poleCount = 4;
         if ((length - 100) > 310) {
             poleCount += 2;
@@ -271,12 +270,11 @@ class Calculator {
     /**
      *
      * @param length The length of the carport
-     * @param width The width of the carport
      * @return A {@code Map<Key, Value>} where keys are equal to the length of the beam
      * and values are equal to the amount of beams with that length.
      */
     // beams = rem
-    protected static Map<Integer, Integer> calcBeams(int length, int width) {
+    protected static Map<Integer, Integer> calcBeams(int length) {
         Map<Integer, Integer> beams = new HashMap<>();
         int beamLength;
         int beamCount;
