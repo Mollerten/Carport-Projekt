@@ -42,7 +42,7 @@ class Calculator {
         Map<Integer, Integer> rafterNumbers = calcRafters(length, width);
         int rafterLength = rafterNumbers.entrySet().stream().findFirst().get().getKey();
         int rafterAmount = rafterNumbers.get(rafterLength);
-        partsList.setRafterCount(rafterNumbers.get(rafterLength));
+        partsList.setRafterCount(rafterAmount);
         int tempRafterLength = rafterLength;
         while (tempRafterLength % 60 != 0) tempRafterLength += 15;
         Material rafters = new Material("45x195 mm. spærtræ ubh.",
@@ -331,15 +331,15 @@ class Calculator {
         int roofingSheetAmountLength = 1;
         int roofingSheetAmountTotal;
 
-        roofingSheetAmountWidth = (int) Math.ceil(carportWidth/(109-20));
+        roofingSheetAmountWidth = (int) Math.ceil(carportWidth/(109-20f));
 
-        segment = (int) Math.ceil(carportLength/60)+1;
+        segment = (int) Math.ceil(carportLength/60f)+1;
 
         if (segment<=10){
             roofingSheetSize = segment * 60;
         }
         if (segment > 10){
-           roofingSheetSize = (int) Math.ceil((segment/2)) * 60;
+           roofingSheetSize = (int) Math.ceil((segment/2f)) * 60;
            roofingSheetAmountLength = 2;
         }
 
@@ -378,7 +378,7 @@ class Calculator {
 
         screwAmount = fittings * 9;
 
-        screwBoxAmount = (int) Math.ceil(screwAmount/250);
+        screwBoxAmount = (int) Math.ceil(screwAmount/250f);
 
         return screwBoxAmount;
     }
