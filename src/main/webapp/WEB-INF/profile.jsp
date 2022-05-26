@@ -112,54 +112,5 @@
     </div>
     </body>
 
-
- <%--   <h1>${requestScope.errormsg}</h1>
-
-    <h3>Lavede du en fejl da du oprettede din profil? </h3>
-    <h3>Udfyld formularen og få det fixet!</h3>
-
-    <form action="${pageContext.request.contextPath}/fc/updateUser" method="post">
-      <input type="hidden" name="command" value="updateUser"/>
-      <br><br>
-
-      <label for="newUsername">Indtast nyt brugernavn: </label>
-      <input type="text" id="newUsername" name="newUsername"/>
-      <br><br>
-
-      <label for="newEmail">Indtast ny email to gange for at bekræfte: </label>
-      <label for="confirmNewEmail">: </label>
-      <input type="text" id="newEmail" name="newEmail"/>
-      <input type="text" id="confirmNewEmail" name="confirmNewEmail"/>
-      <br><br>
-
-      <label for="newPassword">Indtast nyt kodeord to gange for at bekræfte: </label>
-      <label for="confirmNewPassword">: </label>
-      <input type="password" id="newPassword" name="newPassword"/>
-      <input type="password" id="confirmNewPassword" name="confirmNewPassword"/>
-      <br><br>
-
-      <label for="newTlfnr">Indtast nyt telefonnummer:</label>
-      <input type="text" id="newTlfnr" name="newTlfnr">
-      <br><br>
-
-      <label for="newAddress">Indtast nyt gadenavn og nummer: </label>
-      <input type="text" id="newAddress" name="newAddress"/>
-      <br><br>
-
-      <label for="newCity">Indtast ny by og zipcode: </label>
-      <label for="newPostalCode"></label>
-      <input type="text" id="newCity" name="newCity"/>
-      <input type="text" id="newPostalCode" name="newPostalCode">
-      <br><br><br>
-
-      <label for="oldPassword">Indtast dit kodeord for at gemme ændringerne:</label>
-      <input type="password" id="oldPassword" name="oldPassword">
-      <br><br>
-
-      <input type="submit"  value="Update user"/>
-<<<<<<< HEAD:src/main/webapp/WEB-INF/profile.jsp
-=======
-    </form>--%>
-
   </jsp:body>
 </t:pagetemplate>

@@ -50,7 +50,7 @@
         <%--        Hvis brugeren/admin ikke er logget ind--%>
         <c:if test="${sessionScope.user == null}">
             <p>Du er ikke logget ind endnu - log ind her:
-                <a href="login.jsp">Login</a></p>
+                <a href="../login.jsp">Login</a></p>
         </c:if>
 
     </jsp:body>
