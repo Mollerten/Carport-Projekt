@@ -1,5 +1,6 @@
 package dat.carport.persistence;
 
+import dat.carport.model.entities.City;
 import dat.carport.model.entities.User;
 import dat.carport.model.exceptions.DatabaseException;
 import dat.carport.model.persistence.ConnectionPool;
@@ -96,5 +97,16 @@ class UserMapperTest
         assertEquals(expectedUser, newUser);
         assertEquals(expectedUser, logInUser);
 
+    }
+
+    @Test
+    void addCity() throws DatabaseException {
+        City existingCity = UserFacade.addCity("Nyker", "3700", connectionPool);
+        City expe1 = new City("Nyker", "3700");
+        assertEquals(expe1, existingCity);
+
+        City newCity = UserFacade.addCity("Aakirkeby", "3720", connectionPool);
+        City expe2 = new City("Aakirkeby", "3720");
+        assertEquals(expe2, newCity);
     }
 }
