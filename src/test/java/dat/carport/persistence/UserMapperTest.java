@@ -35,6 +35,7 @@ class UserMapperTest
                 // Remove all rows from all tables
                 stmt.execute("delete from user");
                 stmt.execute("delete from city");
+                stmt.execute("ALTER TABLE user AUTO_INCREMENT = 1");
                 // Indsæt et par brugere
                 stmt.execute("insert into city (city, postal_code) " +
                         "values ('Nyker','3700')," +
@@ -68,6 +69,7 @@ class UserMapperTest
     void login() throws DatabaseException
     {
         User expectedUser = new User("user", "u@u.dk", "1234", "12345678", "Kirkemarksvej 48", "Nyker", "user");
+        expectedUser.setId(1);
         User actualUser = UserFacade.login("user","1234", connectionPool);
         assertEquals(expectedUser, actualUser);
     }
@@ -90,6 +92,7 @@ class UserMapperTest
         User newUser = UserFacade.createUser("jill", "test@mail.com", "1234", "88888888", "testvej 28", "testby", connectionPool);
         User logInUser = UserFacade.login("jill","1234", connectionPool);
         User expectedUser = new User("jill", "test@mail.com", "1234", "88888888", "testvej 28", "testby", "user");
+        expectedUser.setId(5);
         assertEquals(expectedUser, newUser);
         assertEquals(expectedUser, logInUser);
 

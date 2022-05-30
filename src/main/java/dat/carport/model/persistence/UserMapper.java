@@ -64,7 +64,7 @@ public class UserMapper implements IUserMapper
         String sql = "insert into user (username, email, password, tlfnr, address, city, isAdmin) values (?,?,?,?,?,?,?)";
         try (Connection connection = connectionPool.getConnection())
         {
-            try (PreparedStatement ps = connection.prepareStatement(sql))
+            try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS))
             {
                 ps.setString(1, username);
                 ps.setString(2, email);
@@ -76,7 +76,9 @@ public class UserMapper implements IUserMapper
                 int rowsAffected = ps.executeUpdate();
                 if (rowsAffected == 1)
                 {
-                    user = new User(username, email, password, tlfnr, address, city, "user");
+                    ResultSet rs = ps.getGeneratedKeys();
+                    rs.next();
+                    user = new User(username, email, password, tlfnr, address, city, "user", rs.getInt(1));
                 } else
                 {
                     throw new DatabaseException("The user with username = " + username + " could not be inserted into the database");
